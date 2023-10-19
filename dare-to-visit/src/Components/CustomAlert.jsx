@@ -9,11 +9,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const Hsong1 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/Hsong1.mp3";
-const Hsong2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/Hsong2.mp3";
-const Hsong3 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/Hsong3.mp3";
-const Hsong4 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/Hsong4.mp3";
-const Hsong5 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/Hsong5.mp3";
+const Hsong1 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/Hsong1.mp3";
+const Hsong2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/Hsong2.mp3";
+const Hsong3 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/Hsong3.mp3";
+const Hsong4 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/Hsong4.mp3";
+const Hsong5 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/Hsong5.mp3";
 
 const songs = [Hsong1, Hsong2, Hsong3, Hsong4, Hsong5];
 

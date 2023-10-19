@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Box,Text,Button,Image,keyframes  } from '@chakra-ui/react';
-import AnnaBG from "../Photo/AnnaBG.jpg"
+import { Box,Text,Button,keyframes  } from '@chakra-ui/react';
 import { Navigate, useNavigate } from "react-router-dom";
+const AnnaBG = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/AnnaBG.jpg"
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #FF0000; }
   50% { box-shadow: 0 0 10px 5px #FF0000; }
@@ -73,7 +73,7 @@ function Welcome() {
              onClick={handleAuth}
              bg="transparent"
               color="#FF0000"
-              fontFamily="another_danger"
+              fontFamily="caslon-antique"
               _hover={{ boxShadow: '0 0 10px 5px #FF0000' }}
               animation={`${glowAnimation} 1s infinite`}
               // _focus={{ outline: 'none' }}
@@ -96,12 +96,9 @@ function Welcome() {
             // color="#fff"
             fontFamily="sans"
             fontSize={{base:"20px",md:"25px"}}>
-                {/* Note: Enter at your own risk,"Dare to Visit." 
-            To truly amplify the horror experience, we recommend wearing earphones. 
-            Let the haunting whispers and bone-chilling soundscape surround you, enveloping you in a realm of fear. */}
-            <Text color="white" display="inline">
+            <span style={{color:"white" ,display:"inline"}}>
         Note: 
-      </Text>{' '}
+      </span>{' '}
      {' '}"Dare to Visit" Enter at your own risk, On signin page click any where for audio
       To truly amplify the horror experience, we recommend wearing earphones. Let the haunting whispers and bone-chilling soundscape surround you, enveloping you in a realm of fear.
     

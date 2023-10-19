@@ -8,13 +8,13 @@ import {
   AlertDialogOverlay,
   Button,
 } from "@chakra-ui/react";
-const DWsong2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong2.mp3";
-const DWsong1 = 'https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong1.mp3';
-const DWsong3 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong3.mp3";
-const DWsong4 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong4.mp3";
-const DWsong5 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong5.mp3";
-const DWsong6 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong6.mp3";
-const DWsong7 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/autoAudio/DWsong7.mp3";
+const DWsong2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong2.mp3";
+const DWsong1 = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong1.mp3';
+const DWsong3 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong3.mp3";
+const DWsong4 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong4.mp3";
+const DWsong5 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong5.mp3";
+const DWsong6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong6.mp3";
+const DWsong7 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong7.mp3";
 
 const songs = [DWsong1,DWsong2,DWsong3,DWsong4,DWsong5,DWsong6,DWsong7];
 

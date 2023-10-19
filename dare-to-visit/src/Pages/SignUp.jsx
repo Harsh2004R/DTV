@@ -1,13 +1,10 @@
 import React, { useEffect, useRef,useState } from 'react';
 import { Box, Input, Text, Button,keyframes, FormControl, FormLabel,Center, AlertDialog,AlertDialogOverlay,AlertDialogContent,Image,CloseButton,AlertDialogFooter,AlertDialogBody} from '@chakra-ui/react';
-
 import "../Fonts.css"
-import '../App.css';
-import backgroundVideo from '../Videos/BGvideo.mp4'; // Replace with the actual path to your video file
 import { Navigate, useNavigate } from "react-router-dom";
 
 
-
+const backgroundVideo = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Videos/BGvideo.mp4'; // Replace with the actual path to your video file
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px coral; }
   50% { box-shadow: 0 0 10px 5px coral; }
@@ -83,7 +80,7 @@ function SignUp() {
           zIndex={1}
         >
           <Text
-            fontFamily="another_danger"
+            fontFamily="just-die-already"
             textStyle="horror"
             color="white"
             fontSize={{base:"67px",md:"65px"}}
@@ -132,7 +129,6 @@ function SignUp() {
                 color="#FF6F00"
                 variant="unstyled"
                 placeholder="Enter your Email"
-                placeholderTextColor="#ECEFF1"
                 textAlign="center"
                 fontFamily= "caslon-antique"
                 bg="none"
@@ -150,7 +146,6 @@ function SignUp() {
                 color="#FF6F00"
                 variant="unstyled"
                 placeholder="Enter your Username"
-                placeholderTextColor="#ECEFF1"
                 textAlign="center"
                 fontFamily= "caslon-antique"
                 bg="none"
@@ -169,7 +164,6 @@ function SignUp() {
                 border="none"
                 variant="unstyled"
                 placeholder="Dare to create your password"
-                placeholderTextColor="#ECEFF1"
                 fontFamily= "caslon-antique"
                 textAlign="center"
                 bg="none"

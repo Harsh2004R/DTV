@@ -2,7 +2,7 @@ import React from 'react';
 import {Box,Text, Divider, keyframes} from "@chakra-ui/react";
 import AudioPlayer from '../Components/AudioPlayer';
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
+import Nav from "../Components/Nav";
 import Navbar2 from "../Components/Navbar2";
 const slideInFromLeft = keyframes`
   0% {
@@ -23,7 +23,7 @@ function Podcast() {
     <div>
 
 
-      <Navbar/>
+      <Nav/>
       <Navbar2/>
 
 

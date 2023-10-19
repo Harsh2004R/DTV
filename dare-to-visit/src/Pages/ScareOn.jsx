@@ -1,9 +1,8 @@
 
 import React from 'react'
-import {Box,Button,Text,Image,Divider} from "@chakra-ui/react";
+import {Box,Button,Text} from "@chakra-ui/react";
 import ScareOnClip from '../Components/ScareOnClip';
 import ScareOnCard from '../Components/ScareOnCard';
-// import {Box,Image,Button,Text,} from "@chakra-ui/react"
 function ScareOn() {
   return (
     <div>

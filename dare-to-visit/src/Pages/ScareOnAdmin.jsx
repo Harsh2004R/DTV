@@ -18,14 +18,9 @@ import {
   Divider,
   keyframes,
   Image,
-  // Alert,
-  // AlertIcon,
-  // AlertTitle,
-  // CloseButton,
-
 } from '@chakra-ui/react';
 import Navbar2 from '../Components/Navbar2';
-import Navbar from '../Components/Navbar';
+import Nav from '../Components/Nav';
 import Footer from "../Components/Footer";
 const avatars = [
   {
@@ -141,7 +136,7 @@ export default function ScareOnAdmin() {
 
 <>
 
-<Navbar/>
+<Nav/>
     <Navbar2/>
 
 
@@ -157,7 +152,7 @@ export default function ScareOnAdmin() {
           _hover={{ 
            transform: 'scale(0.9)',
            cursor: 'pointer'
-         }}  pt={{base:"10px",md:"0px"}} pb={{base:"10px",md:"0px"}}  m="auto"  bg="#000000" fontFamily={"Hell"} color="#FFFFFF" textAlign={"center"} fontSize={{base:"6xl",md:"8xl"}}>"Scare On"</Text>
+         }}  pt={{base:"10px",md:"0px"}} pb={{base:"10px",md:"0px"}}  m="auto"  bg="#000000" fontFamily={"spiders"}bgGradient="linear(to-b, blue.400,red.400)" bgClip="text" textAlign={"center"} fontSize={{base:"6xl",md:"8xl"}}>"Scare On"</Text>
           <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
           </Box>
 

@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import {
   Box,
   IconButton,
@@ -10,7 +10,6 @@ import {
   Flex,
   Text,
   Button,
-  keyframes,
 } from '@chakra-ui/react';
 import {  useNavigate } from 'react-router-dom';
 import {
@@ -19,8 +18,10 @@ import {
   FaStepForward,
   FaStepBackward,
 } from 'react-icons/fa';
-import ScareOnAudioPlayerBG from "../Photo/ScareOnAudioPlayerBG.avif";
 
+
+
+const ScareOnAudioPlayerBG = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/ScareOnAudioPlayerBG.avif";
 
 const DummyScareOnClip = () => {
     const Navigate=useNavigate();

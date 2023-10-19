@@ -3,76 +3,70 @@ import React, { useEffect, useState } from 'react';
 import { Box ,Text,Image,Button,Flex,keyframes,UnorderedList, ListItem,useBreakpointValue, Grid ,GridItem } from "@chakra-ui/react";
 import {  useNavigate } from 'react-router-dom';
 import {Divider} from "@chakra-ui/react"
-import Navbar from "../Components/Navbar";
-import TestNav from "../Empty-3/TestNav";
+import Nav from "../Components/Nav";
 import CustomAlert from "../Components/CustomAlert";
 import AI from '../Components/AI';
 import VideoComponent from '../Components/VideoComponent ';
 import Navbar2 from "../Components/Navbar2";
 import Footer from "../Components/Footer";
-import DummyScareOnClip from "../Empty-3/DummyScareOnClip";
-import DummyScareOnCard from "../Empty-3/DummyScareOnCard";
+import DummyScareOnClip from "../Templates/DummyScareOnCard";
+import DummyScareOnCard from "../Templates/DummyScareOnClip";
 
 
 
 
 
 
-
-
-
-
-import AudioPlayerIMG from "../Photo/AudioPlayerIMG.png";
-import Mid2 from "../Photo/Mid2.avif";
-import HauntedBG from "../Photo/HauntedBG.jpg";
-import Hashima from "../Photo/Hashima.png";
-import Hacker from "../Photo/Hacker.jpg";
-import HauntedHouse from "../Photo/HauntedHouse.jpg";
-import GirlHacker from "../Photo/GirlHacker.jpg";
-import SkullImg from "../Photo/SkullImg.jpg";
-
-
-
+const AudioPlayerIMG = "https://i.ibb.co/NrpFM76/Audio-Player-IMG.png";
+const Mid2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/Mid.avif";
+const HauntedBG = "https://i.ibb.co/CBySFbV/Haunted-BG.jpg";
+const Hashima = "https://i.ibb.co/w0yVJ1y/Hashima.png";
+const Hacker = "https://i.ibb.co/BGG6zVh/Hacker.jpg";
+const HauntedHouse = "https://i.ibb.co/YWJF3PP/Haunted-House.jpg";
+const GirlHacker = "https://i.ibb.co/R7KJ65v/Girl-Hacker.jpg";
+const SkullImg = "https://i.ibb.co/YjQ36Tn/SkullImg.jpg";
 
 
 
 
 
  
-import SideNavImg from "../Photo/SideNavImg.png";
-import MainNavImg from "../Photo/MainNavImg.png";
-import PhoneMenuimg from "../Photo/PhoneMenuimg.jpg";
+const SideNavImg = "https://i.ibb.co/wKKC1xd/Side-Nav-Img.png";
+const MainNavImg = "https://i.ibb.co/0jM03Sy/Main-Nav-Img.png";
+const PhoneMenuimg = "https://i.ibb.co/Ptb8cLQ/Phone-Menuimg.jpg";
 
 
 
 
 
 
+const P1  = "https://i.ibb.co/HKJHyPx/PC1.png";
+const P2  = "https://i.ibb.co/jbGdrr2/P2.jpg";
+const P3 = "https://i.ibb.co/pz7qWCg/P3.jpg";
+const P4  ="https://i.ibb.co/D5H7vZh/P4.jpg";
+const P5 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P5.avif";
+const P6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P6.avif";
+const P7 = "https://i.ibb.co/KVYxznd/P7.png";
+const P8 ="https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P8.avif";
+const P9 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P9.avif";
+const P10 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P10.avif";
+const P11 = "https://i.ibb.co/Xbg29Gk/P11.jpg";
+const P12 = "https://i.ibb.co/L0fPnc6/P12.jpg";
+const P13 = "https://i.ibb.co/Y7KF32r/P13.jpg";
 
-import P1 from "../Photo/P1.png";
-import P2 from "../Photo/P2.jpg";
-import P3 from "../Photo/P3.jpg";
-import P4 from "../Photo/P4.jpg";
-import P5 from "../Photo/P5.avif";
-import P6 from "../Photo/P6.avif";
-import P7 from "../Photo/P7.png";
-import P8 from "../Photo/P8.avif";
-import P9 from "../Photo/P9.avif";
-import P10 from "../Photo/P10.avif";
-import P11 from "../Photo/P11.jpg";
-import P12 from "../Photo/P12.jpg";
-import P13 from "../Photo/P13.jpg";
 
 
-import PC1 from "../Photo/PC1.png";
-import PC2 from "../Photo/PC2.jpg";
-import PC3 from "../Photo/PC3.jpg";
-import PC4 from "../Photo/PC4.webp";
-import PC5 from "../Photo/PC5.webp";
-import PC6 from "../Photo/PC6.avif";
-import PC7 from "../Photo/PC7.avif";
-import PC8 from "../Photo/PC8.avif";
 
+
+
+const PC1 = "https://i.ibb.co/HKJHyPx/PC1.png";
+const PC2 = "https://i.ibb.co/dr2zz8m/PC2.jpg";
+const PC3 = "https://i.ibb.co/r795fd4/PC3.jpg";
+const PC4 = "https://i.ibb.co/CVx8mYY/PC4.webp";
+const PC5 = "https://i.ibb.co/S3hZsSt/PC5.webp";
+const PC6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC6.avif";
+const PC7 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC7.avif";
+const PC8 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC8.avif";
 
 
 
@@ -81,6 +75,7 @@ import PC8 from "../Photo/PC8.avif";
 
 const Phone_slider = [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13]; // Images for PC
 const PC_slider = [PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8]; // Images for Phones
+
 
 
 
@@ -99,6 +94,8 @@ const slideInFromLeft = keyframes`
 
 
 
+
+
 const bounceAnimation = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -112,29 +109,15 @@ const bounceAnimation = keyframes`
 `;
 
 
-const textMiniBounce = keyframes`
-  0%, 50% 100%{
-    transform: translateY(0);
-  }
-  20%, 30%, 50% {
-    transform: translateY(+15px);
-  }
-  10%, 40% {
-    transform: translateY(-10px);
-  }
-`;
-
-
-
-
-
 
 
 
 
 const gradient1 = `linear-gradient(to right, #000000, #37474F, #000000)`;
-// const gradient2 = `linear-gradient(to right, #191616, #000000, #ea3d31)`;
 const gradient2 = `linear-gradient(to right, #000000, #100001, #000000)`;
+
+
+
 
 
 
@@ -240,7 +223,7 @@ useEffect(() => {
   }
 
   const handle3DviewPage = ()=>{
-    Navigate("/3D")
+    Navigate("/React3DView")
   }
 
   const handleDW = ()=>{
@@ -256,8 +239,8 @@ useEffect(() => {
 
 
 
-      {/* <Navbar /> */}
-      <TestNav/>
+      
+      <Nav/>
       <Navbar2 />
 
 
@@ -307,7 +290,7 @@ useEffect(() => {
            transform: 'scale(0.9)',
            cursor: 'pointer'
          }} 
-           fontFamily={"Hell"} color="#FFFFFF" textAlign={"center"} fontSize={{base:"3xl",md:"5xl"}}>"Explore via":<span style={{ color: "#FF0000" }} >Navbar</span></Text>
+           fontFamily={"just-die-already"} color="#FFFFFF" textAlign={"center"} fontSize={{base:"2xl",md:"5xl"}} mb="10px">"Explore via":<span style={{ color: "#FF0000" }} >Navbar</span></Text>
           
           <UnorderedList 
           // border="1px solid red"
@@ -502,7 +485,7 @@ useEffect(() => {
 
 
 
-        <Box w="100%" h="180px" bg="#000000" >
+        <Box w="100%" h="auto" bg="#000000" >
         <Divider w="100%" animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} borderColor={"#fff"}/>
           <Text 
           transition="transform 1s" 
@@ -510,9 +493,9 @@ useEffect(() => {
            transform: 'scale(0.9)',
            cursor: 'pointer'
          }}
-          pt="25px" pb="25px" fontFamily={"fiendish"} textAlign={"center"} color="#FF0000" fontSize={{base:"2xl",md:"5xl"}}>HAUNTED PLACES</Text>
+          pt="25px" pb="25px" fontFamily={"just-die-already"} textAlign={"center"} color="#FF0000" fontSize={{base:"3xl",md:"6xl"}}>HAUNTED PLACES</Text>
           <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
-          <Text pt="10px" w={{base:"90%",md:"67%"}} m="auto" fontFamily={"living-by-numbers"} textAlign={{base:"justify",md:"center"}} color="#fff" fontSize={{base:"1.1rem",md:"1.6rem"}}>
+          <Text pt="10px" w={{base:"90%",md:"67%"}} m="auto" fontFamily={"just-die-already"} textAlign={{base:"justify",md:"center"}} color="#fff" fontSize={{base:"0.75rem",md:"1rem"}}>
           We use state-of-the-art deep learning algorithms to learn how haunted houses, or toxic cities look like.
            Then we apply the skills style to famous landmarks and present you: AI-powered horror all over the world!
            </Text>
@@ -547,9 +530,10 @@ useEffect(() => {
 
           <Text 
           transition="transform 1s" _hover={{transform: 'scale(0.9)', cursor: 'pointer' }}
-          fontFamily={"Hell"} color="#FF0000" textAlign={"center"} fontSize={{base:"5xl",md:"8xl"}}>"Eerie Videos"
-          <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
+          fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{base:"4xl",md:"8xl"}}>"Eerie Videos"
+          
         </Text>
+        <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
 
         <Box w="100%" mt="25px"  mb="25px" h="auto"
         //  border="2px solid red"
@@ -574,7 +558,7 @@ useEffect(() => {
 
           {/* Importing vdeo component here-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
-          <VideoComponent />
+          {/* <VideoComponent /> */}
 
           {/* video component ends here ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
         
@@ -623,9 +607,9 @@ useEffect(() => {
            cursor: 'pointer'
          }}
          onClick={handlePodcastPage}
-          fontFamily={"Hell"} color="#FF0000" textAlign={"center"} fontSize={{base:"5xl",md:"8xl"}}>"Spooky Pod"
-          <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
+          fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{base:"4xl",md:"8xl"}}>"Spooky Pod"
           </Text>
+          <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
          {/* importing audioPlayer component here */}
 
 
@@ -683,16 +667,17 @@ useEffect(() => {
 
           {/* importing Scare on audio player here --------------------------------------------------------------------------------------------------------------------------- */}
 
-          <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"}/>
+          <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#000000"}/>
           <Box w="100%" h="auto" bg="#000000"><Text 
           transition="transform 1s" 
           _hover={{ 
            transform: 'scale(0.9)',
            cursor: 'pointer'
          }}
-          bg={gradient2} fontFamily={"Hell"} color="#FF0000" textAlign={"center"} fontSize={{base:"3xl",md:"6xl"}}>"What our users share"
-          <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
-        </Text></Box>
+          bg={gradient2} fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{base:"3xl",md:"5xl"}}>"What our users share"
+        </Text>
+        <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
+        </Box>
 
 
         
@@ -706,7 +691,7 @@ useEffect(() => {
       <DummyScareOnClip/>
       </Box>
 
-    {/* importing ScareonCard  component here----------------------------------------------------------------------------------------------------------------------------------------------------*/}
+    {/* importing ScareonCard component here----------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
       <Box  pt={{base:"5%",md:"1%"}} display="flex" justifyContent={"center"}  alignItems={"center"} m="auto" w={{base:"90%",md:"40%"}}>
         <DummyScareOnCard />
@@ -753,7 +738,7 @@ useEffect(() => {
           _hover={{ 
            transform: 'scale(0.9)',
            cursor: 'pointer'
-         }}  pt={{base:"20px",md:"20px"}} pb={{base:"20px",md:"20px"}}  m="auto" bg={gradient2} fontFamily={"Hell"} color="#FF0000" textAlign={"center"} fontSize={{base:"25px",md:"6xl"}}>"Explore the Virtual tour"</Text>
+         }}  pt={{base:"20px",md:"20px"}} pb={{base:"20px",md:"20px"}}  m="auto" bg={gradient2} fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{base:"21px",md:"5xl"}}>"Explore the Virtual tour"</Text>
           <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
           </Box>
 
@@ -934,7 +919,7 @@ useEffect(() => {
           _hover={{ 
            transform: 'scale(0.9)',
            cursor: 'pointer'
-         }}  pt={{base:"20px",md:"20px"}} pb={{base:"20px",md:"20px"}}  m="auto" bg={gradient2} fontFamily={"Hell"} color="#FF0000" textAlign={"center"} fontSize={{base:"25px",md:"6xl"}}>"Explore Deep Dark web"</Text>
+         }}  pt={{base:"20px",md:"20px"}} pb={{base:"20px",md:"20px"}}  m="auto" bg={gradient2} fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{base:"21px",md:"5xl"}}>"Explore Deep Dark web"</Text>
           <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"}/>
 
         </Box>

@@ -270,7 +270,7 @@
   
   .profile-pic{
     border: 1px solid #fff;
-    width: 70%;
+    width: 60%;
     height: 50%;
     /* border: 1px solid red; */
     
@@ -328,8 +328,8 @@
 
   .profile-pic{
     border: 1px solid #fff;
-    width: 62%;
-    height: 62%;
+    width: 52%;
+    height: 72%;
     
   }
   
@@ -351,6 +351,17 @@
   .profile-pic{
     border: 1px solid #fff;
     width: 42%;
+    height: 62%;
+    
+  }
+  
+}
+@media (min-width: 308px) {
+  
+
+  .profile-pic{
+    border: 1px solid #fff;
+    width: 52%;
     height: 62%;
     
   }

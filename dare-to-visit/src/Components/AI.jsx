@@ -91,7 +91,7 @@ export default function AI() {
         <Stack spacing={4}>
 
           <Text mt="10px" fontFamily={"fiendish"} textAlign={"left"} color="#FF0000" fontSize={{ base: "xxl", md: "3xl" }}>All over the world </Text>
-          <Text fontFamily={"living-by-numbers"} textAlign={{ base: "justify", md: "justify" }} color="#fff" fontSize={{ base: "1.1rem", md: "1.2rem" }} >
+          <Text fontFamily={"just-die-already"} textAlign={{ base: "justify", md: "justify" }} color="#fff" fontSize={{ base: "0.8rem", md: "1rem" }} >
             We use really smart computer programs to learn what spooky houses and creepy cities look like. Then, we use what we learned to make
             famous places look scary too. So, get ready to see AI magic turning the world into a spooky adventure!
           </Text>

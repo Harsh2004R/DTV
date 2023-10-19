@@ -1,8 +1,8 @@
 import React, { useEffect, useRef,useState } from 'react'
 import {Box,Image,Button,Text,Select,keyframes } from "@chakra-ui/react"
-import BGvid from "../Videos/BGvid.mp4"
+
 import { Navigate, useNavigate } from "react-router-dom";
-import Navbar from "../Components/Navbar"
+import Nav from "../Components/Nav";
 
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #FF0000; }
@@ -12,7 +12,7 @@ const glowAnimation = keyframes`
 
 
 
-
+const BGvid = "https://player.vimeo.com/external/506484167.sd.mp4?s=91a430b56be8e87b1c37b96f86476892039a1a02&profile_id=164&oauth2_token_id=57447761"
 function DeathCause() {
   const Navigate =  useNavigate();
 
@@ -33,7 +33,7 @@ function DeathCause() {
       };
   return (
     <>
-    <Navbar/>
+    <Nav/>
     <Box
     onClick={handleAudio}
     width="100%"

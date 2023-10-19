@@ -1,16 +1,15 @@
 import { useState,useRef  } from 'react';
 import Navbar2 from "../Components/Navbar2";
-import Navbar from "../Components/Navbar";
+
 import Footer from "../Components/Footer";
 import {Box,Image,Button,Text,Divider,keyframes,FormControl,FormLabel,Input,Grid} from "@chakra-ui/react"
-import DWQr from "../Photo/DWQr.jpg"
-import Bajaj from "../Photo/Bajaj.jpeg"
-import Paytm from "../Photo/Paytm.png"
-import Gpay from "../Photo/Gpay.jpeg"
-import Dark_upi from "../Photo/Dark_upi.png"
+const DWQr = "https://i.ibb.co/CVJX4TD/DWQr.jpg"
+const Bajaj = "https://i.ibb.co/qxS6NcT/Bajaj.jpg"
+const Paytm = "https://i.ibb.co/DMb2Vpq/Paytm.png"
+const Gpay = "https://i.ibb.co/ZcKq4JH/Gpay.jpg"
+const Dark_upi = "https://i.ibb.co/syh8ZNz/Dark-upi.png"
  
 const Gradient1 = `linear-gradient(to right ,#000000, #333333, #000000)`; 
-const Gradient2 = `linear-gradient(to right ,#000000, #66908c, #000000)`;
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px teal; }
   50% { box-shadow: 0 0 10px 5px teal; }

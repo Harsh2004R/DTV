@@ -1,6 +1,5 @@
-import Navbar from "../Components/Navbar"
-
 import React, { useState } from 'react';
+import Nav from "../Components/Nav"
 import {
   Box,
   Input,
@@ -9,8 +8,8 @@ import {
   keyframes,
   Flex,
 } from "@chakra-ui/react"
-import DDBG from "../Photo/DDBG.png";
-import CountDown from "../autoAudio/CountDown.mp3"
+const DDBG = "https://i.ibb.co/WkfLQ5B/DDBG.png";
+const CountDown = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/CountDown.mp3"
 
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #FF0000; }
@@ -42,20 +41,6 @@ const fadeInAnimation = keyframes`
   }
 }`;
 
-const glitch = keyframes`
-  0% {
-    transform: translate(0, 0);
-  }
-  20%, 80% {
-    transform: translate(-5px, 5px);
-  }
-  40%, 60% {
-    transform: translate(5px, -5px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-`;
 const sinisterGlowing = keyframes`
   0%, 100% {
     color: #fff;
@@ -66,14 +51,7 @@ const sinisterGlowing = keyframes`
     text-shadow: none;
   }
 `;
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+
 
 function DeathDate() {
   const [isSongPlaying, setIsSongPlaying] = useState(false);
@@ -91,7 +69,7 @@ function DeathDate() {
   let countdownInterval = null;
   const oneSecond = 1000;
   const oneMinute = oneSecond * 60;
-  const oneHour = oneMinute * 60;
+  // const oneHour = oneMinute * 60;
 
   const handleChange = (event) => {
     setCurrentAge(event.target.value);
@@ -153,18 +131,6 @@ function DeathDate() {
     setIsButtonDisabled(true);
   };
 
-  const handleDate = () => {
-    if (currentAge === '') {
-      alert('Please enter your age');
-      return;
-    }
-    const futureDate = generateFutureDate();
-    setFutureDate(futureDate);
-    startCountdown();
-    setIsSongPlaying(true);
-    setIsButtonDisabled(true);
-  };
- 
   React.useEffect(() => {
     return () => {
       clearInterval(countdownInterval);
@@ -173,7 +139,7 @@ function DeathDate() {
 
   return (
     <>
-    <Navbar/>
+    <Nav/>
       <Box
         w="100%"
         h='100vh'
@@ -243,7 +209,7 @@ function DeathDate() {
               
               />
               <Button
-                onClick={handleDate}
+                type="submit"
                 _hover={{ boxShadow: '0 0 10px 5px #FF0000' }}
                 animation={`${glowAnimation} 1s infinite`}
                 _focus={{ outline: 'none' }}
@@ -269,23 +235,24 @@ function DeathDate() {
             h={{ base: "35vh", md: "35vh" }} w="100%">
               
             <Text w="100%" textAlign={"center"} fontFamily={"fiendish"} color="white" fontSize={{base:"1rem"}} p={2}>
-              Your Death Date 
+              Your Death Date </Text>
               <Text  textAlign={"center"} fontFamily={"fiendish"} color="#FF0000" p={{base:"5",md:"3"}} fontSize={{base:"1rem"}}
               animation={{
                      base: `${sinisterGlowing} 1s ease-in-out infinite`,
                     md: `${sinisterGlowing} 1s ease-in-out infinite`
                   }} >{futureDate.toDateString()}</Text>
-            </Text>
+            
             <Text w="100%" p={{base:"6",md:"0"}}  textAlign={"center"} fontFamily={"fiendish"} color="red" fontSize={{base:"0.7rem",md:"1rem"}}>
-              Countdown
-              <Text w="100%" p={{base:"12",md:"5"}}>  {countdown.hours} : {countdown.minutes} : {countdown.seconds} </Text>
+              Countdown </Text>
+              <Text   style={{textAlign:"center" , fontFamily:"fiendish", color:"#FF0000"}} w="100%" p={{base:"12",md:"5"}}>  {countdown.hours} : {countdown.minutes} : {countdown.seconds} </Text>
               <Text w="100%" 
+              style={{textAlign:"center" , fontFamily:"fiendish"}}
               animation={{
                  base: `${sinisterGlowing} 1s ease-in-out infinite`,
                  md: `${sinisterGlowing} 1s ease-in-out infinite`
                 }}
                  color="#fff" >Time Left to end today</Text>
-            </Text>
+           
           </Box>
         ) : (
           <Text  w="100%" textAlign="center" fontFamily="fiendish" color="white" fontSize={{base:"1rem",md:'1.5rem'}}marginTop="24px">

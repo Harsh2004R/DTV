@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Text, Flex, Grid, Image, keyframes, Divider } from '@chakra-ui/react';
+import { Box, Button, Text, VStack, Image, keyframes, Divider } from '@chakra-ui/react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Nav from "../Components/Nav";
 import Navbar2 from "../Components/Navbar2";
@@ -9,8 +9,8 @@ import Footer from "../Components/Footer";
 
 
 
-const DWintro1 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/Videos/DWintro1.mp4";
-const DWintro2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/Videos/DWintro2.mp4";
+const DWintro1 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Videos/DWintro1.mp4";
+const DWintro2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Videos/DWintro2.mp4";
 
 
 
@@ -19,8 +19,8 @@ const DWthumbnail1 = "https://i.ibb.co/GRWLQNf/DWthumbnail1.png";
 const DWthumbnail2 = "https://i.ibb.co/nbXFPTJ/DWthumbnail2.png";
 const DWgameofwex = "https://i.ibb.co/K5mg48L/DWgameofwex.jpg";
 const DWsprit = "https://i.ibb.co/jDGhrKS/DWsprit.png";
-const DWbg1 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/Photo/DWbg1.webp";
-const DWbg2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/Photo/DWbg2.webp";
+const DWbg1 = "https://img.freepik.com/free-vector/halloween-background-with-tree-pumpkin-grunge-style_1048-3038.jpg?size=626&ext=jpg&ga=GA1.1.1559264531.1691417508&semt=ais";
+const DWbg2 = "https://img.freepik.com/free-vector/gradient-halloween-instagram-posts-collection-with-photo_23-2149065411.jpg?size=626&ext=jpg&ga=GA1.1.1559264531.1691417508&semt=ais";
 
 
 const YY1 = "https://i.ibb.co/vXbVjdX/YY1.png";
@@ -368,10 +368,11 @@ function DarkWeb() {
       <Box bg={gradient_x}>
 
 
-        <Text textAlign={"center"} color="red.600" fontSize={{ base: "4xl", md: "5xl" }} fontFamily={"sectar"} h={{ base: "80px", md: "100px" }}
+        <Text textAlign={"center"} color="#FFFFFF" fontSize={{ base: "4xl", md: "5xl" }} fontFamily={"just-die-already"} h={{ base: "80px", md: "100px" }}
           display="flex"
           justifyContent="center"
           alignItems="center"
+          animation={`${shadow} 2s infinite`}
         >
 
           The RED Rooms
@@ -537,9 +538,9 @@ function DarkWeb() {
       <Box w="100%" h="auto" bg={gradient_xx}
       // border={"2px solid cyan"}
       >
-        <Text textAlign={"center"} bg={gradient_x} color="red.600" fontSize={{ base: "3xl", md: "5xl" }} display="flex"
+        <Text textAlign={"center"} bg={gradient_x} color="#FFFFFF" fontSize={{ base: "3xl", md: "5xl" }} display="flex"
           justifyContent="center"
-          alignItems="center" fontFamily={"another_danger"} h={{ base: "80px", md: "100px" }} >Surface Web Glitch</Text>
+          alignItems="center" fontFamily={"just-die-already"} h={{ base: "80px", md: "100px" }} animation={`${shadow} 2s infinite`}>Surface Web Glitch</Text>
         <Text color="#69F0AE" fontFamily="dogica-lite" w={{ base: "100%", md: "100%" }} pt="10px" m="auto" textAlign={{ base: "justify", md: "justify" }} fontSize={{ base: "0.47rem", md: "0.9rem" }}>
           (WARNING FOR PEOPLE WITH PHOTOSENSITIVE EPILEPSY) This site is a bizarre assault of flashing gifs, sounds,
           and comic sans text - all poorly formatted and seemingly random - that changes every time you refresh the page.
@@ -551,12 +552,11 @@ function DarkWeb() {
           his true identity.</Text>
         <Box w="100%" h="12vh" p={{ base: "5", md: "5" }}>
           <Button
-            w="200px"
-            bg="transparent"
-            color="#B0BEC5"
-            fontFamily="another_danger"
-            _hover={{ boxShadow: '0 0 30px 5px #FF0000' }}
-            animation={`${glowAnimation} 1s infinite`}
+            _hover={{ boxShadow: '0 0 10px 5px skyblue' }} border="1px dashed #29B6F6"
+            w="150px"
+            bg={gradient_xx}
+            color="#FFFFFF"
+            fontFamily="my"
             _focus={{ outline: 'none' }}
             _active={{ transform: 'scale(1.5)' }}
             textAlign={"center"}
@@ -590,13 +590,11 @@ function DarkWeb() {
 
       <Box bg={gradient_xx} w="100%" h="auto" p={{ base: "5", md: "10" }}>
         <Button
-
-          w="200px"
-          bg="transparent"
-          color="#B0BEC5"
-          fontFamily="another_danger"
-          _hover={{ boxShadow: '0 0 30px 5px #FF0000' }}
-          animation={`${glowAnimation} 1s infinite`}
+          _hover={{ boxShadow: '0 0 10px 5px skyblue' }} border="1px dashed #29B6F6"
+          w="150px"
+          bg={gradient_xx}
+          color="#FFFFFF"
+          fontFamily="my"
           _focus={{ outline: 'none' }}
           _active={{ transform: 'scale(1.5)' }}
           textAlign={"center"}
@@ -610,7 +608,7 @@ function DarkWeb() {
       </Box>
 
 
-      {/* darkj web content starts here */}
+      {/* dark web content starts here */}
 
       <Divider />
       <Box
@@ -634,488 +632,32 @@ function DarkWeb() {
         {/* video2 here */}
 
 
-        {/* <Divider />
 
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/L0yvNT9DGi0" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF">  <Text fontSize={{ base: "16px", md: "35px" }} fontFamily={"my"} >THIS DARK WEB VIDEO GOT LEAKED ON THE SURFACE WEB</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/1R5bt_jkyIQ" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >REAL VIDEOS FOUND ON THE DARK WEB PART 2</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/9W6QT22qvKw" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-            autoplay="1"
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Man Finds Creepy Videos On The Dark Web Unfriended Dark Web Fear</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/nNUEvFiZvV8" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >What S The Dark Web Really Like</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/pSfqOHgb5BI" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >REAL VIDEOS FOUND ON THE DARK WEB PART 1</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/1Omw9VOViXQ" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >What Is Dark Web Shorts Simplilearn</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/hwNnhIHtUtQ" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >This Happens On Dark Web</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/IfJjsFOYAQA" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >EXPOSED Blank Room Soup THE DARK WEB UNMASKED</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/mDzqdv3VjKE" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >How To Find Anything On The Dark Web</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/cG6IfZD1Xo8" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Darkest Dark Web Videos Ever Found Uncovering Dark Web 1</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/_dX_brFw7BI" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Darkest Dark Web Videos Ever Found Uncovering Dark Web 2</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/qvijlcZjeaU" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Real Creepy Dark Web Videos Ever Found Uncovering Dark Web 3</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/vrLxEsSUC2c" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Dark Web What Is Dark Web Is Dark Web Illegal Deep Web Hidden Internet Collegewallah</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/XQUc5pdJ1iI" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >TERRIFYING SIDE OF THE WEB DARK WEB PART 2</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/Z5uQ87Wiq2s" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Scary DEEP DARK WEB Videos That No One Has Ever Seen</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/VLsQynRgjck" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >REAL VIDEOS FOUND ON THE DARK WEB PART 1 Fing</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/dsDxs2yYFxg" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Exposing The Dark Web</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/1SejpANfjf4" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Dark Web Real Video Shivamsingh Ytshorts Shorts</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/Xf37u1WXtJ8" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >What Happens On Dark Web</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/oRElnytHAG4" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >Creepy Dark Web Videos Leaked Videos Minute Science</Text>
-            <Divider />
-          </Box>
-        </Box>
-
-
-
-
-
-
-        <Divider />
-
-        <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }} >
-
-          <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }} > <iframe
-            width={"100%"}
-            height="100%"
-            borderRadius="18px"
-            src="https://www.youtube.com/embed/hZ2kb1VcWM0" // YouTube video's embed URL
-            frameborder="0"
-            allowfullscreen
-          ></iframe></Box>
-
-
-          <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF"> <Text fontFamily={"my"} fontSize={{ base: "16px", md: "35px" }} >The RED ROOM And Your PRIVACY On The DARK WEB Episode 3</Text>
-            <Divider />
-          </Box>
-        </Box> */}
-
-
-
-
-
-
-
-
-
+        <VStack spacing={4}>
+          {videoData.map((video, index) => (
+            <Box
+              key={index}
+              display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "40vh", md: "50vh" }}
+            >
+              <Box border="2px solid red" w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }}>
+                <iframe
+                  width={"100%"}
+                  height="100%"
+                  borderRadius="18px"
+                  src={video.embedLink}
+                  title={video.title}
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+
+              </Box>
+
+              <Box p="4" w={{ base: "100%", md: "40%" }} color="#FFFFFF">
+                <Text fontWeight="bold" fontSize={{ base: "16px", md: "35px" }} fontFamily={"my"}>{video.title}</Text>
+              </Box>
+            </Box>
+          ))}
+        </VStack>
 
       </Box>
 
@@ -1127,7 +669,7 @@ function DarkWeb() {
 
 
       <Divider />
-      <Box w="100%" mt="10px" bg={gradient_x} h={{ base: "auto", md: "auto" }}
+      <Box w="100%" bg={gradient_x} h={{ base: "auto", md: "auto" }}
       // border="2px solid cyan"
 
       >
@@ -1149,16 +691,7 @@ function DarkWeb() {
       <Footer />
 
 
-<Box>
-{videoData.map((video, index) => (
 
-<Box  key={index}>
-<Divider />
-
-</Box>
-
-))}
-</Box>
 
 
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar2 from '../Components/Navbar2';
-import Navbar from '../Components/Navbar';
-import { Box ,Text,Image,Button,Flex,keyframes,UnorderedList, ListItem  } from "@chakra-ui/react";
-import EarthBg from "../Photo/EarthBg.png";
-import DoorBg from "../Photo/DoorBg.webp"
+import Nav from '../Components/Nav';
+import { Box ,Text } from "@chakra-ui/react";
+
+
 import Footer from "../Components/Footer";
 
 
@@ -25,7 +25,7 @@ function React3DView() {
     <>
       {/* importing Navbar and Navbar 2 here */}
 
-      <Navbar/>
+      <Nav/>
       <Navbar2/>
 
 
@@ -96,11 +96,8 @@ function React3DView() {
           <Box
           w="100%" h={{base:"auto",md:"auto"}}
           // border="3px solid lime"
-          // bg={gradient2}
-         backgroundImage={{base:`url(${DoorBg})`,md:`url(${DoorBg})`}}
-          backgroundSize="cover"
-          backgroundPosition="center"
-          backgroundRepeat="no-repeat"
+          bg={gradient2}
+         
           > 
           
 

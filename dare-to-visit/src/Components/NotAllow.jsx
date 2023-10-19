@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, Button,keyframes ,Text } from "@chakra-ui/react";
-import PageNotAllow from "../autoAudio/PageNotAllow.mp3";
-import BG from "../Photo/NotAllow.jpg"
-import PC from "../Photo/PC.jpg"
 import { Navigate, useNavigate } from 'react-router-dom';
+
+const PageNotAllow = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/PageNotAllow.mp3";
+const BG = "../Photo/NotAllow.jpg";
+const PC = "https://i.ibb.co/fDVGK2Z/NotAllow.jpg";
 const shadow = keyframes`
   0% {
     text-shadow: rgb(255, 61, 0);

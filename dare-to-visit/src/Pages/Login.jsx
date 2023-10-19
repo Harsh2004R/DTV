@@ -2,14 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import LoginBG3 from '../Photo/LoginBG3.jpg';
-import asur from '../autoAudio/asur.mp3';
-import song1 from '../autoAudio/song1.mp3';
-import song3 from '../autoAudio/song3.mp3';
-import song4 from "../autoAudio/song4.mp3";
-import song5 from "../autoAudio/song5.mp3";
-import song6 from "../autoAudio/song6.mp3";
-import { Box, Input,Text, Button, FormControl, FormLabel, keyframes } from '@chakra-ui/react';
+import { Box, Input, Text, Button, FormControl, FormLabel, keyframes } from '@chakra-ui/react';
 import { Navigate, useNavigate } from 'react-router-dom';
 const gradient = `linear-gradient(to right ,#424242, #000000, #757575)`
 const glowAnimation = keyframes`
@@ -17,6 +10,14 @@ const glowAnimation = keyframes`
   50% { box-shadow: 0 0 10px 5px coral; }
   100% { box-shadow: 0 0 0px coral; }
 `;
+
+const LoginBG3 = 'https://i.ibb.co/NrC6jGr/LoginBG3.jpg';
+const asur = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/asur.mp3';
+const song1 = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song1.mp3';
+const song3 = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song3.mp3';
+const song4 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song4.mp3";
+const song5 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song5.mp3";
+const song6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song6.mp3";
 function Login() {
 
   const songs = [asur, song1, song3, song4, song5, song6];
@@ -27,7 +28,7 @@ function Login() {
   let url = "https://reqres.in/api/login";
 
   const [audio, setAudio] = useState(null);
-  const Navigate=useNavigate();
+  const Navigate = useNavigate();
   useEffect(() => {
     if (audio) {
       const randomIndex = Math.floor(Math.random() * songs.length);
@@ -53,10 +54,8 @@ function Login() {
       .catch((err) => {
         console.log(err);
       });
+      stopPropagation()
   };
-  const handleHomePage =()=>{
-    Navigate("/deathdate")
-  }
 
   const handlePlay = () => {
     if (audio) {
@@ -65,10 +64,11 @@ function Login() {
       });
     }
   };
-
-  
   const handleAudioRef = (element) => {
     setAudio(element);
+  };
+  const stopPropagation = (e) => {
+    e.stopPropagation();
   };
 
   return (
@@ -80,7 +80,7 @@ function Login() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        fontSize={{ base: "1rem", md: "1.2rem" }} 
+        fontSize={{ base: "1rem", md: "1.2rem" }}
       >
         <Box
           onClick={handlePlay}
@@ -99,13 +99,13 @@ function Login() {
             top={0}
             left={0}
             right={0}
-            p="2rem" 
+            p="2rem"
             textAlign="center"
             zIndex={1}
-            
+
           >
             <Text
-              fontFamily="another_danger"
+              fontFamily="just-die-already"
               textStyle="horror"
               color="white"
               fontSize={{ base: "4rem", md: "5rem" }}
@@ -115,17 +115,17 @@ function Login() {
             </Text>
           </Box>
           <Box border="none" maxWidth="25rem" p="2.8125rem" borderWidth={1} borderRadius={8} boxShadow="lg" bgColor="transparent"> {/* Converted to rem */}
-            <form onSubmit={handleSubmit}>
-              <FormControl p="0.625rem" mb="1.25rem"> 
-               
-                  <Text fontFamily= "caslon-antique" color="#fff" fontSize={{base:"18px",md:"25px"}} textAlign="center" pb="0.625rem">Email address</Text>
-                
+            <form onSubmit={handleSubmit} >
+              <FormControl p="0.625rem" mb="1.25rem">
+
+                <Text fontFamily="caslon-antique" color="#fff" fontSize={{ base: "18px", md: "25px" }} textAlign="center" pb="0.625rem">Email address</Text>
+
                 <Input
+                  onClick={stopPropagation}
                   color="#FF6F00"
-                  pt="0.625rem" 
+                  pt="0.625rem"
                   variant="unstyled"
                   placeholder="Your valid Email"
-                  placeholderTextColor="#ECEFF1"
                   textAlign="center"
                   bg="none"
                   mx="auto"
@@ -136,32 +136,32 @@ function Login() {
                 />
               </FormControl>
               <FormControl p="0.625rem">
-                
-                  <Text fontFamily= "caslon-antique" color="#fff" fontSize={{base:"18px",md:"25px"}} textAlign="center" pb="0.625rem">Password</Text>
-                
+
+                <Text fontFamily="caslon-antique" color="#fff" fontSize={{ base: "18px", md: "25px" }} textAlign="center" pb="0.625rem">Password</Text>
+
                 <Input
-                  color="FF6F00"
+                  onClick={stopPropagation}
+                  color="#FF6F00"
                   border="none"
-                  pt="0.625rem" 
+                  pt="0.625rem"
                   variant="unstyled"
                   placeholder="Your password"
-                  placeholderTextColor="#ECEFF1"
                   textAlign="center"
                   bg="none"
                   mx="auto"
-                  type="text"
+                  type="password"
                   fontFamily=""
                   onChange={(e) => setpassword(e.target.value)}
                 />
               </FormControl>
-              <Box mt="0.625rem"> 
+              <Box mt="0.625rem">
                 <Button
                   onClick={handleSubmit}
-                  _hover={{ boxShadow: '0 0 0.625rem 0.3125rem #FF0000' }} 
+                  _hover={{ boxShadow: '0 0 0.625rem 0.3125rem #FF0000' }}
                   animation={`${glowAnimation} 1s infinite`}
                   _focus={{ outline: 'none' }}
                   _active={{ transform: 'scale(1.5)' }}
-                  display="flex" alignItems="center" m="auto" fontSize={{base:"18px",md:"25px"}} type="submit" bgColor="transparent" borderRadius="md" w={{base:"100px",md:"120px"}} // Converted to rem
+                  display="flex" alignItems="center" m="auto" fontSize={{ base: "18px", md: "25px" }} type="submit" bgColor="transparent" borderRadius="md" w={{ base: "100px", md: "120px" }} // Converted to rem
                 >
                   <Text fontFamily="caslon-antique" color="#FF7043">Enter !</Text>
                 </Button>
@@ -170,7 +170,7 @@ function Login() {
           </Box>
         </Box>
       </Box>
-      
+
       <audio ref={handleAudioRef} />
     </>
   );

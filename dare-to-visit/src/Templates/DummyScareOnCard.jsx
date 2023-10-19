@@ -3,11 +3,11 @@ import {Card,CardHeader,Flex,Heading,Text,Box,CardBody,Image,CardFooter,Button,A
 
 import {  useNavigate } from 'react-router-dom';
 
-import UH1 from "../Photo/UH1.webp";
 
 import { BsThreeDotsVertical } from "react-icons/bs"; 
 import { BiLike, BiChat, BiShare } from "react-icons/bi"; 
 
+const UH1 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/UH1.webp";
 function DummyScareOnCard() {
   const Navigate=useNavigate();
   const handleScareOnClip = ()=>{

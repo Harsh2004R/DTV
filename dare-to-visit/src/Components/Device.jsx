@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 import React,{useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 
-const AmazonButton = () => {
+const Device = () => {
   const Navigate=useNavigate()
   useEffect(() => {
     const isMobileOrTab = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -32,4 +32,4 @@ const AmazonButton = () => {
   );
 };
 
-export default AmazonButton;
+export default Device;
