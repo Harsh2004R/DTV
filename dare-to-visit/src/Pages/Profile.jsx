@@ -26,26 +26,27 @@ import {
     Input,
     Button
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { Link as ChakraLink } from '@chakra-ui/react';
 import {
     FiMenu,
     FiChevronDown,
-
 } from 'react-icons/fi';
 import { FaBell, FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
 
 
 const LinkItems = [
     { name: '', icon: "", },
-    { name: 'Post', icon: FaCamera, },
-    { name: 'Premium', icon: FaVideo, },
-    { name: 'Share', icon: FaShare },
-    { name: 'SignOut', icon: FaSignOutAlt },
+    { name: 'Post', icon: <FaCamera />, nav: "/ScareOnAdmin" },
+    { name: 'Premium', icon: <FaVideo />, nav: "" },
+    { name: 'Share', icon: <FaShare />, nav: "" },
+    { name: 'SignOut', icon: <FaSignOutAlt />, nav: "" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
-    // states
 
-   
+
+
 
     return (
 
@@ -90,15 +91,31 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 </Flex>
                 {LinkItems.map((link, index) => (
                     <React.Fragment key={link.name}>
-                        <NavItem mt="3px" mb="5px" color="#FFFFFF" key={link.name} icon={link.icon}>
-                            {link.name}
-                        </NavItem>
+
+                        <ChakraLink
+                            as={Link}
+                            to={link.nav}
+                            style={{ textDecoration: 'none', color: 'white' }}
+                            _hover={{ bgColor: "rgba(0, 82, 73, 1)" }}
+                            display="flex"
+                            alignItems="center"
+                            // border="1px solid red"
+                            paddingBottom="15px"
+                            paddingTop="15px"
+                            color="#FFFFFF"
+                            ml="10px"
+                            mr="10px"
+                        >
+                            <div style={{ marginRight: '10px' }}>{link.icon}</div>
+                            <div>{link.name}</div>
+                        </ChakraLink>
+
                         {index < LinkItems.length - 1 && <Divider borderColor={"#6b947f"} />}
                     </React.Fragment>
                 ))}
 
                 <Divider borderColor={"#6b947f"} />
-                
+
             </Box>
 
 
@@ -173,9 +190,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 color="#FFFFFF"
                 icon={<FiMenu />}
             />
-
-
-
             <HStack spacing={{ base: '0', md: '4' }}>
                 <IconButton _hover={{ color: "#999" }} borderRadius={"50%"} size="md" variant="unstyled" color={{ base: "#6b947f", md: "#FFFFFF" }} aria-label="open menu" icon={<FaBell />} />
                 <IconButton _hover={{ color: "#999" }} borderRadius={"50%"} size="md" variant="unstyled" color={{ base: "#6b947f", md: "#FFFFFF" }} aria-label="open menu" icon={<FaUsers />} />
@@ -379,7 +393,7 @@ const Profile = () => {
                                             <Input variant={"unstyled"} fontFamily={"caslon-antique"} type="file" id="image" name="image" accept="image/*" w="50%" />
                                         </FormControl>
                                         <Box display={"flex"} m="10px" justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
-                                            <Button _hover={{bgColor:"#29B6F6"}} mt={4} height={"30px"} fontFamily={"caslon-antique"} bgColor={"rgba(0, 82, 73, 1)"} color={"#fff"} type="submit">
+                                            <Button _hover={{ bgColor: "#29B6F6" }} mt={4} height={"30px"} fontFamily={"caslon-antique"} bgColor={"rgba(0, 82, 73, 1)"} color={"#fff"} type="submit">
                                                 Save
                                             </Button>
                                         </Box>

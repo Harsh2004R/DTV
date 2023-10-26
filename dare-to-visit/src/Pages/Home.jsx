@@ -684,17 +684,18 @@ useEffect(() => {
 
         <Flex h="auto" direction={flexDirection} 
          bg={gradient2} 
-          // border="2px solid red"
+        //  border="2px solid red"
+
         >
       <Box  pt={{base:"5%",md:"10%"}} w={{base:"100%",md:"60%"}} >
         
-      <DummyScareOnClip/>
+      <DummyScareOnCard />
       </Box>
 
     {/* importing ScareonCard component here----------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
       <Box  pt={{base:"5%",md:"1%"}} display="flex" justifyContent={"center"}  alignItems={"center"} m="auto" w={{base:"90%",md:"40%"}}>
-        <DummyScareOnCard />
+        <DummyScareOnClip />
       </Box>
 
        {/* Ending Scare on audio player here --------------------------------------------------------------------------------------------------------------------------- */}
