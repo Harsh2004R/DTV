@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./Nav.css";
 import {Box, Button,Text, Divider, Grid, GridItem,MenuButton,MenuItem,Menu,MenuList} from "@chakra-ui/react"
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi"; 
 
 
 const gradientColor = 'linear-gradient(to bottom, #e91e63, #ffc107)';

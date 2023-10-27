@@ -18,6 +18,7 @@ function ScareOn() {
       >
 
       <Box
+      border={"1px solid cyan"}
       transition="transform 1s" 
       _hover={{ 
        

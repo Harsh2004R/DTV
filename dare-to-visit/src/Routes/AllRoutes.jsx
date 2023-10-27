@@ -33,6 +33,8 @@ import DummyScareOnClip from '../Templates/DummyScareOnClip';
 import Home from '../Pages/Home';
 import Otp from "../Pages/Otp";
 import Profile from '../Pages/Profile';
+import SocialMedia from '../Pages/SocialMedia';
+import PhotosPost from '../Components/PhotosPost';
 function AllRoutes() {
   return (
     <>
@@ -66,8 +68,8 @@ function AllRoutes() {
         <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route>
         <Route path="/Otp" element={<Otp />}></Route> 
         <Route path="/profile" element={<Profile />}></Route> 
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        <Route path="/social" element={<SocialMedia />}></Route> 
+        <Route path="/post" element={<PhotosPost />}></Route> 
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
