@@ -35,6 +35,7 @@ import Otp from "../Pages/Otp";
 import Profile from '../Pages/Profile';
 import SocialMedia from '../Pages/SocialMedia';
 import PhotosPost from '../Components/PhotosPost';
+import Reels from '../Components/Reels';
 function AllRoutes() {
   return (
     <>
@@ -70,7 +71,7 @@ function AllRoutes() {
         <Route path="/profile" element={<Profile />}></Route> 
         <Route path="/social" element={<SocialMedia />}></Route> 
         <Route path="/post" element={<PhotosPost />}></Route> 
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        <Route path="/reels" element={<Reels />}></Route> 
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
 
