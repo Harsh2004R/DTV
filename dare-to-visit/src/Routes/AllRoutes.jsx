@@ -36,6 +36,7 @@ import Profile from '../Pages/Profile';
 import SocialMedia from '../Pages/SocialMedia';
 import PhotosPost from '../Components/PhotosPost';
 import Reels from '../Components/Reels';
+import ComingSoon from '../Pages/ComingSoon';
 function AllRoutes() {
   return (
     <>
@@ -67,11 +68,15 @@ function AllRoutes() {
         <Route path="/NotAllow" element={<NotAllow />}></Route>
         <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route>
         <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route>
-        <Route path="/Otp" element={<Otp />}></Route> 
-        <Route path="/profile" element={<Profile />}></Route> 
-        <Route path="/social" element={<SocialMedia />}></Route> 
-        <Route path="/post" element={<PhotosPost />}></Route> 
-        <Route path="/reels" element={<Reels />}></Route> 
+        <Route path="/Otp" element={<Otp />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/social" element={<SocialMedia />}></Route>
+        <Route path="/post" element={<PhotosPost />}></Route>
+        <Route path="/reels" element={<Reels />}></Route>
+        <Route path="/soon" element={<ComingSoon />}></Route> 
+        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
 
