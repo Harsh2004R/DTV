@@ -34,7 +34,7 @@ import {
   FiChevronDown,
 
 } from 'react-icons/fi';
-
+import { Navigate,useNavigate } from "react-router";
 
 import {
   Grid,
@@ -187,6 +187,17 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const Navigate = useNavigate();
+  const handlePremimumZone = ()=>{
+    Navigate("/Device")
+  }
+  const handleSettings = ()=>{
+    Navigate("/soon")
+  }
+  const handleProfilePage = ()=>{
+    Navigate("/profile")
+  }
+ 
   return (
     <Flex
       // border={"1px solid yellow"}
@@ -258,9 +269,15 @@ const MobileNav = ({ onOpen, ...rest }) => {
               bgColor={useColorModeValue('#212121')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}
             >
-              <MenuItem m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Profile</MenuItem>
-              <MenuItem m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Settings</MenuItem>
-              <MenuItem m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Premimum Zone</MenuItem>
+              <MenuItem 
+              onClick={handleProfilePage} 
+              m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Profile</MenuItem>
+              <MenuItem
+               onClick={handleSettings}
+               m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Settings</MenuItem>
+              <MenuItem 
+              onClick={handlePremimumZone}
+               m="3px" color="#fff"  _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Premimum Zone</MenuItem>
               <MenuDivider />
               <MenuItem m="3px" color="#fff" _hover={{bg:`linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow:'0 0 2px 3px #F5F5F5'}} bgColor='#212121'>Sign out</MenuItem>
             </MenuList>
