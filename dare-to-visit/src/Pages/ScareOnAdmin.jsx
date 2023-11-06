@@ -248,7 +248,7 @@ export default function ScareOnAdmin() {
           </Stack>
           <Stack
             w="100%" h="auto"
-            bg={"#111111"}
+            bg={"#111211"}
             rounded={'md'}
             p={{ base: 4, sm: 6, md: 8 }}
             spacing={{ base: 8 }}

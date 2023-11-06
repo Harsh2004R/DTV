@@ -117,7 +117,7 @@ const Reels = () => {
                     <Box
                         // border={"1px solid lime"}
                         w="100%" h="auto">
-                        <Text ml="5px" mt="5px" fontFamily={"caslon-antique"} color={"#fff"}>{"177,15,369"}<span> Likes</span></Text>
+                        <Text ml="15px" mt="5px" fontFamily={"caslon-antique"} color={"#fff"}>{"177,15,369"}<span> Likes</span></Text>
 
                     </Box>
 
