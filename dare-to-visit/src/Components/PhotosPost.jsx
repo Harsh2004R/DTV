@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { Box, Image, Button, Text, Avatar, Flex, Divider } from "@chakra-ui/react";
 import Comments from './Comments';
-const PhotosPost = ({ status}) => {
+const PhotosPost = () => {
   const [showCommentBox, setShowCommentBox] = useState(false);
-  // let flagVal = "";
+
   const handleCommentClick = () => {
     setShowCommentBox(!showCommentBox);
-    // if (status === "true") {
-    //   setShowCommentBox(!showCommentBox);
-    // }
-    console.log(showCommentBox)
-    
-    
   };
+  const handleCloseComment = () => {
+    setShowCommentBox(false);
+  };
+
   return (
 
     <>
@@ -132,16 +130,7 @@ const PhotosPost = ({ status}) => {
 
         </Box>
 
-        {showCommentBox && (
-          // <Box
-          //   w="100%" h="100%" position={"absolute"} border={"1px solid cyan"} top="0px"
-          // // Style your comment box here
-          // // ...
-          // >
-          //   {/* Comment box content */}
-          // </Box>
-          <Comments flag="" />
-        )}
+        {showCommentBox && <Comments onClose={handleCloseComment} />}
 
 
 
@@ -153,7 +142,7 @@ const PhotosPost = ({ status}) => {
 
       </Box>
 
-      <Divider w={{ base: "100%", md: "40%" }} m="auto" />
+      <Divider w={{ base: "100%", md: "40%" }} borderColor="#999" m="auto" />
 
 
 
