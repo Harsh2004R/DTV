@@ -77,7 +77,7 @@ const PhotosPost = () => {
             borderRadius={"5px"}
             h="80%" w="100%" position="relative"
           >
-            <Image w={{ base: "90%", md: "80%" }} m="auto" borderRadius={"0px"} h="100%" src="https://images.pexels.com/photos/15509517/pexels-photo-15509517/free-photo-of-skyscraper-towering-over-crowd-on-street-in-downtown.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="media image broke" />
+            <Image w={{ base: "90%", md: "80%" }} m="auto" borderRadius={"0px"} h="100%" src="https://images.pexels.com/photos/5407935/pexels-photo-5407935.jpeg?auto=compress&cs=tinysrgb&w=600" alt="media image broke" />
 
 
 
@@ -142,7 +142,7 @@ const PhotosPost = () => {
 
       </Box>
 
-      <Divider w={{ base: "100%", md: "40%" }} borderColor="#999" m="auto" />
+      <Divider zIndex="0" w={{ base: "100%", md: "40%" }} borderColor="#999" m="auto" />
 
 
 
