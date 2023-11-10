@@ -115,7 +115,8 @@ const SocialMedia = () => {
 
 
 
-                                    {activeTab === 'photos' && <PhotosPost />} {/* Render PhotosPost if activeTab is 'photos' */}
+                                    {activeTab === 'photos' && <PhotosPost />}  
+                                    {/* Render PhotosPost if activeTab is 'photos' */}
                                     {activeTab === 'videos' && <Reels />} {/* Render Reels if activeTab is 'videos' */}
 
 
