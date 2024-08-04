@@ -31,11 +31,10 @@ const Comments = ({ onClose }) => {
                     >
 
                         {/* Content Box here------>>>>>>>>>>>>>>>--------------->>>>>>>>>>>>>>>>>>>----------------->>>>>>>>>>>> */}
+                        
                         <Box
                             // border={"1px solid blue"}
                             w={{ base: "0%", md: "50%" }} h="100%">
-
-
 
                             <Image w={{ base: "0%", md: "100%" }} m="auto" borderRadius={"0px"} h="100%" src="https://images.pexels.com/photos/5407935/pexels-photo-5407935.jpeg?auto=compress&cs=tinysrgb&w=600" alt="media image broke" />
                         </Box>
