@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { Box, Input, Text, Button, FormControl, FormLabel, keyframes } from '@chakra-ui/react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { BE_URL } from "../URL.js"
 const gradient = `linear-gradient(to right ,#424242, #000000, #757575)`
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px coral; }
@@ -39,22 +40,21 @@ function Login() {
     }
   }, [audio, songs]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // Handle login logic here
     e.preventDefault();
 
     let obj = { email, password };
-    axios
-      .post(url, obj)
+    await axios
+      .post(`${BE_URL}api/user/verify`, obj)
       .then((res) => {
         console.log(res);
         let token = res.data.token;
         localStorage.setItem("token", token);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error in loging...user",err);
       });
-      stopPropagation()
   };
 
   const handlePlay = () => {

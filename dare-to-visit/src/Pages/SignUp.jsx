@@ -1,9 +1,9 @@
-import React, { useEffect, useRef,useState } from 'react';
-import { Box, Input, Text, Button,keyframes, FormControl, FormLabel,Center, AlertDialog,AlertDialogOverlay,AlertDialogContent,Image,CloseButton,AlertDialogFooter,AlertDialogBody} from '@chakra-ui/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Box, Input, Text, Button, keyframes,  } from '@chakra-ui/react';
 import "../Fonts.css"
+import { BE_URL } from "../URL.js"
 import { Navigate, useNavigate } from "react-router-dom";
-
-
+import axios from 'axios';
 const backgroundVideo = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Videos/BGvideo.mp4'; // Replace with the actual path to your video file
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px coral; }
@@ -11,14 +11,28 @@ const glowAnimation = keyframes`
   100% { box-shadow: 0 0 0px coral; }
 `;
 function SignUp() {
-  
-  const Navigate=useNavigate()
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const Navigate = useNavigate()
   const videoRef = useRef(null);
 
-  const handleSignin = (e) => {
+  const filledData = {
+    phone: phone,
+    email: email,
+    name: name,
+    password: password
+  }
+
+  const handleSignin = async (e) => {
     e.preventDefault();
-    Navigate("/login")
-    // Handle Signin logic here
+    try {
+      const res = await axios.post(`${BE_URL}api/user/regester`, filledData)
+      console.log(res.data)
+    } catch (error) {
+      console.log("Error in creating new deamon", error)
+    }
   };
 
   useEffect(() => {
@@ -38,7 +52,7 @@ function SignUp() {
 
   return (
     <>
-   
+
       <Box
         onClick={handleAudio}
         width="100%"
@@ -48,11 +62,11 @@ function SignUp() {
         alignItems="center"
         position="relative"
         overflow="hidden"
-        
+
       >
-         
-    
-      
+
+
+
         <video
           ref={videoRef}
           id="background-video"
@@ -83,7 +97,7 @@ function SignUp() {
             fontFamily="just-die-already"
             textStyle="horror"
             color="white"
-            fontSize={{base:"67px",md:"65px"}}
+            fontSize={{ base: "67px", md: "65px" }}
             m="auto"
           >
             Sign Up
@@ -93,8 +107,8 @@ function SignUp() {
 
           border="1px dashed #78909C"
           // maxWidth={'400px'}
-          w={{base:"80%",md:"25%"}}
-          p={{base:"45",md:"5"}}
+          w={{ base: "80%", md: "25%" }}
+          p={{ base: "45", md: "5" }}
           borderWidth={1}
           borderRadius={8}
           boxShadow="lg"
@@ -104,16 +118,17 @@ function SignUp() {
         >
           <form onSubmit={handleSignin} >
             <Box p={0} mb="5">
-              
-                <Text textAlign={"center"} color="#fff"  fontFamily= "caslon-antique"  fontSize={{base:"18px",md:"25px"}} textStyle="horror">Phone Number</Text>
-              
+
+              <Text textAlign={"center"} color="#fff" fontFamily="caslon-antique" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Phone Number</Text>
+
               <Input
+                onChange={(e) => setPhone(e.target.value)}
                 onClick={stopPropagation}
                 color="#FF6F00"
                 variant="unstyled"
                 placeholder="Enter Phone Number"
                 textAlign="center"
-                fontFamily= "caslon-antique"
+                fontFamily="caslon-antique"
                 bg="none"
                 mx="auto"
                 type="number"
@@ -121,16 +136,17 @@ function SignUp() {
               />
             </Box>
             <Box p={0} mb="5">
-              
-                <Text fontFamily= "caslon-antique" textAlign={"center"} color="#fff" fontSize={{base:"18px",md:"25px"}} textStyle="horror">Email address</Text>
-             
+
+              <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Email address</Text>
+
               <Input
+                onChange={(e) => setEmail(e.target.value)}
                 onClick={stopPropagation}
                 color="#FF6F00"
                 variant="unstyled"
                 placeholder="Enter your Email"
                 textAlign="center"
-                fontFamily= "caslon-antique"
+                fontFamily="caslon-antique"
                 bg="none"
                 mx="auto"
                 type="text"
@@ -138,16 +154,17 @@ function SignUp() {
               />
             </Box>
             <Box p={0} mb="5">
-              
-                <Text fontFamily= "caslon-antique" textAlign={"center"} color="#fff" fontSize={{base:"18px",md:"25px"}} textStyle="horror">Username</Text>
-             
+
+              <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Username</Text>
+
               <Input
+                onChange={(e) => setName(e.target.value)}
                 onClick={stopPropagation}
                 color="#FF6F00"
                 variant="unstyled"
                 placeholder="Enter your Username"
                 textAlign="center"
-                fontFamily= "caslon-antique"
+                fontFamily="caslon-antique"
                 bg="none"
                 mx="auto"
                 type="text"
@@ -155,16 +172,17 @@ function SignUp() {
               />
             </Box>
             <Box p={0}>
-             
-               <Text fontFamily= "caslon-antique" textAlign={"center"} color="#fff" fontSize={{base:"18px",md:"25px"}} textStyle="horror">Password</Text>
-              
+
+              <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Password</Text>
+
               <Input
-                onClick={stopPropagation} 
+                onChange={(e) => setPassword(e.target.value)}
+                onClick={stopPropagation}
                 color="#FF6F00"
                 border="none"
                 variant="unstyled"
                 placeholder="Dare to create your password"
-                fontFamily= "caslon-antique"
+                fontFamily="caslon-antique"
                 textAlign="center"
                 bg="none"
                 mx="auto"
@@ -172,21 +190,21 @@ function SignUp() {
               />
             </Box>
             <Button
-            _hover={{ boxShadow: '0 0 10px 5px coral' }}
-            animation={`${glowAnimation} 2s infinite`}
-            _focus={{ outline: 'none' }}
-            _active={{ transform: 'scale(1.3)' }}
-            w={{base:"120px",md:"150px"}}
-            h={{base:"35px",md:"40px"}}
-             type="submit" display={"flex"} alignItems={"center"} onClick={handleSignin} bgColor="transparent"  borderRadius="md"  mx="auto" mt={4}>
-            <Text color="#FF7043"  fontFamily= "caslon-antique">Welcome</Text>
+              _hover={{ boxShadow: '0 0 10px 5px coral' }}
+              animation={`${glowAnimation} 2s infinite`}
+              _focus={{ outline: 'none' }}
+              _active={{ transform: 'scale(1.3)' }}
+              w={{ base: "120px", md: "150px" }}
+              h={{ base: "35px", md: "40px" }}
+              type="submit" display={"flex"} alignItems={"center"} onClick={handleSignin} bgColor="transparent" borderRadius="md" mx="auto" mt={4}>
+              <Text color="#FF7043" fontFamily="caslon-antique">Welcome</Text>
             </Button>
           </form>
         </Box>
       </Box>
 
 
-      
+
     </>
   );
 }
