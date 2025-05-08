@@ -38,6 +38,10 @@ import PhotosPost from '../Components/PhotosPost';
 import Reels from '../Components/Reels';
 import ComingSoon from '../Pages/ComingSoon';
 import Comments from '../Components/Comments';
+
+
+import Topper from "../Components/Topper.jsx"
+
 function AllRoutes() {
   return (
     <>
@@ -74,8 +78,9 @@ function AllRoutes() {
         <Route path="/social" element={<SocialMedia />}></Route>
         <Route path="/post" element={<PhotosPost />}></Route>
         <Route path="/reels" element={<Reels />}></Route>
-        <Route path="/soon" element={<ComingSoon />}></Route> 
-        <Route path="/comments" element={<Comments />}></Route> 
+        <Route path="/soon" element={<ComingSoon />}></Route>
+        <Route path="/comments" element={<Comments />}></Route>
+        <Route path="/top" element={<Topper />}></Route>
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}

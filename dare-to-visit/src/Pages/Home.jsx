@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Box, Text, Image, Button, Flex, keyframes, UnorderedList, ListItem, useBreakpointValue, Grid, GridItem } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 import { Divider } from "@chakra-ui/react"
-import Nav from "../Components/Nav";
+// import Nav from "../Components/Nav";
 import CustomAlert from "../Components/CustomAlert";
 import AI from '../Components/AI';
 import VideoComponent from '../Components/VideoComponent ';
 import Navbar2 from "../Components/Navbar2";
+import Topper from "../Components/Topper.jsx";
 import Footer from "../Components/Footer";
 import DummyScareOnClip from "../Templates/DummyScareOnCard";
 import DummyScareOnCard from "../Templates/DummyScareOnClip";
@@ -170,7 +171,7 @@ function Home() {
 
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % message.length);
-    }, 200);
+    }, 50);
 
     // Clear interval on component unmount
     return () => clearInterval(intervalId);
@@ -240,7 +241,8 @@ function Home() {
 
 
 
-      <Nav />
+      {/* <Nav /> */}
+      <Topper />
       <Navbar2 />
 
 
