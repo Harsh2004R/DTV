@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Text, VStack, Image, keyframes, Divider } from '@chakra-ui/react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import Nav from "../Components/Nav";
+import Topper from "../Components/Topper.jsx"
 import Navbar2 from "../Components/Navbar2";
 import ArticleList from "../Components/ArticleList";
 import CustomAlert2 from '../Components/CustomAlert2';
@@ -23,7 +23,7 @@ const DWbg1 = "https://img.freepik.com/free-vector/halloween-background-with-tre
 const DWbg2 = "https://img.freepik.com/free-vector/gradient-halloween-instagram-posts-collection-with-photo_23-2149065411.jpg?size=626&ext=jpg&ga=GA1.1.1559264531.1691417508&semt=ais";
 
 
-const YY1 = "https://i.ibb.co/vXbVjdX/YY1.png";
+const YY1 = "https://i.ibb.co/C8zyfj2/YY6.png";
 const YY2 = "https://i.ibb.co/wr7sFh0/YY2.png";
 const YY3 = "https://i.ibb.co/m6VMt0t/YY3.png";
 const YY4 = "https://i.ibb.co/68htgy0/YY4.png";
@@ -141,11 +141,6 @@ const slide2 = [
 
 
 
-const glowAnimation = keyframes`
-0% { box-shadow: 0 0 0px #000000; }
-50% { box-shadow: 0 0 30px 15px #000000; }
-100% { box-shadow: 0 0 0px #000000; }
-`;
 
 const shadow = keyframes`
   0% {
@@ -180,40 +175,14 @@ const gradient_xx = `linear-gradient(to right ,#000000, #7D1616, #000000)`;
 
 
 function DarkWeb() {
-  const message = [
-    '▁▂▃▄▅▆▇ `',
-    '▂▁▂▃▄▅▆` ',
-    '▃▂▁▂▃▄▅ `',
-    '▄▃▂▁▂▃▄` ',
-    '▅▄▃▂▁▂▃ `',
-    '▆▅▄▃▂▁▂` ',
-    '▇▆▅▄▃▂▁ `',
-    '▆▇▆▅▄▃▂` ',
-    '▅▆▇▆▅▄▃ `',
-    '▄▅▆▇▆▅▄` ',
-    '▃▄▅▆▇▆▅ `',
-    '▂▃▄▅▆▇▆` ',
-  ];
 
-  const [index, setIndex] = useState(0);
+
   const [showAlert, setShowAlert] = useState(true);
   const handleDarkWebPaypage = () => {
     Navigate("/darkwebpay")
   }
 
-  useEffect(() => {
-
-    setShowAlert(true);
-
-    const intervalId = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % message.length);
-    }, 200);
-
-    // Clear interval on component unmount
-    return () => clearInterval(intervalId);
-
-
-  }, []);
+  
 
   useEffect(() => {
     const hideAlertTimeout = setTimeout(() => {
@@ -279,7 +248,7 @@ function DarkWeb() {
 
 
 
-      <Nav />
+     <Topper />
       <Navbar2 />
 
 
@@ -353,9 +322,9 @@ function DarkWeb() {
 
       </Box>
 
-      <Box>
+      {/* <Box>
         {showAlert && <CustomAlert2 message={message[index]} />}
-      </Box>
+      </Box> */}
 
 
 
@@ -643,11 +612,11 @@ function DarkWeb() {
                 <iframe
                   width={"100%"}
                   height="100%"
-                  borderRadius="18px"
+                  borderradius="18px"
                   src={video.embedLink}
                   title={video.title}
-                  frameborder="0"
-                  allowfullscreen
+                  frameBorder="0"
+                  allowFullScreen
                 ></iframe>
 
               </Box>

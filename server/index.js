@@ -3,6 +3,7 @@ require("dotenv").config()
 const cors = require('cors')
 const { connection } = require("./DataBase.js")
 const { UserRouter } = require("./Routes/user.routes.js")
+const {Darkurl} = require("./Routes/darkweburl.router.js")
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -10,10 +11,12 @@ app.use(express.json());
 
 
 
-app.use("/api/user", UserRouter)
+
 app.get("/", (req, res) => {
     res.send("Server is running........")
 })
+app.use("/api/user", UserRouter)
+app.use("/api", Darkurl)
 const PORT = process.env.PORT
 app.listen(PORT, async () => {
     try {
