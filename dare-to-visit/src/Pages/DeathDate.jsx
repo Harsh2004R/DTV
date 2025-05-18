@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Nav from "../Components/Nav"
+import Topper from "../Components/Topper.jsx"
 import {
   Box,
   Input,
@@ -86,7 +87,7 @@ function DeathDate() {
     // Generate a random month
     const randomMonth = Math.floor(Math.random() * 12); // 0-11 for January-December
     const futureDate = new Date(futureYear, randomMonth, currentDate.getDate());
-  
+
     return futureDate;
   };
 
@@ -139,7 +140,8 @@ function DeathDate() {
 
   return (
     <>
-    <Nav/>
+      {/* <Nav/> */}
+      <Topper />
       <Box
         w="100%"
         h='100vh'
@@ -170,10 +172,10 @@ function DeathDate() {
           minHeight="20vh"
         >
           <Box
-          // border="2px solid red"
+            // border="2px solid red"
             w={{ base: "80%", md: "80%" }}
             display="flex"
-            h={{base:"100%",md:"80%"}}
+            h={{ base: "100%", md: "80%" }}
             justifyContent="center"
             alignItems="center"
             m="auto"
@@ -199,14 +201,14 @@ function DeathDate() {
                 onChange={handleChange}
                 borderRadius="4px"
                 border="none"
-                boxShadow= '0 0 10px 5px #ECEFF1'
+                boxShadow='0 0 10px 5px #ECEFF1'
                 placeholder='Dare to enter your age'
                 _hover={{ boxShadow: '0 0 10px 5px #BDBDBD' }}
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 animation={`${isInputFocused ? fingerAnimation : ''} 1s infinite, ${fadeInAnimation} 0.5s`}
-              
-              
+
+
               />
               <Button
                 type="submit"
@@ -215,8 +217,8 @@ function DeathDate() {
                 _focus={{ outline: 'none' }}
                 _active={{ transform: 'scale(1.5)' }}
                 textColor={"#FF0000"}
-                m="auto" fontWeight={"bolder"} 
-                disabled={isButtonDisabled} 
+                m="auto" fontWeight={"bolder"}
+                disabled={isButtonDisabled}
                 fontSize={{ base: "2xl", md: "3xl" }} fontFamily={"dark_halloween"} width="200px" display={"flex"} colorScheme="transparent" size="lg"
               >
                 Predict Death Date
@@ -233,29 +235,29 @@ function DeathDate() {
         {futureDate ? (
           <Box
             h={{ base: "35vh", md: "35vh" }} w="100%">
-              
-            <Text w="100%" textAlign={"center"} fontFamily={"fiendish"} color="white" fontSize={{base:"1rem"}} p={2}>
+
+            <Text w="100%" textAlign={"center"} fontFamily={"fiendish"} color="white" fontSize={{ base: "1rem" }} p={2}>
               Your Death Date </Text>
-              <Text  textAlign={"center"} fontFamily={"fiendish"} color="#FF0000" p={{base:"5",md:"3"}} fontSize={{base:"1rem"}}
+            <Text textAlign={"center"} fontFamily={"fiendish"} color="#FF0000" p={{ base: "5", md: "3" }} fontSize={{ base: "1rem" }}
               animation={{
-                     base: `${sinisterGlowing} 1s ease-in-out infinite`,
-                    md: `${sinisterGlowing} 1s ease-in-out infinite`
-                  }} >{futureDate.toDateString()}</Text>
-            
-            <Text w="100%" p={{base:"6",md:"0"}}  textAlign={"center"} fontFamily={"fiendish"} color="red" fontSize={{base:"0.7rem",md:"1rem"}}>
+                base: `${sinisterGlowing} 1s ease-in-out infinite`,
+                md: `${sinisterGlowing} 1s ease-in-out infinite`
+              }} >{futureDate.toDateString()}</Text>
+
+            <Text w="100%" p={{ base: "6", md: "0" }} textAlign={"center"} fontFamily={"fiendish"} color="red" fontSize={{ base: "0.7rem", md: "1rem" }}>
               Countdown </Text>
-              <Text   style={{textAlign:"center" , fontFamily:"fiendish", color:"#FF0000"}} w="100%" p={{base:"12",md:"5"}}>  {countdown.hours} : {countdown.minutes} : {countdown.seconds} </Text>
-              <Text w="100%" 
-              style={{textAlign:"center" , fontFamily:"fiendish"}}
+            <Text style={{ textAlign: "center", fontFamily: "fiendish", color: "#FF0000" }} w="100%" p={{ base: "12", md: "5" }}>  {countdown.hours} : {countdown.minutes} : {countdown.seconds} </Text>
+            <Text w="100%"
+              style={{ textAlign: "center", fontFamily: "fiendish" }}
               animation={{
-                 base: `${sinisterGlowing} 1s ease-in-out infinite`,
-                 md: `${sinisterGlowing} 1s ease-in-out infinite`
-                }}
-                 color="#fff" >Time Left to end today</Text>
-           
+                base: `${sinisterGlowing} 1s ease-in-out infinite`,
+                md: `${sinisterGlowing} 1s ease-in-out infinite`
+              }}
+              color="#fff" >Time Left to end today</Text>
+
           </Box>
         ) : (
-          <Text  w="100%" textAlign="center" fontFamily="fiendish" color="white" fontSize={{base:"1rem",md:'1.5rem'}}marginTop="24px">
+          <Text w="100%" textAlign="center" fontFamily="fiendish" color="white" fontSize={{ base: "1rem", md: '1.5rem' }} marginTop="24px">
             Please enter your age
           </Text>
         )}

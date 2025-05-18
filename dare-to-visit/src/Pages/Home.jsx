@@ -124,20 +124,6 @@ const gradient2 = `linear-gradient(to right, #000000, #100001, #000000)`;
 
 function Home() {
   const Navigate = useNavigate();
-  const message = [
-    '▁▂▃▄▅▆▇ `',
-    '▂▁▂▃▄▅▆` ',
-    '▃▂▁▂▃▄▅ `',
-    '▄▃▂▁▂▃▄` ',
-    '▅▄▃▂▁▂▃ `',
-    '▆▅▄▃▂▁▂` ',
-    '▇▆▅▄▃▂▁ `',
-    '▆▇▆▅▄▃▂` ',
-    '▅▆▇▆▅▄▃ `',
-    '▄▅▆▇▆▅▄` ',
-    '▃▄▅▆▇▆▅ `',
-    '▂▃▄▅▆▇▆` ',
-  ];
 
 
 
@@ -146,7 +132,6 @@ function Home() {
   // all useState Hooks here.
 
 
-  const [index, setIndex] = useState(0);
   const [showAlert, setShowAlert] = useState(true);
   const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
   const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
@@ -161,22 +146,7 @@ function Home() {
 
 
 
-  useEffect(() => {
-    document.title = message[index];
-  }, [index]);
-
-  useEffect(() => {
-
-    setShowAlert(true);
-
-    const intervalId = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % message.length);
-    }, 50);
-
-    // Clear interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
-
+ 
   useEffect(() => {
     const hideAlertTimeout = setTimeout(() => {
       setShowAlert(false);
@@ -251,7 +221,6 @@ function Home() {
 
 
       <Box h={{ base: "70vh", md: "100vh" }} w="100%" bg={gradient1} >
-        {showAlert && <CustomAlert message={message[index]} />}
         <Box
           backgroundImage={{ base: `url(${Phone_slider[currentImageIndex1]})`, md: `url(${PC_slider[currentImageIndex2]})` }}
           backgroundSize="cover"
@@ -512,7 +481,9 @@ function Home() {
       {/* AI Component Importing  here ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
 
-      <Box w="100%" h={"auto"} bg={gradient2} ><AI /><Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"} /></Box>
+      <Box w="100%" h={"auto"} bg={gradient2} >
+        <AI />
+      <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"} /></Box>
 
 
       {/* AI generated Images slider ends here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}

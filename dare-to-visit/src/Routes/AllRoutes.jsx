@@ -47,12 +47,12 @@ function AllRoutes() {
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/ai" element={<AI />}></Route>
-        <Route path="/article" element={<ArticleList />}></Route>
-        <Route path="/audio" element={<AudioPlayer />}></Route>
-        <Route path="/media" element={<Media />}></Route>
-        <Route path="/scareOncard" element={<ScareOnCard />}></Route>
-        <Route path="/scareOnclip" element={<ScareOnClip />}></Route>
+        {/* <Route path="/ai" element={<AI />}></Route> */}
+        {/* <Route path="/article" element={<ArticleList />}></Route> */}
+        {/* <Route path="/audio" element={<AudioPlayer />}></Route> */}
+        {/* <Route path="/media" element={<Media />}></Route> */}
+        {/* <Route path="/scareOncard" element={<ScareOnCard />}></Route> */}
+        {/* <Route path="/scareOnclip" element={<ScareOnClip />}></Route> */}
         <Route path="/footer" element={<Footer />}></Route>
         <Route path="/nav" element={<Nav />}></Route>
         <Route path="/nav2" element={<Navbar2 />}></Route>

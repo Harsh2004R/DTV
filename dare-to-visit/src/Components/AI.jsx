@@ -113,8 +113,9 @@ export default function AI() {
 
           </Stack>
         </Stack>
+         <Text color="red">Something went wrong with algorithms we are trying to fix it please wait </Text>
         <Flex>
-          <Image
+          {/* <Image
             // border="2px solid teal"
             transition="transform 0.5s" _hover={{ boxShadow: '0 0 20px #9E9E9E', transform: 'scale(1.05)', cursor: 'pointer' }}
             className="slider-image"
@@ -123,7 +124,7 @@ export default function AI() {
             w={{ base: "100%", md: "80%" }}
             h={{ base: "100%", md: "70%" }}
             m="auto"
-          />
+          /> */}
         </Flex>
       </SimpleGrid>
     </Container>
