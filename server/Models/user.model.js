@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     name: { type: String, required: true },
     password: { type: String, required: true },
     profile_picture:{type: String},
+    isBlocked: { type: Boolean, default: false }
    
 })
 

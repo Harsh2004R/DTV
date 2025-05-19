@@ -6,12 +6,12 @@ require("dotenv").config()
 const { UserModel } = require("../Models/user.model.js")
 const UserRouter = express.Router();
 
-UserRouter.get("/get",async(req,res)=>{
+UserRouter.get("/get", async (req, res) => {
     try {
         const user = await UserModel.find().select("-password -phone");
-        res.status(200).json({msg:"users list here......",data:user})
+        res.status(200).json({ msg: "users list here......", data: user })
     } catch (error) {
-        res.status(400).json({msg:"error in getting users data..."})
+        res.status(400).json({ msg: "error in getting users data..." })
     }
 })
 
@@ -67,8 +67,24 @@ UserRouter.post("/verify", async (req, res) => {
 
 })
 
+UserRouter.delete("/:id", async (req, res) => {
+    try {
+        await UserModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({ msg: "User deleted successfully" });
+    } catch (error) {
+        res.status(400).json({ msg: "Error deleting user..." })
+    }
+})
 
 
+UserRouter.patch("/block/:id", async (req, res) => {
+    try {
+        await UserModel.findByIdAndUpdate(req.params.id, { isBlocked: true });
+        res.status(200).json({ msg: "User blocked successfully" });
+    } catch (error) {
+        res.status(400).json({ msg: "Error blocking user" });
+    }
+});
 
 
 
