@@ -38,5 +38,14 @@ Darkurl.post("/post/dark-url", async (req, res) => {
     }
 })
 
+Darkurl.delete("/dark-video/:id", async (req, res) => {
+    try {
+        await UrlModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({ msg: "Video deleted successfully" });
+    } catch (error) {
+        res.status(400).json({ msg: "Error deleting video..." })
+    }
+})
+
 
 module.exports = { Darkurl }
