@@ -6,6 +6,15 @@ require("dotenv").config()
 const { UserModel } = require("../Models/user.model.js")
 const UserRouter = express.Router();
 
+UserRouter.get("/get",async(req,res)=>{
+    try {
+        const user = await UserModel.find().select("-password -phone");
+        res.status(200).json({msg:"users list here......",data:user})
+    } catch (error) {
+        res.status(400).json({msg:"error in getting users data..."})
+    }
+})
+
 
 UserRouter.post("/regester", async (req, res) => {
     const { phone, email, name, password } = req.body;
@@ -57,6 +66,10 @@ UserRouter.post("/verify", async (req, res) => {
     }
 
 })
+
+
+
+
 
 
 module.exports = { UserRouter }
