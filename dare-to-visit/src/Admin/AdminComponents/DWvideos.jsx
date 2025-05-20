@@ -106,7 +106,7 @@ const DWvideos = () => {
 
       <Box mt="20px" maxH="auto" overflowY="auto" w="100%" p="4">
         <Box w="100%" >
-          <Text fontSize={{ base: "14px", md: "15px", lg: "25px" }} color="#E53935" fontWeight={"bold"}>Total Videos :<Text as="span" fontWeight={"bold"} color={"#000"}>{" "}{get.length}</Text></Text>
+          <Text fontSize={{ base: "14px", md: "15px", lg: "25px" }} color="rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;" fontWeight={"bold"}>Total Videos :<Text as="span" fontWeight={"bold"} color={"#000"}>{" "}{get.length}</Text></Text>
 
 
         </Box>
@@ -118,24 +118,32 @@ const DWvideos = () => {
             <Box
               key={idx}
               p="10px"
-              mb="10px"
+              mb="20px"
+              h="250px"
               bg="white"
-              boxShadow="md"
+              position={"relative"}
+              zIndex={"0"}
               borderRadius="md" pos={"relative"}
+              boxShadow="#EEEEEE 0px 25px 20px -20px"
+              _hover={{ boxShadow: "rgba(58, 61, 249, 0.8) 12.95px 12.95px 22.6px;" }}
             >
 
-              <Heading size={{ base: "sm", md: "md", lg: "md" }} mb="2" color="#78909C"><Text as="span" color="#000">Title :-</Text>{" "}{video.title}</Heading>
-              <Center 
-              onClick={()=>handleDelete(video._id)} 
-              _hover={{ cursor: "pointer" }} borderRadius={"100%"} w={"35px"} h="35px" bg="#fff" pos={"absolute"} right={"0"} mb="10px" flex="1" ml="10px"><RiDeleteBinLine color="red" size={"25px"} /></Center>
+              <Heading size={{ base: "sm", md: "md", lg: "md" }} mb="2" color="#666"><Text as="span" fontSize={"2xl"} color="#303F9F">:: {" "}</Text>{" "}{video.title}</Heading>
+              <Center
+              zIndex={"1"}
+                onClick={() => handleDelete(video._id)}
+                _hover={{ cursor: "pointer" }} borderRadius={"100%"} w={"35px"} h="35px" bg="#fff" pos={"absolute"} right={"0"} mb="10px" flex="1" ml="10px"><RiDeleteBinLine color="red" size={"25px"} /></Center>
 
-              <Box as="iframe"
+              <Box
+                as="iframe"
                 src={video.embedLink}
-                w="100%"
-                h="200px"
+                w={{base:"50%",md:"25%",lg:"30%"}}
+                h={{base:"130px",md:"180px",lg:"180px"}}
                 border="none"
                 borderRadius="10px"
                 allowFullScreen
+                position={"absolute"}
+                right="0"
               />
             </Box>
           ))
