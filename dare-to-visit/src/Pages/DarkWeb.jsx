@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Text, VStack, Image, keyframes, Divider } from '@chakra-ui/react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { BE_URL } from '../URL.js';
 import Topper from "../Components/Topper.jsx"
 import Navbar2 from "../Components/Navbar2";
 import ArticleList from "../Components/ArticleList";
@@ -31,92 +33,6 @@ const YY5 = "https://i.ibb.co/vmbXnr4/YY5.png";
 const YY6 = "https://i.ibb.co/C8zyfj2/YY6.png";
 const YY7 = "https://i.ibb.co/thdbnf9/YY7.png";
 const YY8 = "https://i.ibb.co/pQxf5mp/YY8.png";
-
-
-
-const videoData = [
-  {
-    embedLink: 'https://www.youtube.com/embed/L0yvNT9DGi0',
-    title: 'THIS DARK WEB VIDEO GOT LEAKED ON THE SURFACE WEB',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/1R5bt_jkyIQ',
-    title: 'REAL VIDEOS FOUND ON THE DARK WEB PART 2',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/9W6QT22qvKw',
-    title: 'Man Finds Creepy Videos On The Dark Web Unfriended Dark Web Fear',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/nNUEvFiZvV8',
-    title: 'What S The Dark Web Really Like',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/pSfqOHgb5BI',
-    title: 'REAL VIDEOS FOUND ON THE DARK WEB PART 1',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/1Omw9VOViXQ',
-    title: 'What Is Dark Web Shorts Simplilearn',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/hwNnhIHtUtQ',
-    title: 'This Happens On Dark Web',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/IfJjsFOYAQA',
-    title: 'EXPOSED Blank Room Soup THE DARK WEB UNMASKED',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/mDzqdv3VjKE',
-    title: 'How To Find Anything On The Dark Web',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/cG6IfZD1Xo8',
-    title: 'Darkest Dark Web Videos Ever Found Uncovering Dark Web 1',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/_dX_brFw7BI',
-    title: 'Darkest Dark Web Videos Ever Found Uncovering Dark Web 2',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/qvijlcZjeaU',
-    title: 'Real Creepy Dark Web Videos Ever Found Uncovering Dark Web 3',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/vrLxEsSUC2c',
-    title: 'Dark Web What Is Dark Web Is Dark Web Illegal Deep Web Hidden Internet Collegewallah',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/XQUc5pdJ1iI',
-    title: 'TERRIFYING SIDE OF THE WEB DARK WEB PART 2',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/Z5uQ87Wiq2s',
-    title: 'Scary DEEP DARK WEB Videos That No One Has Ever Seen',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/VLsQynRgjck',
-    title: 'REAL VIDEOS FOUND ON THE DARK WEB PART 1 Fing',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/dsducsds',
-    title: 'Exposing The Dark Web',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/1SejpANfjf4',
-    title: 'Dark Web Real Video Shivamsingh Ytshorts Shorts',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/Xf37u1WXtJ8',
-    title: 'What Happens On Dark Web',
-  },
-  {
-    embedLink: 'https://www.youtube.com/embed/oRElnytHAG4',
-    title: 'Creepy Dark Web Videos Leaked Videos Minute Science',
-  },
-];
-
 
 
 
@@ -175,16 +91,25 @@ const gradient_xx = `linear-gradient(to right ,#000000, #7D1616, #000000)`;
 
 
 function DarkWeb() {
-
-
   const [showAlert, setShowAlert] = useState(true);
+  const [videoData, setVideoData] = useState([]);
   const handleDarkWebPaypage = () => {
     Navigate("/darkwebpay")
   }
 
-  
+  const fetchVideoData = async () => {
+    try {
+      const res = await axios.get(`${BE_URL}api/get/dark-url`);
+      setVideoData(res.data.data);
+      console.log(res)
+    } catch (error) {
+      console.log("error in fetching darkweb video data from server....", error)
+    }
+  }
+
 
   useEffect(() => {
+    fetchVideoData()
     const hideAlertTimeout = setTimeout(() => {
       setShowAlert(false);
     }, 10000);
@@ -193,6 +118,10 @@ function DarkWeb() {
   }, [showAlert]);
   const handleCloseAlert = () => {
     setShowAlert(false);
+    const interval = setInterval(() => {
+      setCurrentImageIndex1((prevIndex) => (prevIndex + 1) % slide1.length);
+    }, 1500);
+    return () => clearInterval(interval);
   };
 
 
@@ -201,18 +130,6 @@ function DarkWeb() {
   // image logic slide1 ===
 
   const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
-
-
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex1((prevIndex) => (prevIndex + 1) % slide1.length);
-    }, 1500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-
 
 
   // image logic slide1 end===
@@ -248,7 +165,7 @@ function DarkWeb() {
 
 
 
-     <Topper />
+      <Topper />
       <Navbar2 />
 
 
