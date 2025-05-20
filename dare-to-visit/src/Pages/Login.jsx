@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import { Box, Input, Text, Button, FormControl, FormLabel, keyframes, Center, Spinner } from '@chakra-ui/react';
@@ -24,8 +24,10 @@ function Login() {
   const songs = [asur, song1, song3, song4, song5, song6];
 
   // login hooks here....
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  // const [email, setemail] = useState("");
+  // const [password, setpassword] = useState("");
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const [loading, setLoading] = useState(false)
   let url = "https://reqres.in/api/login";
 
@@ -45,9 +47,13 @@ function Login() {
     // Handle login logic here
     e.preventDefault();
     setLoading(true);
-    let obj = { email, password };
+    // let obj = { email, password };
+     const loginData = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
     await axios
-      .post(`${BE_URL}api/user/verify`, obj)
+      .post(`${BE_URL}api/user/verify`, loginData)
       .then((res) => {
         console.log(res);
         let token = res.data.token;
@@ -155,8 +161,8 @@ function Login() {
                       mx="auto"
                       type="text"
                       border="none"
-                      fontFamily=""
-                      onChange={(e) => setemail(e.target.value)}
+                      fontFamily="" ref={emailRef}
+                      // onChange={(e) => setemail(e.target.value)}
                     />
                   </FormControl>
                   <FormControl p="0.625rem">
@@ -174,8 +180,8 @@ function Login() {
                       bg="none"
                       mx="auto"
                       type="password"
-                      fontFamily=""
-                      onChange={(e) => setpassword(e.target.value)}
+                      fontFamily=""  ref={passwordRef}
+                      // onChange={(e) => setpassword(e.target.value)}
                     />
                   </FormControl>
                   <Box mt="0.625rem">
