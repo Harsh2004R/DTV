@@ -14,6 +14,17 @@ import {
     keyframes
 } from '@chakra-ui/react';
 
+
+const audioSources = [
+    'https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed',
+    // song6,
+    // song3,
+    // song5,
+    // song4,
+    "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong1.mp3",
+    // song1,
+];
+
 const audioSources1 = [
     {
         url: "https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed",
@@ -128,7 +139,7 @@ const pcBGs = [
 
 
 
-const AudioPlayer = () => {
+const TestingPod = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(0);
@@ -305,11 +316,13 @@ const AudioPlayer = () => {
                     <Button onClick={handleChangeBG} color="#FF0000" bg="transparent" border="0.5px solid red" _hover={{ boxShadow: '0 0 0.625rem 0.3125rem #FF0000', transform: 'scale(0.9)' }} w={{ base: "20%", md: "10%" }} h="3vh" fontSize={{ base: "12px", md: "13px" }} >
                         Change UI
                     </Button> <Text pt="10px" color="#FFFFFF" fontSize={"14px"}>UI :- <span style={{ color: "#FF0000", fontSize: "14px", fontWeight: "bold" }}>{clickCount}</span> / {phoneBGs.length}</Text></Box>
-                <Box w={{ base: "96%", md: "60%" }} m="auto" h="auto" ><Text style={{ textAlign: "left" }} mt="20px" mb="20px" color="#fff" fontSize={{ base: "18px", md: "27px" }}>{audioSources1[currentTrack].title}<span style={{ color: "#FF0000" }}>{" "} #</span></Text></Box>
+                <Box w={{ base: "96%", md: "60%" }} m="auto" h="auto" ><Text style={{ textAlign: "left" }} mt="20px" mb="20px" color="#fff" fontSize={{ base: "18px", md: "27px" }}>Kya wo sach tha- <span style={{ color: "#FF0000" }}>#heighway ka bhoot</span></Text></Box>
             </Box>
 
             {/* pagination starts here -----------------------------------------pagination starts here---------------------------------------------------------------------------pagination starts here*/}
-          
+            <Text fontWeight="bold" mb={2} color="white" fontSize="lg">
+                {audioSources1[currentTrack].title}
+            </Text>
 
             {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
         </>
@@ -327,7 +340,7 @@ const formatTime = (time) => {
 
 
 
-export default AudioPlayer;
+export default TestingPod;
 
 
 
