@@ -11,20 +11,21 @@ import {
     Flex,
     Text,
     Button,
-    keyframes
+    keyframes,
+    Spinner
 } from '@chakra-ui/react';
-
-const audioSources1 = [
-    {
-        url: "https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed",
-        title: "Kya wo sach tha -#Heighway ka bhoot"
-    },
-    {
-        url: "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong1.mp3",
-        title: "auto tune added via google"
-    },
-];
-
+import axios from 'axios';
+import { BE_URL } from '../URL.js';
+// const audioSources1 = [
+//     {
+//         url: "https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed",
+//         title: "Kya wo sach tha -#Heighway ka bhoot"
+//     },
+//     {
+//         url: "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong1.mp3",
+//         title: "auto tune added via google"
+//     },
+// ];
 
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #E3F2FD; }
@@ -129,6 +130,8 @@ const pcBGs = [
 
 
 const AudioPlayer = () => {
+    const [getUrl, setGetUrl] = useState([])
+    const [loading, setLoading] = useState(true);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [currentTrack, setCurrentTrack] = useState(0);
@@ -139,6 +142,22 @@ const AudioPlayer = () => {
     const audioRef = useRef(null);
 
 
+    const fetchPodCastUrl = async () => {
+        try {
+            const res = await axios.get(`${BE_URL}api/get/podcast/urls`);
+            setGetUrl(res.data.data)
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log("error in fetching---------podcast=>", error.message)
+        }
+
+    }
+
+    useEffect(() => {
+        fetchPodCastUrl()
+    }, [])
+
     const handlePlayPause = () => {
         if (isPlaying) {
             audioRef.current.pause();
@@ -148,12 +167,12 @@ const AudioPlayer = () => {
         setIsPlaying(!isPlaying);
     };
     const handleNextTrack = () => {
-        const nextTrack = (currentTrack + 1) % audioSources1.length;
+        const nextTrack = (currentTrack + 1) % getUrl.length;
         setCurrentTrack(nextTrack);
 
         audioRef.current.pause();
 
-        audioRef.current.src = audioSources1[nextTrack].url;
+        audioRef.current.src = getUrl[nextTrack].url;
 
         audioRef.current.oncanplaythrough = () => {
             audioRef.current.play();
@@ -163,12 +182,12 @@ const AudioPlayer = () => {
     };
 
     const handlePreviousTrack = () => {
-        const prevTrack = currentTrack === 0 ? audioSources1.length - 1 : currentTrack - 1;
+        const prevTrack = currentTrack === 0 ? getUrl.length - 1 : currentTrack - 1;
         setCurrentTrack(prevTrack);
 
         audioRef.current.pause();
 
-        audioRef.current.src = audioSources1[prevTrack].url;
+        audioRef.current.src = getUrl[prevTrack].url;
 
         audioRef.current.oncanplaythrough = () => {
             audioRef.current.play();
@@ -197,6 +216,12 @@ const AudioPlayer = () => {
     };
     const phoneBG = phoneBGs[phoneBGIndex].url;
     const pcBG = pcBGs[pcBGIndex].url;
+    if (loading) return <Spinner />
+    if (getUrl.length === 0) {
+        <Box bg="#000" w="100%" h="100vh">
+            <Text color="#fff">No podcast fetched from server...😪</Text>
+        </Box>
+    }
 
     return (
 
@@ -218,7 +243,7 @@ const AudioPlayer = () => {
                 >
                     <audio
                         ref={audioRef}
-                        src={audioSources1[currentTrack].url}
+                        src={getUrl[currentTrack].url}
                         onTimeUpdate={handleTimeUpdate}
                     />
 
@@ -305,11 +330,11 @@ const AudioPlayer = () => {
                     <Button onClick={handleChangeBG} color="#FF0000" bg="transparent" border="0.5px solid red" _hover={{ boxShadow: '0 0 0.625rem 0.3125rem #FF0000', transform: 'scale(0.9)' }} w={{ base: "20%", md: "10%" }} h="3vh" fontSize={{ base: "12px", md: "13px" }} >
                         Change UI
                     </Button> <Text pt="10px" color="#FFFFFF" fontSize={"14px"}>UI :- <span style={{ color: "#FF0000", fontSize: "14px", fontWeight: "bold" }}>{clickCount}</span> / {phoneBGs.length}</Text></Box>
-                <Box w={{ base: "96%", md: "60%" }} m="auto" h="auto" ><Text style={{ textAlign: "left" }} mt="20px" mb="20px" color="#fff" fontSize={{ base: "18px", md: "27px" }}>{audioSources1[currentTrack].title}<span style={{ color: "#FF0000" }}>{" "} #</span></Text></Box>
+                <Box w={{ base: "96%", md: "60%" }} m="auto" h="auto" ><Text style={{ textAlign: "left" }} mt="20px" mb="20px" color="#fff" fontSize={{ base: "18px", md: "27px" }}>{getUrl[currentTrack].title}<span style={{ color: "#FF0000" }}>{" "} #</span></Text></Box>
             </Box>
 
             {/* pagination starts here -----------------------------------------pagination starts here---------------------------------------------------------------------------pagination starts here*/}
-          
+
 
             {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
         </>
