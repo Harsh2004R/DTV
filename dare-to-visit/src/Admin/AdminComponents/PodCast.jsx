@@ -69,14 +69,14 @@ const PodCast = () => {
   }
 
   if (loading) return <Center w="100%" p="10" h="50vh"><Spinner size="xl" color="blue.500" /></Center>
-  if (error) return <Center w="100%"  h="auto" p="6px" borderRadius={"md"} borderColor={"grey"}><Text fontSize="12px" color="red.500" >{error}</Text></Center>
+  if (error) return <Center w="100%" h="auto" p="6px" borderRadius={"md"} borderColor={"grey"}><Text fontSize="12px" color="red.500" >{error}</Text></Center>
 
   return (
     <Box w="100%" h="auto"  >
       <Center flexDirection={"column"}>
         <Heading>Podcast / Audio / Music Url's</Heading>
 
-        <Box _hover={{ cursor: "pointer" }} w={{base:"100%",md:"70%",lg:"50%"}} h="auto" p="10px">
+        <Box _hover={{ cursor: "pointer" }} w={{ base: "100%", md: "70%", lg: "50%" }} h="auto" p="10px">
           <Input
             name="url"
             type="text"
@@ -104,12 +104,13 @@ const PodCast = () => {
         Upload
       </Button>
       <Box mt="20px">
+        <Text fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}>Total Podcast found :- {getUrl.length}</Text>
         {
           getUrl.length === 0 ? (<Heading size="sm" textAlign="center">No audio url's found</Heading>) :
             (
               getUrl.map((data, idx) => (
 
-                <Grid  overflowX={"auto"} bg="#E0E0E0"  gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
+                <Grid overflowX={"auto"} bg="#E0E0E0" gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
                   <GridItem>
                     <Text fontSize={{ base: "12px", md: "13px", lg: "14px" }} fontWeight={"500"} color="#1976D2" textDecor={"underline"}><Text color="black" as="span" fontWeight={"bold"}>Url :-</Text>{" "} {data.url}</Text>
                   </GridItem>
