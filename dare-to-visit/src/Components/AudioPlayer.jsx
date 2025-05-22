@@ -12,10 +12,14 @@ import {
     Text,
     Button,
     keyframes,
-    Spinner
+    Spinner,
+    Center,
+    Divider
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { BE_URL } from '../URL.js';
+import { IoMusicalNote } from "react-icons/io5";
+
 // const audioSources1 = [
 //     {
 //         url: "https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed",
@@ -139,6 +143,7 @@ const AudioPlayer = () => {
     const [phoneBGIndex, setPhoneBGIndex] = useState(0);
     const [pcBGIndex, setPcBGIndex] = useState(0);
     const [clickCount, setClickCount] = useState(1);
+    const [error, setError] = useState(null);
     const audioRef = useRef(null);
 
 
@@ -149,7 +154,8 @@ const AudioPlayer = () => {
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            console.log("error in fetching---------podcast=>", error.message)
+            setError(`${error.response.data.msg}`)
+            console.log(error)
         }
 
     }
@@ -179,6 +185,7 @@ const AudioPlayer = () => {
             setIsPlaying(true);
             audioRef.current.oncanplaythrough = null;
         };
+
     };
 
     const handlePreviousTrack = () => {
@@ -195,6 +202,11 @@ const AudioPlayer = () => {
             audioRef.current.oncanplaythrough = null;
         };
     };
+    const handleChangeAfterClick = (changedURL) => {
+        audioRef.current.src = changedURL;
+        audioRef.current.play();
+        setIsPlaying(true);
+    }
     const handleTimeUpdate = () => {
         setCurrentTime(audioRef.current.currentTime);
     };
@@ -216,12 +228,16 @@ const AudioPlayer = () => {
     };
     const phoneBG = phoneBGs[phoneBGIndex].url;
     const pcBG = pcBGs[pcBGIndex].url;
-    if (loading) return <Spinner />
+    if (loading) return <Center><Spinner color="#fff" size="xl" /></Center>
+    if (error) return <Center><Text color="#fff">{"{error in api} :-"} {error}</Text></Center>
     if (getUrl.length === 0) {
-        <Box bg="#000" w="100%" h="100vh">
-            <Text color="#fff">No podcast fetched from server...😪</Text>
-        </Box>
+        return (
+            <Box bg="#000" w="100%" h="100vh">
+                <Text color="#fff">No podcast fetched from server...😪</Text>
+            </Box>
+        );
     }
+
 
     return (
 
@@ -335,6 +351,36 @@ const AudioPlayer = () => {
 
             {/* pagination starts here -----------------------------------------pagination starts here---------------------------------------------------------------------------pagination starts here*/}
 
+
+
+
+            <Box w={{ base: "99%", md: "80%", lg: "80%" }} m="auto" borderRadius={"xl"} h="80vh" border="1px solid #424242" >
+                <Box w="100%" h="auto" p={{ base: "2", md: "8", lg: "10" }}
+                // border={"1px solid lime"}
+                >
+
+                    {
+                        getUrl.map((el, idx) => (
+
+                            <Flex
+                                borderBottom="0.5px solid #4DD0E1"
+                                key={idx} gap="3" p="2" mt="5px" mb="5">
+                                <Center key={idx}>
+                                    <Box w="30px" h="30px" borderRadius={"100%"} border="2px solid white">
+                                        <IoMusicalNote p="2" color="white" size="25px" />
+                                    </Box>
+                                </Center>
+                                <Box _hover={{cursor:"pointer"}} onClick={() => handleChangeAfterClick(el.url)} w="100%" display={"flex"} alignContent={"center"} h="auto">
+                                    <Text fontSize={{ base: "14px", md: "15px", lg: "16px" }} color="#fff">{el.title}</Text>
+                                </Box>
+                            </Flex>
+
+                        ))
+                    }
+
+                </Box>
+
+            </Box>
 
             {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
         </>
