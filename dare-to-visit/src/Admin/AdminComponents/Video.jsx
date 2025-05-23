@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Box, Center, Flex, Heading, Input, Select, Spinner, Text, Button } from "@chakra-ui/react";
 import { BE_URL } from '../../URL';
 import axios from 'axios';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 const Video = () => {
   const [getVideos, setGetVideos] = useState([]);
@@ -34,7 +35,7 @@ const Video = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPostData((prev) => ({ ...prev,  [name]: name === "theme" ? +value : value,  }));
+    setPostData((prev) => ({ ...prev, [name]: name === "theme" ? +value : value, }));
   }
 
 
@@ -49,6 +50,17 @@ const Video = () => {
     } catch (error) {
       setError(`error occure ${error}`)
     }
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${BE_URL}api/delete/${id}`);
+      setLoading(true);
+      fetchVideos();
+    } catch (error) {
+      setError(`error in deleting--- ${error}`)
+    }
+    // alert(id)
   }
   if (loading) {
     return <Center bg="#303030" w="100%" h="100vh">
@@ -67,7 +79,7 @@ const Video = () => {
     </Center>
   }
   return (
-    <Box w="100%" border={"1px solid lime"}>
+    <Box w="100%" >
 
       <Heading textAlign={"center"}>Video Url's</Heading>
 
@@ -132,18 +144,35 @@ const Video = () => {
         </Button>
       </Box>
 
-      <Box w="100%" h="10vh" border={"1px solid red"} >
+      <Box  w="100%" h="auto" border="1px solid #eee">
         {
           getVideos.length === 0 ? (
-            <Heading size="sm" textAlign="center">No video or url's found</Heading>
+            <Heading size="sm" textAlign="center" mt="10px" mb="10px" >No video or url's found</Heading>
           ) : (
             <>
               {
                 getVideos.map((el, i) => (
-                  <Box key={i}>
+                  <Box w={{base:"95%",md:"95%",lg:"100%"}} m="auto" position={"relative"} zIndex={"0"} _hover={{ cursor: "pointer", boxShadow: "#7D80F5 0px 3px 8px" }} borderRadius={"xl"} key={i} bg="#fff" mt="12px" mb="12px" p="5">
+                    <Center
+                      zIndex={"1"}
+                      onClick={() => handleDelete(el._id)}
+                      _hover={{ cursor: "pointer" }} borderRadius={"100%"} w={"35px"} h="35px" bg="#fff" pos={"absolute"} right={"0"} mb="10px" flex="1" ml="10px"><RiDeleteBinLine color="red" size={"25px"} /></Center>
+                    <Box
+                      as="iframe"
+                      src={el.video_url}
+                      w={{ base: "70%", md: "25%", lg: "30%" }}
+                      h={{ base: "90px", md: "180px", lg: "180px" }}
+                      border="none"
+                      borderRadius="10px"
+                      allowFullScreen
+                      right="0"
+                    />
+                    <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} as="span" color="#195F9B" fontWeight={"800"}>Title :- {" "}</Text>
+                    <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="#000" fontWeight={"500"}>{el.video_title}</Text>
+                    <Text color="#000" fontSize={{ base: "14px", md: "16px", lg: "18px" }} fontWeight={"500"}><Text color="#C77445" as="span" fontWeight={"800"}>Category :-{" "}</Text>{el.category}</Text>
+                    <Text color="#000" fontSize={{ base: "14px", md: "16px", lg: "18px" }} fontWeight={"500"}><Text color="#C77445" as="span" fontWeight={"800"}>Theme :-{" "}</Text>{el.theme} <Text as="span" >%</Text></Text>
+                    <Text textDecor={"underline"} color="#195F9B" fontSize={{ base: "12px", md: "13px", lg: "13px" }}><Text fontWeight={"600"} as="span" >ID :-{" "}</Text>{el._id}</Text>
 
-                    <Text>{el.video_title}</Text>
-                    <Text>{el._id}</Text>
                   </Box>
                 ))
               }
