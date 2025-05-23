@@ -6,16 +6,16 @@ const VideoRouter = express.Router();
 
 VideoRouter.post("/post/video", async (req, res) => {
 
-    const { video_url, video_title, catogery, theme } = req.body;
-    if (!video_title || !video_url || !catogery || !theme) {
-        return res.status(400).json({ error: "Missing required input fields" });
-    }
+    const { video_url, video_title, category, theme } = req.body;
+    // if (!video_title || !video_url || !catogery || !theme) {
+    //     return res.status(400).json({ error: "Missing required input fields" });
+    // }
     const alreadyExist = await VideoModel.findOne({ video_url: video_url })
     if (alreadyExist) {
         return res.status(303).json({ error: "Video already exist" });
     }
     try {
-        const videoData = new VideoModel({ video_title: video_title, video_url: video_url, catogery: catogery, theme: theme })
+        const videoData = new VideoModel({ video_url: video_url, video_title: video_title, category: category, theme: theme })
         await videoData.save();
         res.status(201).json({ message: "Video posted successfully", data: videoData });
     } catch (error) {
