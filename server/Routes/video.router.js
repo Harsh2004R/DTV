@@ -7,9 +7,6 @@ const VideoRouter = express.Router();
 VideoRouter.post("/post/video", async (req, res) => {
 
     const { video_url, video_title, category, theme } = req.body;
-    // if (!video_title || !video_url || !catogery || !theme) {
-    //     return res.status(400).json({ error: "Missing required input fields" });
-    // }
     const alreadyExist = await VideoModel.findOne({ video_url: video_url })
     if (alreadyExist) {
         return res.status(303).json({ error: "Video already exist" });
@@ -28,9 +25,15 @@ VideoRouter.get("/get/videos", async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
+        const category = req.query.category || null;
+        const theme = req.query.theme || null;
         const skip = (page - 1) * limit;
-        const videodata = await VideoModel.find().skip(skip).limit(limit);
-        const total = await VideoModel.countDocuments();
+         const query = {};
+        if (category) query.category = category;
+        if (theme) query.theme = theme;
+
+        const videodata = await VideoModel.find(query).skip(skip).limit(limit);
+        const total = await VideoModel.countDocuments(query);
         res.status(200).json({
             msg: "Paginated video data",
             data: videodata,
