@@ -248,7 +248,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
     );
 };
 
-const Video = () => {
+const Test = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [getVideos, setGetVideos] = useState([]);
     const [pageno, setPageno] = useState(1);
@@ -379,4 +379,4 @@ const Video = () => {
     );
 };
 
-export default Video;
+export default Test;

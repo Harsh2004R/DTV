@@ -42,6 +42,7 @@ import Comments from '../Components/Comments';
 
 import Topper from "../Components/Topper.jsx"
 import Dashboard from "../Admin/Dashboard.jsx"
+import Test from '../Pages/Test.jsx';
 
 function AllRoutes() {
   return (
@@ -83,7 +84,7 @@ function AllRoutes() {
         <Route path="/comments" element={<Comments />}></Route>
         <Route path="/top" element={<Topper />}></Route>
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        <Route path="/test" element={<Test />}></Route> 
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
