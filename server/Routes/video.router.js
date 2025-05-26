@@ -28,9 +28,9 @@ VideoRouter.get("/get/videos", async (req, res) => {
         const category = req.query.category || null;
         const theme = req.query.theme || null;
         const skip = (page - 1) * limit;
-         const query = {};
-        if (category) query.category = category;
-        if (theme) query.theme = theme;
+        const query = {};
+        if (category) query.category = { $regex: new RegExp(category, "i") };
+        if (theme) query.theme = parseInt(theme);
 
         const videodata = await VideoModel.find(query).skip(skip).limit(limit);
         const total = await VideoModel.countDocuments(query);
