@@ -25,7 +25,8 @@ import {
     SliderFilledTrack,
     SliderThumb,
     Center,
-    Spinner
+    Spinner,
+    Button
 } from '@chakra-ui/react';
 import {
     FiVideo,
@@ -36,8 +37,8 @@ import {
 import axios from "axios";
 import { BE_URL } from "../URL";
 import { Navigate, useNavigate } from "react-router";
-
-
+import { FcPrevious } from "react-icons/fc";
+import { FcNext } from "react-icons/fc";
 
 const LinkItems = [
     { name: 'Urban legends', icon: FiVideo, },
@@ -358,8 +359,8 @@ const Test = () => {
                                         <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF">
                                             <Text
                                                 // fontFamily={"my"}
-                                                fontFamily="monospace"
-                                                fontSize={{ base: "16px", md: "35px" }}>{el.video_title}</Text>
+                                                fontFamily="monospace" mt="12px"
+                                                fontSize={{ base: "16px", md: "28px" }}>{el.video_title}</Text>
                                             <Divider />
                                         </Box>
                                     </Box>
@@ -367,6 +368,36 @@ const Test = () => {
                         }
 
                         {/* pagination starts here -----------------------------------------agination starts here---------------------------------------------------------------------------agination starts here*/}
+                        {getVideos.length !== 0 ?
+                            (<Box w="100%" p="2">
+                                <Text color={"#fff"}>No more videos...</Text>
+                                <Center position={"sticky"} h="50px" bg="grey">
+                                    <Button
+                                        borderRadius="full"
+                                        width="40px"
+                                        height="40px"
+                                        display="flex"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        p={0} // removes extra padding
+                                    >
+                                        <FcPrevious size={12} />
+                                    </Button>
+                                    <Button
+                                        borderRadius="full"
+                                        width="40px"
+                                        height="40px"
+                                        display="flex"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        p={0} // removes extra padding
+                                    >
+                                        <FcNext size={12} />
+                                    </Button>
+                                </Center>
+                            </Box>) : (<></>)}
+
+
 
                         {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
 
