@@ -19,6 +19,7 @@ UploadRouter.post('/upload', upload.single('file'), async (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No file provided' });
 
     const file       = req.file;
+     const caption    = req.body.caption || '';
     const fileName   = `${Date.now()}_${file.originalname}`;   // avoid overwrites
     const base64Data = file.buffer.toString('base64');
 
@@ -44,7 +45,8 @@ UploadRouter.post('/upload', upload.single('file'), async (req, res) => {
 
     const savedDoc = await UploadedImageModel.create({
       fileName,
-      githubUrl: imageUrl
+      githubUrl: imageUrl,
+       caption
     });
 
     return res.status(201).json({ success: true, image: savedDoc });
