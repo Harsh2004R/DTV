@@ -74,12 +74,12 @@ function AllRoutes() {
         <Route path="/welcome" element={<Welcome />}></Route>
         <Route path="/Device" element={<Device />}></Route>
         <Route path="/NotAllow" element={<NotAllow />}></Route>
-        <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route>
-        <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route>
+        {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
+        {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
         <Route path="/Otp" element={<Otp />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/social" element={<SocialMedia />}></Route>
-        <Route path="/post" element={<PhotosPost />}></Route>
+        {/* <Route path="/post" element={<PhotosPost />}></Route> */}
         <Route path="/reels" element={<Reels />}></Route>
         <Route path="/soon" element={<ComingSoon />}></Route>
         <Route path="/comments" element={<Comments />}></Route>
