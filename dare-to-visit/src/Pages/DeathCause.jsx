@@ -3,7 +3,7 @@ import {Box,Image,Button,Text,Select,keyframes } from "@chakra-ui/react"
 
 import { Navigate, useNavigate } from "react-router-dom";
 import Nav from "../Components/Nav";
-
+import Topper from "../Components/Topper.jsx"
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #FF0000; }
   50% { box-shadow: 0 0 10px 5px #FF0000; }
@@ -12,7 +12,7 @@ const glowAnimation = keyframes`
 
 
 
-const BGvid = "https://player.vimeo.com/external/506484167.sd.mp4?s=91a430b56be8e87b1c37b96f86476892039a1a02&profile_id=164&oauth2_token_id=57447761"
+const BGvid = "https://cdn.pixabay.com/video/2022/10/16/135139-761273467_large.mp4"
 function DeathCause() {
   const Navigate =  useNavigate();
 
@@ -33,7 +33,8 @@ function DeathCause() {
       };
   return (
     <>
-    <Nav/>
+    {/* <Nav/> */}
+    <Topper/>
     <Box
     onClick={handleAudio}
     width="100%"
@@ -41,9 +42,10 @@ function DeathCause() {
     display="flex"
     justifyContent="center"
     alignItems="center"
-    position="relative"
+    // position="relative"
     overflow="hidden"
     flexDirection={"column"}
+    // bg="#000000"
     >
     <video
           ref={videoRef}
@@ -62,11 +64,12 @@ function DeathCause() {
             zIndex: -1
           }}
         />
-        <Box w='100%' h="20vh"
+        <Box w='100%' h="auto" p="50px"
         //  border="2px solid #fff"
          
          >
-          <Text mt="10px"
+          <Text mt="50px"
+         
           textAlign={"center"}
           fontFamily={"fiendish"}
           fontSize={{ base: "1.2rem", md: "4xl" }}

@@ -59,7 +59,7 @@ function AllRoutes() {
         <Route path="/footer" element={<Footer />}></Route>
         <Route path="/nav" element={<Nav />}></Route>
         <Route path="/nav2" element={<Navbar2 />}></Route>
-        <Route path="/VideoComponent" element={<VideoComponent />}></Route>
+        {/* <Route path="/VideoComponent" element={<VideoComponent />}></Route> */}
         <Route path="/DarkWeb" element={<DarkWeb />}></Route>
         <Route path="/pay" element={<DarkWebPay />}></Route>
         <Route path="/cause" element={<DeathCause />}></Route>
