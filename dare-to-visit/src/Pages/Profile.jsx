@@ -77,9 +77,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
                         <Box w="50px" h="50px" ml={"10px"} >
                             <Avatar
+                                border="1px solid lime"
                                 w="100%" h="100%"
                                 src={
-                                    'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
+                                    // 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
+                                    "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
                                 }
                             />
                         </Box>
@@ -164,7 +166,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 const MobileNav = ({ onOpen, ...rest }) => {
     return (
         <Flex
-            // border={"1px solid yellow"}
+            border={"1px solid yellow"}
             ml={{ base: 0, md: 60 }}
             px={{ base: 4, md: 4 }}
             height="20"
@@ -201,7 +203,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                                 <Avatar
                                     size={{ base: "sm", md: "md" }}
                                     src={
-                                        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
+                                        "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
                                     }
                                 />
                                 <VStack
@@ -276,7 +278,7 @@ const Profile = () => {
                             <Box backgroundColor="#fff" w="100%" h={{ base: "5vh", md: "8vh" }} position="absolute" bottom="0" borderBottomLeftRadius="xl" borderBottomRightRadius="xl"></Box>
                             <Box display={"flex"} flexDirection={{ base: "column", md: "row" }} w={{ base: "120px", md: "380px" }} h={{ base: "120px", md: "150px" }} bottom={{ base: "12", md: "7" }} left={{ base: "30%", md: "10" }}
                                 // border={"1px solid red"}
-                                position="absolute">
+                                position="absolute" zIndex={"0"}>
 
                                 <Box
                                     // border={"1px solid cyan"}
@@ -285,7 +287,7 @@ const Profile = () => {
                                     <Avatar
                                         w="100%" h="100%"
                                         src={
-                                            'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
+                                            "https://img.freepik.com/premium-photo/close-up-portrait-serious-young-man_1048944-5954885.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
                                         }
                                     />
 
