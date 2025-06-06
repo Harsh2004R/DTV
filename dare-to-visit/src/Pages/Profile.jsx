@@ -1,5 +1,4 @@
-import Navbar2 from "../Components/Navbar2";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     IconButton,
     Avatar,
@@ -24,15 +23,20 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Button
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+    Button,
+    Spinner,
+    Center
+}
+    from '@chakra-ui/react';
+import Navbar2 from "../Components/Navbar2";
+import { Link, useParams } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
-import {
-    FiMenu,
-    FiChevronDown,
-} from 'react-icons/fi';
+import { FiMenu, FiChevronDown, } from 'react-icons/fi';
 import { FaBell, FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { BE_URL } from "../URL.js"
+import axios from "axios"
+
 
 
 const LinkItems = [
@@ -78,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         <Box w="50px" h="50px" ml={"10px"} >
                             <Avatar
                                 border="2px solid lime"
-                                w="100%" h="100%" 
+                                w="100%" h="100%"
                                 src={
                                     // 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
                                     "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
@@ -166,7 +170,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 const MobileNav = ({ onOpen, ...rest }) => {
     return (
         <Flex
-        zIndex={"1000"}
+            zIndex={"1000"}
             // border={"1px solid yellow"}
             ml={{ base: 0, md: 60 }}
             px={{ base: 4, md: 4 }}
@@ -201,7 +205,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                     <Menu>
                         <MenuButton color="#fff" py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
                             <HStack>
-                                <Avatar 
+                                <Avatar
                                     size={{ base: "sm", md: "md" }}
                                     src={
                                         "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
@@ -243,11 +247,51 @@ const MobileNav = ({ onOpen, ...rest }) => {
 };
 
 const Profile = () => {
+    const { id } = useParams();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [loading, setLoading] = useState(true);
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+    const [usersData, setUsersData] = useState({})
+    useEffect(() => {
+        fetchUsersData();
+    }, []);
+
+    const fetchUsersData = async () => {
+        try {
+            const res = await axios.get(`${BE_URL}api/user/get/${id}`);
+            setUsersData(res.data?.data || {});
+            // console.log(usersData)
+            const data = res.data?.data || {};
+            reset(data)
+            setLoading(false)
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            setLoading(true)
+        }
+    };
+
+
+    const onSubmit = async (data) => {
+        try {
+            const res = await axios.patch(`${BE_URL}api/user/edit/${id}`, data);
+            setLoading(true);
+            // console.log("Updated successfully:", res.data);
+            fetchUsersData();
+            reset();
+        } catch (error) {
+            setLoading(false);
+            console.error("Error updating user:", error.message);
+        }
+    };
+
+
+    if (loading) return <Center h='100vh' w="100%" bg="#222">
+        <Spinner color="skyblue" size="lg" />
+    </Center>
 
     return (
         <>
-            <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+            <Box minH="100vh">
                 <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
                 <Drawer
                     isOpen={isOpen}
@@ -270,10 +314,8 @@ const Profile = () => {
                         w="100%" mt="50px" h="auto"
                     // border="1px solid cyan"
                     >
-
                         {/* Profile image Section here-------------------------------------------------Profile image Section here-----------------------------------------------------------------------Profile image Section here */}
                         <Heading color={"#FFFFFF"} mb="10px" fontFamily={"quantify"}>Profile</Heading>
-
                         <Box
                             backgroundColor="rgba(0, 82, 73, 1)" w="100%" h={{ base: "25vh", md: "35vh" }} borderRadius={"xl"} position="relative">
                             <Box backgroundColor="#fff" w="100%" h={{ base: "5vh", md: "8vh" }} position="absolute" bottom="0" borderBottomLeftRadius="xl" borderBottomRightRadius="xl"></Box>
@@ -288,23 +330,18 @@ const Profile = () => {
                                     <Avatar
                                         w="100%" h="100%"
                                         src={
-                                            "https://img.freepik.com/premium-photo/close-up-portrait-serious-young-man_1048944-5954885.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
+                                            usersData.profile_picture
                                         }
                                     />
-
                                 </Box>
                                 <Box
                                     // border={"1px solid red"}
-                                    w={{ base: "100%", md: "50%" }} m="auto" h="50%" ><Text textAlign={{ base: "center", md: "left" }} color={"#fff"} fontSize={{ base: "18px", md: "25px" }} fontFamily={"caslon-antique"}>Jaydon Frankie</Text></Box>
+                                    w={{ base: "100%", md: "50%" }} m="auto" h="50%" ><Text textAlign={{ base: "center", md: "left" }} color={"#fff"} fontSize={{ base: "18px", md: "25px" }} fontFamily={"caslon-antique"}>{usersData.name}</Text></Box>
 
                             </Box>
 
                         </Box>
-
-
-
                         {/* Followers section here -----------------------------------------------------Followers section here -------------------------------------------------------------Followers section here ----------------------------------Followers section here*/}
-
                         <Box
                             w="100%"
                             h="auto"
@@ -327,12 +364,18 @@ const Profile = () => {
 
                                     <HStack spacing={0} h="100%" >
                                         <Box display={"flex"} flexDir={"column"} justifyContent={"center"} alignItems={"center"} w={"50%"} h="100%" borderRadius={"2xl"}>
-                                            <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"} fontSize={{ base: "22px", md: "25px" }}>10,928 </Text>
+                                            <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"} fontSize={{ base: "22px", md: "25px" }}>
+                                                {usersData.follower === "" ?
+                                                    0 : usersData.follower}
+                                            </Text>
                                             <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"}>Follower</Text>
                                         </Box>
                                         <Divider orientation="vertical" borderColor="gray.500" borderWidth={0.5} h="80%" />
                                         <Box display={"flex"} flexDir={"column"} justifyContent={"center"} alignItems={"center"} w={"50%"} h="100%" borderRadius={"2xl"}>
-                                            <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"} fontSize={{ base: "22px", md: "25px" }}>74,535 </Text>
+                                            <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"} fontSize={{ base: "22px", md: "25px" }}> <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"} fontSize={{ base: "22px", md: "25px" }}>
+                                                {usersData.following === "" ?
+                                                    0 : usersData.following}
+                                            </Text></Text>
                                             <Text fontFamily={"quantify"} color={"#fff"} textAlign={"center"}>Following</Text>
                                         </Box>
                                     </HStack>
@@ -344,15 +387,16 @@ const Profile = () => {
                                     borderRadius={"2xl"} mt={5}
                                 >
 
-                                    <Text m={{ base: "2", md: "4" }} textAlign={"left"} color={"#fff"} fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" >About</Text>
-                                    <Text m={{ base: "2", md: "4" }} textAlign={"justify"} color={"#999"}>
-                                        Tart I love sugar plum I love oat cake. Sweet roll caramels I love jujubes. Topping cake wafer.
+                                    <Text m={{ base: "2", md: "4" }} textAlign={"left"} color={"#fff"} fontSize={{ base: "md", md: "lg" }} fontWeight="bold" >About</Text>
+                                    <Text m={{ base: "2", md: "4" }} fontSize="sm" textAlign={"justify"} color={"#999"}>
+                                        {usersData.about}
                                     </Text>
-                                    <Text m={{ base: "2", md: "4" }} color={"#fff"} fontSize="lg" fontWeight="bold">Profession :</Text>
-                                    <Text m={{ base: "2", md: "4" }} color={"#999"}>Student</Text>
-                                    <Text m={{ base: "2", md: "4" }} color={"#fff"} textAlign={"left"} fontSize="lg" fontWeight="bold">Intrest In:</Text>
-                                    <Text m={{ base: "2", md: "4" }} color={"#999"} textAlign={"left"} fontSize="lg" fontWeight="bold">Horror and dark web.</Text>
-
+                                    <Text m={{ base: "2", md: "4" }} color={"#fff"} fontSize={{ base: "md", md: "lg" }} fontWeight="bold">Profession :</Text>
+                                    <Text m={{ base: "2", md: "4" }} color={"#999"}>{usersData.profession}</Text>
+                                    <Text m={{ base: "2", md: "4" }} color={"#fff"} textAlign={"left"} fontSize={{ base: "md", md: "lg" }} fontWeight="bold">Intrest In :</Text>
+                                    <Text m={{ base: "2", md: "4" }} color={"#999"} textAlign={"left"} fontSize="sm" >{usersData.intrest}</Text>
+                                    <Text m={{ base: "2", md: "4" }} color={"#fff"} textAlign={"left"} fontSize={{ base: "md", md: "lg" }} fontWeight="bold">Phone no :</Text>
+                                    <Text m={{ base: "2", md: "4" }} color={"#999"} textAlign={"left"} fontSize="sm" fontWeight="bold">{usersData.phone}</Text>
                                 </Box>
 
 
@@ -370,30 +414,39 @@ const Profile = () => {
                                     display={"flex"} justifyContent={"center"} alignContent={"center"} alignItems={"center"}
                                 >
 
-                                    <form>
+                                    <form onSubmit={handleSubmit(onSubmit)}>
                                         <FormControl mt={4} display={"flex"} alignItems={"center"}>
                                             <FormLabel color={"#fff"}>User name :</FormLabel>
-                                            <Input variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Madagascar" w="50%" />
+                                            <Input
+                                                {...register("name")}
+                                                variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Your name" w="50%" />
                                         </FormControl>
 
                                         <FormControl mt={4} display={"flex"} alignItems={"center"}>
                                             <FormLabel color={"#fff"}>Edit about :</FormLabel>
-                                            <Input variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Madagascar" w="50%" />
+                                            <Input
+                                                {...register("about")}
+                                                variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Share about yourself..." w="50%" />
                                         </FormControl>
 
                                         <FormControl mt={4} display={"flex"} alignItems={"center"}>
                                             <FormLabel color={"#fff"}>Profession:</FormLabel>
-                                            <Input variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Madagascar" w="50%" />
+                                            <Input
+                                                {...register("profession")}
+                                                variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Student | Empolyee" w="50%" />
                                         </FormControl>
 
                                         <FormControl mt={4} display={"flex"} alignItems={"center"}>
                                             <FormLabel color={"#fff"}>Interests :</FormLabel>
-                                            <Input variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Madagascar" w="50%" />
+                                            <Input
+                                                {...register("intrest")}
+                                                variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="#Ghost, #Darkweb" w="50%" />
                                         </FormControl>
-
                                         <FormControl mt={4} display={"flex"} alignItems={"center"}>
-                                            <FormLabel color={"#fff"}>Profile pic :</FormLabel>
-                                            <Input variant={"unstyled"} fontFamily={"caslon-antique"} type="file" id="image" name="image" accept="image/*" w="50%" />
+                                            <FormLabel color={"#fff"}>Profile :</FormLabel>
+                                            <Input
+                                                {...register("profile_picture")}
+                                                variant={"unstyled"} fontFamily={"caslon-antique"} color={"#29B6F6"} type="text" placeholder="Only link accepted" w="50%" />
                                         </FormControl>
                                         <Box display={"flex"} m="10px" justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
                                             <Button _hover={{ bgColor: "#29B6F6" }} mt={4} height={"30px"} fontFamily={"caslon-antique"} bgColor={"rgba(0, 82, 73, 1)"} color={"#fff"} type="submit">

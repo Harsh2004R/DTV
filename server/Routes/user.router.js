@@ -15,7 +15,18 @@ UserRouter.get("/get", async (req, res) => {
     }
 })
 
-
+UserRouter.get("/get/:id", async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.params.id).select("-password");
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+        res.status(200).json({ msg: "users data here......", data: user });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ msg: "Error in getting user's data..." });
+    }
+});
 UserRouter.post("/regester", async (req, res) => {
     const { phone, email, name, password } = req.body;
     const existUser = await UserModel.findOne({ email: email });
@@ -85,6 +96,23 @@ UserRouter.patch("/block/:id", async (req, res) => {
         res.status(400).json({ msg: "Error blocking user" });
     }
 });
+
+UserRouter.patch("/edit/:id", async (req, res) => {
+    try {
+        const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, req.body,
+            {
+                new: true,
+                runValidators: true,
+            });
+        if (!updatedUser) {
+            return res.status(403).json({ msg: "User not found" });
+        }
+        res.status(200).json({ msg: "User updated successfully", data: updatedUser });
+    } catch (error) {
+        console.error("Error updating user:", error);
+        res.status(500).json({ msg: "Failed to update user", error: error.message });
+    }
+})
 
 
 
