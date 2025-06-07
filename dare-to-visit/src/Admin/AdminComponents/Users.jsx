@@ -5,14 +5,14 @@ import { BE_URL } from "../../URL.js";
 
 const Users = () => {
   const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null);    
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const fetchUsers = async () => {
     try {
       const res = await axios.get(`${BE_URL}api/user/get`);
-      setUserData(res.data.data); 
+      setUserData(res.data.data);
       setLoading(false);
     } catch (err) {
       setError("Failed to fetch users");
@@ -22,7 +22,7 @@ const Users = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, []); 
+  }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -46,7 +46,7 @@ const Users = () => {
   if (error) return <Text color="red.400">{error}</Text>;
 
   return (
-    <Box w="100vw" h="100vh" p="4">
+    <Box w="auto" h="100vh" p="4">
       <Text fontSize="2xl" fontWeight="bold" mb="4">Users</Text>
       {userData.length === 0 ? (
         <Text>No users found.</Text>
@@ -62,8 +62,9 @@ const Users = () => {
             cursor="pointer"
             _hover={{ bg: "gray.100" }}
           >
-            <Text><strong>Name:</strong> {user.name}</Text>
-            <Text><strong>Email:</strong> {user.email}</Text>
+            <Text fontSize={{ base: "12px", md: "14px", lg: "16px" }}><strong>Name:</strong> {user.name}</Text>
+            <Text fontSize={{ base: "12px", md: "14px", lg: "16px" }}><strong>Email:</strong> {user.email}</Text>
+            <Text fontSize={{ base: "12px", md: "14px", lg: "16px" }}><strong>User Id:</strong> {user._id}</Text>
             {user.isBlocked && <Text color="red.500"><strong>Blocked</strong></Text>}
 
             {selectedUserId === user._id && (
