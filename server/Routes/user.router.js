@@ -2,11 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken");
+const authenticate = require("../Middlewares/auth.middleware.js");
 require("dotenv").config()
 const { UserModel } = require("../Models/user.model.js")
 const UserRouter = express.Router();
 
-UserRouter.get("/get", async (req, res) => {
+UserRouter.get("/get", async (req, res) => { // this route will provide all user's data...
     try {
         const user = await UserModel.find().select("-password -phone");
         res.status(200).json({ msg: "users list here......", data: user })
@@ -15,7 +16,7 @@ UserRouter.get("/get", async (req, res) => {
     }
 })
 
-UserRouter.get("/get/:id", async (req, res) => {
+UserRouter.get("/get/:id", authenticate, async (req, res) => { // this route will provide user's data via id(68444ae164bd8ae88c733a30)..
     try {
         const user = await UserModel.findById(req.params.id).select("-password");
         if (!user) {
@@ -27,7 +28,7 @@ UserRouter.get("/get/:id", async (req, res) => {
         res.status(400).json({ msg: "Error in getting user's data..." });
     }
 });
-UserRouter.post("/regester", async (req, res) => {
+UserRouter.post("/regester", async (req, res) => { // this route will register new user and provide access token...
     const { phone, email, name, password } = req.body;
     const existUser = await UserModel.findOne({ email: email });
     // Checking for user if user already exist...
@@ -48,7 +49,7 @@ UserRouter.post("/regester", async (req, res) => {
     }
 })
 
-UserRouter.post("/verify", async (req, res) => {
+UserRouter.post("/verify", async (req, res) => { // thsi route will verify / login user ...
     const { email, password } = req.body;
     try {
         // Finding the user by email...
@@ -78,7 +79,7 @@ UserRouter.post("/verify", async (req, res) => {
 
 })
 
-UserRouter.delete("/:id", async (req, res) => {
+UserRouter.delete("/:id", async (req, res) => { // this route will delet user from database using id(68444ae164bd8ae88c733a30)...
     try {
         await UserModel.findByIdAndDelete(req.params.id);
         res.status(200).json({ msg: "User deleted successfully" });
@@ -88,7 +89,7 @@ UserRouter.delete("/:id", async (req, res) => {
 })
 
 
-UserRouter.patch("/block/:id", async (req, res) => {
+UserRouter.patch("/block/:id", async (req, res) => { // this route will block user using their user id(68444ae164bd8ae88c733a30)...
     try {
         await UserModel.findByIdAndUpdate(req.params.id, { isBlocked: true });
         res.status(200).json({ msg: "User blocked successfully" });
@@ -97,22 +98,42 @@ UserRouter.patch("/block/:id", async (req, res) => {
     }
 });
 
-UserRouter.patch("/edit/:id", async (req, res) => {
+UserRouter.patch("/edit", authenticate, async (req, res) => {
     try {
-        const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, req.body,
+        const updatedUser = await UserModel.findByIdAndUpdate(
+            req.userId, req.body,
+            // use userId from the token (set by middleware)
             {
                 new: true,
                 runValidators: true,
-            });
+            }
+        );
+
         if (!updatedUser) {
             return res.status(403).json({ msg: "User not found" });
         }
+
         res.status(200).json({ msg: "User updated successfully", data: updatedUser });
     } catch (error) {
         console.error("Error updating user:", error);
         res.status(500).json({ msg: "Failed to update user", error: error.message });
     }
-})
+});
+
+
+
+UserRouter.get("/profile", authenticate, async (req, res) => { //this route will return userdata only to logged in user(secure)...
+    try {
+        const user = await UserModel.findById(req.userId).select("-password");
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+        res.status(200).json({ msg: "User data retrieved", data: user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Error retrieving user's data" });
+    }
+});
 
 
 

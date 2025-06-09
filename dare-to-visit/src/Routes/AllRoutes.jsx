@@ -1,7 +1,6 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
 
-
 import VideoComponent from '../Components/VideoComponent ';
 import Nav from '../Components/Nav';
 import Navbar2 from '../Components/Navbar2';
@@ -77,7 +76,13 @@ function AllRoutes() {
         {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
         {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
         <Route path="/Otp" element={<Otp />}></Route>
-        <Route path="/profile/:id" element={<Profile />}></Route>
+        <Route path="/profile" element={
+
+          <Profile />
+
+
+        }
+        ></Route>
         <Route path="/social" element={<SocialMedia />}></Route>
         {/* <Route path="/post" element={<PhotosPost />}></Route> */}
         <Route path="/reels" element={<Reels />}></Route>

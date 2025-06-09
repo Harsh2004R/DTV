@@ -23,13 +23,9 @@ function Login() {
 
   const songs = [asur, song1, song3, song4, song5, song6];
 
-  // login hooks here....
-  // const [email, setemail] = useState("");
-  // const [password, setpassword] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [loading, setLoading] = useState(false)
-  let url = "https://reqres.in/api/login";
 
   const [audio, setAudio] = useState(null);
   const Navigate = useNavigate();
@@ -55,7 +51,7 @@ function Login() {
     await axios
       .post(`${BE_URL}api/user/verify`, loginData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         let token = res.data.token;
         localStorage.setItem("token", token);
         if (token) {

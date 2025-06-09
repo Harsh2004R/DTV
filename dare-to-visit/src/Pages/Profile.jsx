@@ -247,7 +247,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
 };
 
 const Profile = () => {
-    const { id } = useParams();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [loading, setLoading] = useState(true);
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
@@ -258,7 +257,11 @@ const Profile = () => {
 
     const fetchUsersData = async () => {
         try {
-            const res = await axios.get(`${BE_URL}api/user/get/${id}`);
+            const res = await axios.get(`${BE_URL}api/user/profile`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             setUsersData(res.data?.data || {});
             // console.log(usersData)
             const data = res.data?.data || {};
@@ -273,7 +276,11 @@ const Profile = () => {
 
     const onSubmit = async (data) => {
         try {
-            const res = await axios.patch(`${BE_URL}api/user/edit/${id}`, data);
+            const res = await axios.patch(`${BE_URL}api/user/edit`, data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
             setLoading(true);
             // console.log("Updated successfully:", res.data);
             fetchUsersData();
