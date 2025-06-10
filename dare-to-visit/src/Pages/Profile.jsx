@@ -258,9 +258,7 @@ const Profile = () => {
     }, []);
 
     const fetchUsersData = async () => {
-        if (localStorage.getItem("token") === null) { // temparory logic to prevent error...
-            navigate("/login")
-        }
+        
         try {
             const res = await axios.get(`${BE_URL}api/user/profile`, {
                 headers: {

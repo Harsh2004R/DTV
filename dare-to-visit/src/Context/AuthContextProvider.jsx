@@ -6,6 +6,7 @@ import { BE_URL } from "../URL.js";
 
 const AuthContextProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const login = (token) => {
         localStorage.setItem("token", token);
@@ -17,32 +18,42 @@ const AuthContextProvider = ({ children }) => {
         setIsAuth(false);
     };
 
+
+
     // app load, verify token...
     useEffect(() => {
-        const verifyToken = async () => {
-            const token = localStorage.getItem("token");
-            if (!token) return;
-
-            try {
-                const res = await axios.get(`${BE_URL}api/user/verify-token`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                if (res.data.valid) {
-                    setIsAuth(true);
-                } else {
-                    logout(); // if token is fake or expired
-                }
-            } catch (err) {
-                console.error("Invalid token or error verifying:", err);
-                logout(); // invalid token or network error
-            }
-        };
-
         verifyToken();
     }, []);
 
+
+
+    const verifyToken = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const res = await axios.get(`${BE_URL}api/user/verify-token`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            if (res.data.valid) {
+                setIsAuth(true);
+            } else {
+                logout(); // if token is fake or expired
+            }
+        } catch (err) {
+            console.error("Invalid token or error verifying:", err);
+            logout(); // invalid token or network error
+        } finally {
+            setLoading(false); // ✅ always stop loading
+        }
+
+    };
+
     return (
-        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth }}>
+        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading }}>
             {children}
         </AuthContext.Provider>
     );

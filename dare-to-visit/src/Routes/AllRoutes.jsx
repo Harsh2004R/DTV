@@ -12,7 +12,7 @@ import Media from '../Components/Media';
 import ScareOnCard from '../Components/ScareOnCard';
 import ScareOnClip from "../Components/ScareOnClip";
 
-
+import PrivateRoutes from './PrivateRoutes.jsx';
 import DarkWeb from '../Pages/DarkWeb';
 import DarkWebPay from '../Pages/DarkWebPay';
 import DeathCause from '../Pages/DeathCause';
@@ -76,13 +76,9 @@ function AllRoutes() {
         {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
         {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
         <Route path="/Otp" element={<Otp />}></Route>
-        <Route path="/profile" element={
-
-          <Profile />
-
-
-        }
-        ></Route>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/profile" element={<Profile />}></Route>
+        </Route>
         <Route path="/social" element={<SocialMedia />}></Route>
         {/* <Route path="/post" element={<PhotosPost />}></Route> */}
         <Route path="/reels" element={<Reels />}></Route>
