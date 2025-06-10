@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
-
+import AuthContext from '../Context/AuthContext.js';
 import { Box, Input, Text, Button, FormControl, FormLabel, keyframes, Center, Spinner } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { BE_URL } from "../URL.js"
@@ -26,7 +26,7 @@ function Login() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [loading, setLoading] = useState(false)
-
+  const { login, isAuth, setIsAuth } = useContext(AuthContext)
   const [audio, setAudio] = useState(null);
   const Navigate = useNavigate();
   useEffect(() => {
@@ -39,12 +39,22 @@ function Login() {
     }
   }, [audio, songs]);
 
+  // this effect will confirm user is authenticated or not using isAuth state...
+  useEffect(() => {
+    console.log("isAuth changed to", isAuth);
+    if (isAuth === true) {
+      Navigate("/")
+    } else {
+      null
+    }
+  }, [isAuth]);
+
   const handleSubmit = async (e) => {
     // Handle login logic here
     e.preventDefault();
     setLoading(true);
     // let obj = { email, password };
-     const loginData = {
+    const loginData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
@@ -55,9 +65,10 @@ function Login() {
         let token = res.data.token;
         localStorage.setItem("token", token);
         if (token) {
-          setLoading(!true)
+          setLoading(!true);
+          login(token);
         }
-        Navigate("/")
+
       })
       .catch((err) => {
         console.log("error in loging...user", err);
@@ -158,7 +169,7 @@ function Login() {
                       type="text"
                       border="none"
                       fontFamily="" ref={emailRef}
-                      // onChange={(e) => setemail(e.target.value)}
+                    // onChange={(e) => setemail(e.target.value)}
                     />
                   </FormControl>
                   <FormControl p="0.625rem">
@@ -176,8 +187,8 @@ function Login() {
                       bg="none"
                       mx="auto"
                       type="password"
-                      fontFamily=""  ref={passwordRef}
-                      // onChange={(e) => setpassword(e.target.value)}
+                      fontFamily="" ref={passwordRef}
+                    // onChange={(e) => setpassword(e.target.value)}
                     />
                   </FormControl>
                   <Box mt="0.625rem">

@@ -29,7 +29,7 @@ import {
 }
     from '@chakra-ui/react';
 import Navbar2 from "../Components/Navbar2";
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { FiMenu, FiChevronDown, } from 'react-icons/fi';
 import { FaBell, FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
@@ -251,11 +251,16 @@ const Profile = () => {
     const [loading, setLoading] = useState(true);
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const [usersData, setUsersData] = useState({})
+    const navigate = useNavigate()
+
     useEffect(() => {
         fetchUsersData();
     }, []);
 
     const fetchUsersData = async () => {
+        if (localStorage.getItem("token") === null) { // temparory logic to prevent error...
+            navigate("/login")
+        }
         try {
             const res = await axios.get(`${BE_URL}api/user/profile`, {
                 headers: {

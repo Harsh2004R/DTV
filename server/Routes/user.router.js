@@ -137,4 +137,24 @@ UserRouter.get("/profile", authenticate, async (req, res) => { //this route will
 
 
 
+// Express Route - Verify Token (MUST be added)
+
+UserRouter.get("/verify-token", (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ valid: false });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        res.json({ valid: true, user: decoded });
+    } catch (err) {
+        res.status(401).json({ valid: false });
+    }
+});
+
+
+
 module.exports = { UserRouter }
