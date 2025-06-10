@@ -1,5 +1,5 @@
 'use client'
-
+import { useContext } from 'react';
 import {
     Box,
     Flex,
@@ -18,9 +18,12 @@ import {
     Stack,
     Center,
 } from '@chakra-ui/react'
-import { HiOutlineLogout } from "react-icons/hi";
+import { Link } from 'react-router-dom';
+import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { MdWorkspacePremium } from "react-icons/md";
+import { FaUserEdit } from "react-icons/fa";
+import AuthContext from '../Context/AuthContext';
 const Links = ['Dashboard', 'Projects', 'Team']
 
 const NavLink = ({ children }) => {
@@ -43,8 +46,9 @@ const NavLink = ({ children }) => {
 }
 
 export default function Simple() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { logout, isAuth } = useContext(AuthContext);
+    console.log("navbar", isAuth)
     return (
         <>
             <Box bg="#000000" px={4}>
@@ -93,21 +97,26 @@ export default function Simple() {
                                 />
                             </MenuButton>
                             <MenuList>
-                                <MenuItem>Profile</MenuItem>
                                 <Flex w="80%">
-                                    <MenuItem flex={1}> Log out</MenuItem>
+                                    <MenuItem fontWeight={"bold"} flex={1}><Link to="/profile">Profile</Link></MenuItem>
                                     <Center>
-                                        <HiOutlineLogout color='red' size="30px" />
+                                        <FaUserEdit size="20px" />
+                                    </Center>
 
+                                </Flex>
+                                <Flex w="80%">
+                                    <MenuItem fontWeight={"bold"} onClick={logout} flex={1}> {isAuth === true ? "Log out" : "Log In"}</MenuItem>
+                                    <Center>
+                                        {isAuth === true ? <HiOutlineLogout color='red' size="30px" /> : <HiOutlineLogin color='green' size="20px" />}
                                     </Center>
 
                                 </Flex>
                                 <MenuDivider />
                                 <Flex w="80%">
-                                    <MenuItem flex={1}>Premium</MenuItem>
+                                    <MenuItem fontWeight={"bold"} flex={1}>Premium</MenuItem>
 
                                     <Center>
-                                        <MdWorkspacePremium size="30px" color='blue' />
+                                        <MdWorkspacePremium size="20px" color='blue' />
 
                                     </Center>
 

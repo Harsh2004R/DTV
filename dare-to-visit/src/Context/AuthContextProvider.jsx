@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AuthContext from "./AuthContext.js";
 import axios from "axios";
 import { BE_URL } from "../URL.js";
+import { showToast } from "../Utils/toast.js";
 
 const AuthContextProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
@@ -16,6 +17,11 @@ const AuthContextProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
+        showToast({
+            title: "Logged out",
+            description: "You have been successfully logged out.",
+            status: "success",
+        });
     };
 
 
