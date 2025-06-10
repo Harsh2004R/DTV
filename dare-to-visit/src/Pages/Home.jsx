@@ -79,22 +79,6 @@ function Home() {
   };
 
 
-
-
-
-
-  const handleScareOnPage = () => {
-    Navigate("/scareon")
-  }
-
-  const handle3DviewPage = () => {
-    Navigate("/React3DView")
-  }
-
-  const handleDW = () => {
-    Navigate("/darkweb")
-  }
-
   return (
     <>
 
@@ -116,6 +100,7 @@ function Home() {
 
       <Box h={{ base: "60vh", md: "80vh", lg: "100vh" }} w="100%" bg={gradient1} >
         <Slider />
+        <CustomAlert isOpen={showAlert} onClose={handleCloseAlert} />
       </Box>
 
 
@@ -626,11 +611,11 @@ function Home() {
                   borderRadius={"none"}
                 >Visit</Button>
               </Link>
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Box >
-      {/* Ending Dark || Deep web Page || section here ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ }
+      </Box >
+      {/* Ending Dark || Deep web Page || section here ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
       < Divider />
       <Footer />
     </>

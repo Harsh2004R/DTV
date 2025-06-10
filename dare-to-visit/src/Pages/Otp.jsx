@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Input, Button, Text, border } from '@chakra-ui/react';
+import { Box, Input, Button, Text, border, Center } from '@chakra-ui/react';
 
 const Wood = "https://i.ibb.co/R0kvCK4/Wood-bg.jpg";
 const boxData = [1, 2, 3, 4];
@@ -79,44 +79,47 @@ const Otp = () => {
               backgroundPosition="center"
               backgroundRepeat="no-repeat"
             ></Box>
-            <Box 
-            display="flex" w={{ base: "96%", md: "48.5%" }} m="auto"
-            justifyContent="center" alignItems="center" 
-            height={{ base: "25vh", md: "25vh" }} 
-            // border={"1px solid red"}
-            backgroundImage={"https://i.ibb.co/PM02F4N/PaperBg.png"}
-            // borderLeft="2px solid red"  
-            // borderRight="2px solid blue"
-            backgroundSize="cover"
-            
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            >
+            <Center>
+              <Box
+                display="flex" w={{ base: "96%", md: "49%" }} mr={{base:"0px",md:"9px",lg:"10px"}}
+                justifyContent="center" alignItems="center"
+                height={{ base: "25vh", md: "25vh" }}
+                // border={"1px solid red"}
+                backgroundImage={"https://i.ibb.co/PM02F4N/PaperBg.png"}
+                // borderLeft="2px solid red"  
+                // borderRight="2px solid blue"
+                backgroundSize="cover"
 
-              <form>
-                {otp.map((digit, index) => (
-                  <Input
-                    key={index}
-                    ref={(ref) => (otpInputRefs[index] = ref)}
-                    type="text"
-                    border={"2px solid #000000"}
-                    value={digit}
-                    onChange={(e) => handleInputChange(index, e.target.value)}
-                    onKeyDown={(e) => handleBackspace(index, e)}
-                    _hover={{border:"3px solid #00BCD4"}}
-                    maxLength={1}
-                    width="40px"
-                    height="40px"
-                    fontSize="14px"
-                    textAlign="center"
-                    margin="0 5px"
-                  />
-                ))}
-              </form>
-              <Button colorScheme="red" fontFamily={"caslon-antique"} size="md">
-                Verify
-              </Button>
-            </Box>
+                backgroundPosition="center"
+                backgroundRepeat="no-repeat"
+              >
+
+
+                <form>
+                  {otp.map((digit, index) => (
+                    <Input
+                      key={index}
+                      ref={(ref) => (otpInputRefs[index] = ref)}
+                      type="text"
+                      border={"2px solid #000000"}
+                      value={digit}
+                      onChange={(e) => handleInputChange(index, e.target.value)}
+                      onKeyDown={(e) => handleBackspace(index, e)}
+                      _hover={{ border: "3px solid #00BCD4" }}
+                      maxLength={1}
+                      width="40px"
+                      height="40px"
+                      fontSize="14px"
+                      textAlign="center"
+                      margin="0 5px"
+                    />
+                  ))}
+                </form>
+                <Button colorScheme="red" fontFamily={"caslon-antique"} size="md">
+                  Verify
+                </Button>
+              </Box>
+            </Center>
             <Box w={{ base: "96%", md: "50%" }}
               m="auto" height={{ base: "20vh", md: "20vh" }}
               // border={"1px solid red"}
