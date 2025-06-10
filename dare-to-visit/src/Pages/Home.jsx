@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, Text, Image, Button, Flex, keyframes, UnorderedList, ListItem, useBreakpointValue, Grid, GridItem } from "@chakra-ui/react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Divider } from "@chakra-ui/react"
 // import Nav from "../Components/Nav";
 import CustomAlert from "../Components/CustomAlert";
@@ -12,10 +12,7 @@ import Topper from "../Components/Topper.jsx";
 import Footer from "../Components/Footer";
 import DummyScareOnClip from "../Templates/DummyScareOnCard";
 import DummyScareOnCard from "../Templates/DummyScareOnClip";
-
-
-
-
+import Slider from '../Components/Slider.jsx';
 
 
 const AudioPlayerIMG = "https://i.ibb.co/NrpFM76/Audio-Player-IMG.png";
@@ -28,60 +25,6 @@ const GirlHacker = "https://i.ibb.co/R7KJ65v/Girl-Hacker.jpg";
 const SkullImg = "https://i.ibb.co/YjQ36Tn/SkullImg.jpg";
 
 
-
-
-
-
-const SideNavImg = "https://i.ibb.co/wKKC1xd/Side-Nav-Img.png";
-const MainNavImg = "https://i.ibb.co/0jM03Sy/Main-Nav-Img.png";
-const PhoneMenuimg = "https://i.ibb.co/Ptb8cLQ/Phone-Menuimg.jpg";
-
-
-
-
-
-
-const P1 = "https://i.ibb.co/HKJHyPx/PC1.png";
-const P2 = "https://i.ibb.co/jbGdrr2/P2.jpg";
-const P3 = "https://i.ibb.co/pz7qWCg/P3.jpg";
-const P4 = "https://i.ibb.co/D5H7vZh/P4.jpg";
-const P5 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P5.avif";
-const P6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P6.avif";
-const P7 = "https://i.ibb.co/KVYxznd/P7.png";
-const P8 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P8.avif";
-const P9 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P9.avif";
-const P10 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P10.avif";
-const P11 = "https://i.ibb.co/Xbg29Gk/P11.jpg";
-const P12 = "https://i.ibb.co/L0fPnc6/P12.jpg";
-const P13 = "https://i.ibb.co/Y7KF32r/P13.jpg";
-
-
-
-
-
-
-const PC1 = "https://i.ibb.co/HKJHyPx/PC1.png";
-const PC2 = "https://i.ibb.co/dr2zz8m/PC2.jpg";
-const PC3 = "https://i.ibb.co/r795fd4/PC3.jpg";
-const PC4 = "https://i.ibb.co/CVx8mYY/PC4.webp";
-const PC5 = "https://i.ibb.co/S3hZsSt/PC5.webp";
-const PC6 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC6.avif";
-const PC7 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC7.avif";
-const PC8 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC8.avif";
-
-
-
-
-
-
-const Phone_slider = [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13]; // Images for PC
-const PC_slider = [PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8]; // Images for Phones
-
-
-
-
-
-
 const slideInFromLeft = keyframes`
   0% {
     transform: translateX(-100%);
@@ -92,10 +35,6 @@ const slideInFromLeft = keyframes`
     opacity: 1;
   }
 `;
-
-
-
-
 
 const bounceAnimation = keyframes`
   0%, 100% {
@@ -124,29 +63,10 @@ const gradient2 = `linear-gradient(to right, #000000, #100001, #000000)`;
 
 function Home() {
   const Navigate = useNavigate();
-
-
+  const [showAlert, setShowAlert] = useState(true);
 
   const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
 
-  // all useState Hooks here.
-
-
-  const [showAlert, setShowAlert] = useState(true);
-  const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
-  const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
-
-
-
-
-
-
-
-
-
-
-
- 
   useEffect(() => {
     const hideAlertTimeout = setTimeout(() => {
       setShowAlert(false);
@@ -159,35 +79,9 @@ function Home() {
   };
 
 
-  // slider Part starting from here. ------------------------- slider Part starting from here. ------------------------- slider Part starting from here. ------------------------- slider Part starting from here. ------------------------- slider Part starting from here. ------------------------->>>
-
-
-  useEffect(() => {
-    const interval1 = setInterval(() => {
-      setCurrentImageIndex1((prevIndex) => (prevIndex + 1) % Phone_slider.length);
-    }, 2500);
-
-    const interval2 = setInterval(() => {
-      setCurrentImageIndex2((prevIndex) => (prevIndex + 1) % PC_slider.length);
-    }, 2500);
-
-    return () => {
-      clearInterval(interval1);
-      clearInterval(interval2);
-    };
-  }, []);
 
 
 
-
-
-  const handleVideoPage = () => {
-    Navigate("/videos")
-  }
-
-  const handlePodcastPage = () => {
-    Navigate("/podcast")
-  }
 
   const handleScareOnPage = () => {
     Navigate("/scareon")
@@ -217,243 +111,16 @@ function Home() {
 
 
 
-      {/* Banner Slider Starts here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+      {/* Slider Starts here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
 
-      <Box h={{ base: "70vh", md: "100vh" }} w="100%" bg={gradient1} >
-        <Box
-          backgroundImage={{ base: `url(${Phone_slider[currentImageIndex1]})`, md: `url(${PC_slider[currentImageIndex2]})` }}
-          backgroundSize="cover"
-          backgroundPosition="center"
-          backgroundRepeat="no-repeat"
-          width={{ base: "90%", md: "85%" }}
-          height={{ base: "100%", md: "100%" }}
-          m="auto"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        // border="2px solid cyan"
-        >
-
-          <CustomAlert isOpen={showAlert} onClose={handleCloseAlert} />
-        </Box>
-
+      <Box h={{ base: "60vh", md: "80vh", lg: "100vh" }} w="100%" bg={gradient1} >
+        <Slider />
       </Box>
-
-
-
-
-      {/* NavBar instructions part starts here -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-
-      <Box
-        //  border="2px solid red" 
-        w="100%"
-        h="auto"
-        pt={{ base: "50px", md: "70px" }}
-        bg="#000000"
-      >
-
-        <Text
-          transition="transform 1s"
-          _hover={{
-            transform: 'scale(0.9)',
-            cursor: 'pointer'
-          }}
-          fontFamily={"just-die-already"} color="#FFFFFF" textAlign={"center"} fontSize={{ base: "2xl", md: "5xl" }} mb="10px">"Explore via":<span style={{ color: "#FF0000" }} >Navbar</span></Text>
-
-        <UnorderedList
-          // border="1px solid red"
-          w={{ base: "90%", md: "95%" }} m='auto'
-
-        >
-
-
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} fontSize={{ base: "12px", md: "25px" }} color="yellow.500">"Unlock Our World: Navigating the Journey via Navbar!</Text>
-
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontSize={{ base: "8px", md: "17px" }} color="#fff">Embark on an effortless exploration of our site through the intuitive navbar, whether you're on your phone or PC. Here's your guide to seamless navigation:</Text>
-
-
-
-
-
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="15px" pb="15px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "18px", md: "27px" }} color="#FF0000">Main Nav: // PC</ListItem>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>1. Navigation Bar: </span>  Find the navigation bar at the top of the screen. It showcases all the key sections neatly.</Text>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>2. Hover & Reveal: </span>  Hover your cursor over each link to reveal a dropdown menu, presenting sub-sections and more.</Text>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>3. Direct Access: </span>  Click on the links to access the pages directly. Whether it's 'Blog,' 'Gallery,' or any other exciting destination, the navbar is your shortcut.</Text>
-          <Box transition="transform 0.5s" _hover={{ boxShadow: '0 0 10px #B0BEC5', transform: 'scale(0.98)', cursor: 'pointer' }} mt="15px" mb="15px" w={{ base: "100%", md: "90%" }} h={{ base: "35px", md: "50px" }} ><Image w="100%" h="100%" src={MainNavImg} alt="reference img..." /></Box>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF">Navigate with ease and discover our captivating content. Each click opens a new door to exciting adventures. Happy exploring!"</Text>
-
-
-
-
-
-
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "18px", md: "27px" }} color="#FF0000">For Phones:</ListItem>
-
-          <Text transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>1. Menu Icon: </span> Locate the menu icon (usually three horizontal lines or dots) at the top corner. Tap it to unveil a world of options.</Text>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="yellow.500">Reffer image.....</Text>
-          <Box transition="transform 0.5s" _hover={{ boxShadow: '0 0 10px #B0BEC5', transform: 'scale(0.98)', cursor: 'pointer' }} w={{ base: "70%", md: "35%" }} h={{ base: "220px", md: "400px" }} ><Image w="100%" h="100%" src={PhoneMenuimg} alt="reference img..." /></Box>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="15px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>2. Explore Sections: </span> Dive into different sections by tapping the relevant links. From 'Home' to 'Features' and beyond, each link is a gateway to a unique experience.</Text>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="15px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>3. Scroll Smoothly:  </span>  Scroll through pages with a simple swipe, effortlessly enjoying the content we have to offer.</Text>
-
-
-
-
-
-
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="15px" pb="15px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "18px", md: "27px" }} color="#FF0000">Side Nav:</ListItem>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pt="10px" pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FFFFFF"><span style={{ color: "#FF0000" }}>1. Left Arroe Icon: </span> Locate the left arrow icon at the right mid edge. Tap it to open subnav it will help you all to identify our depth.</Text>
-          <Box transition="transform 0.5s" _hover={{ boxShadow: '0 0 10px #B0BEC5', transform: 'scale(0.98)', cursor: 'pointer' }} mt="15px" mb="15px" w={{ base: "45%", md: "15%" }} h={{ base: "150px", md: "200px" }} ><Image w="100%" h="100%" src={SideNavImg} alt="reference img..." /></Box>
-          <Text
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            pb="10px" fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="yellow.500">Explore areas.....</Text>
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FF0000">Stories :</ListItem>
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FF0000">Dark Web :</ListItem>
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FF0000">PodCast "</ListItem>
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FF0000">Share on Club :</ListItem>
-          <ListItem
-            transition="transform 1s"
-            _hover={{
-              transform: 'scale(0.98)',
-              cursor: 'pointer'
-            }}
-            fontFamily={"just-die-already"} textAlign={"justify"} fontWeight={"bolder"} fontSize={{ base: "10px", md: "17px" }} color="#FF0000">Dark Web Premium Zone :<span style={{ color: "#26A69A" }}>(18+ only)</span></ListItem>
-
-
-        </UnorderedList>
-
-
-      </Box>
-
-
-
-
-      {/* NavBar instructions part ends here --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-
 
 
 
       {/* Haunted images algo part starting here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->>>>>>>>>>>>>> */}
-
-
-
-
 
 
       <Box w="100%" h="auto" bg="#000000" >
@@ -483,7 +150,7 @@ function Home() {
 
       <Box w="100%" h={"auto"} bg={gradient2} >
         <AI />
-      <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"} /></Box>
+        <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"} /></Box>
 
 
       {/* AI generated Images slider ends here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
@@ -538,7 +205,7 @@ function Home() {
         <Box
           // border="2px solid red" 
           display={"flex"} justifyContent={"center"} alignItems={"center"}>
-          <Button w="auto"
+          <Link to="/videos"><Button w="auto"
             color="#FFFFFF"
             bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
             fontSize={{ base: "xs", md: "lg" }}
@@ -550,21 +217,18 @@ function Home() {
             boxShadow='0 0 8px 5px #90A4AE'
             _active={{ transform: 'scale(1.5)' }}
             borderRadius={"none"}
-            onClick={handleVideoPage}
 
-          >Watch More</Button>
+
+          >Watch More</Button></Link>
 
         </Box>
 
       </Box>
 
-
-
       {/* Podcast audio payer part startinbg here -------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
       <Box
         w="100%" h={{ base: "60vh", md: "100vh" }}
-
         // bg={gradient2}
         backgroundImage={`url(${Mid2})`}
         backgroundSize="cover"
@@ -579,17 +243,16 @@ function Home() {
             transform: 'scale(0.9)',
             cursor: 'pointer'
           }}
-          onClick={handlePodcastPage}
+
           fontFamily={"just-die-already"} color="#FF0000" textAlign={"center"} fontSize={{ base: "4xl", md: "8xl" }}>"Spooky Pod"
         </Text>
         <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"} />
         {/* importing audioPlayer component here */}
 
-
         <Box w={{ base: "96%", md: "80%" }} m="auto" h="auto">
           <Text
             transition="transform 2s"
-            onClick={handlePodcastPage}
+
             _hover={{
               transform: 'scale(0.9)',
               cursor: 'pointer'
@@ -603,23 +266,20 @@ function Home() {
         </Box>
 
         <Box w={{ base: '92%', md: '60%' }} h="auto" m="auto">
-          <Image
+          <Link to="/podcast"><Image
             _hover={{ boxShadow: '0 0 10px #B0BEC5' }}
-            src={AudioPlayerIMG} onClick={handlePodcastPage} alt="error" w="100%" h="auto" />
+            src={AudioPlayerIMG} alt="error" w="100%" h="auto" /></Link>
         </Box>
-
 
       </Box>
 
       {/* Podcast audio payer part ending here -------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
-
-
       <Box
         bg={gradient2}
         // border="2px solid red" 
         display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <Button w="auto"
+        <Link to="/podcast"> <Button w="auto"
           color="#FFFFFF"
           bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
           fontSize={{ base: "xs", md: "lg" }}
@@ -631,12 +291,8 @@ function Home() {
           boxShadow='0 0 8px 5px #90A4AE'
           _active={{ transform: 'scale(1.5)' }}
           borderRadius={"none"}
-          onClick={handlePodcastPage}
-        >Pod's here</Button>
+        >Pod's here</Button></Link>
       </Box>
-
-
-
 
       {/* importing Scare on audio player here --------------------------------------------------------------------------------------------------------------------------- */}
 
@@ -651,8 +307,6 @@ function Home() {
       </Text>
         <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"} />
       </Box>
-
-
 
 
       <Flex h="auto" direction={flexDirection}
@@ -675,12 +329,11 @@ function Home() {
 
       </Flex>
 
-
       <Box
         bg={gradient2}
         // border="2px solid red" 
         display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <Button w="auto"
+        <Link to="/scareon"><Button w="auto"
           color="#FFFFFF"
           bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
           fontSize={{ base: "xs", md: "lg" }}
@@ -692,11 +345,9 @@ function Home() {
           boxShadow='0 0 8px 5px #90A4AE'
           _active={{ transform: 'scale(1.5)' }}
           borderRadius={"none"}
-          onClick={handleScareOnPage}
-        >View Post</Button>
+
+        >View Post</Button></Link>
       </Box>
-
-
 
 
       {/* starting trail 3D vertual tour section here ---------------------------------------------------------------------------------------------------------------------------------*/}
@@ -727,8 +378,6 @@ function Home() {
         backgroundRepeat="no-repeat"
 
       >
-
-
 
         <Box
           w="100%"
@@ -770,8 +419,6 @@ function Home() {
             }}
           >
 
-
-
             {/* content starts here*/}
             <Box m="auto" w={{ base: "95%", md: "95%" }} h="auto"
             //  border="2px solid red"
@@ -793,7 +440,7 @@ function Home() {
 
 
               <Box mt="10px" w="100%" h={{ base: "160px", md: "290px" }} >
-                <Image cursor="pointer" onClick={handle3DviewPage} w="100%" h="100%" src={Hashima} alt="hashima error" />
+                <Link to="/React3DView"><Image cursor="pointer" w="100%" h="100%" src={Hashima} alt="hashima error" /></Link>
               </Box>
 
               <Text mt="10px" textAlign={"left"} color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.7rem", md: "1rem" }}>HASHIMA ISLAND: THE STORY</Text>
@@ -824,22 +471,22 @@ function Home() {
                 again.
               </Text>
 
-
-              <Divider mb="20px" mt="20px" borderColor={"#999"} />
-              <Text cursor="pointer" onClick={handle3DviewPage} mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>STUDIES OF THE MODERN BUILDINGS ON GUNKANJIMA</Text>
-              <Divider mb="20px" mt="20px" borderColor={"#999"} />
-              <Text cursor="pointer" onClick={handle3DviewPage} mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>HASHIMA: THE GHOST ISLAND, BY Dare to visit.</Text>
-              <Divider mb="20px" mt="20px" borderColor={"#999"} />
-              <Text cursor="pointer" onClick={handle3DviewPage} mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>MAP OF HASHIMA</Text>
-              <Divider mb="20px" mt="20px" borderColor={"#999"} />
-
-
+              <Link to="/React3DView">
+                <Box>
+                  <Divider mb="20px" mt="20px" borderColor={"#999"} />
+                  <Text cursor="pointer" mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>STUDIES OF THE MODERN BUILDINGS ON GUNKANJIMA</Text>
+                  <Divider mb="20px" mt="20px" borderColor={"#999"} />
+                  <Text cursor="pointer" mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>HASHIMA: THE GHOST ISLAND, BY Dare to visit.</Text>
+                  <Divider mb="20px" mt="20px" borderColor={"#999"} />
+                  <Text cursor="pointer" mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>MAP OF HASHIMA</Text>
+                  <Divider mb="20px" mt="20px" borderColor={"#999"} />
+                </Box></Link>
 
               <Box
                 bgColor={"#181818"}
                 // border="2px solid red" 
                 display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                <Button
+                <Link to="/React3DView"> <Button
                   color="#FFFFFF"
                   w={{ base: "120px", md: "150px" }}
                   h={{ base: "30px", md: "40px" }}
@@ -853,8 +500,7 @@ function Home() {
                   boxShadow='0 0 8px 5px #90A4AE'
                   _active={{ transform: 'scale(1.5)' }}
                   borderRadius={"none"}
-                  onClick={handle3DviewPage}
-                >Visit</Button>
+                >Visit</Button></Link>
               </Box>
 
             </Box>
@@ -865,24 +511,7 @@ function Home() {
       </Box>
 
 
-
-
-
-
-
-
-
-
-
-
       {/* Introducing Dark || Deep web Page || section here --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-
-
-
-
-
-
-
 
       <Box w="100%" h="auto" bg="#000000">
 
@@ -946,7 +575,7 @@ function Home() {
             fontFamily={"dogica-lite"} fontSize={{ base: "0.5rem", md: "0.8rem" }}
           >Ready to embark on a journey through the hidden depths of the internet? Click below to enter the Dark Web Section and satisfy your curiosity.</Text>
 
-          <Text
+          <Link to="/darkweb"><Text
             textDecoration={"underline"}
             color="blue.400"
             textAlign={"left"}
@@ -955,10 +584,10 @@ function Home() {
             mt="10px"
             mb="10px"
             _hover={{ cursor: "pointer", color: "red.400" }}
-            onClick={handleDW}
+
           >
             Enter the Dark Web :-
-          </Text>
+          </Text></Link>
 
           <Box p={{ base: "0", md: "5" }}>
             <Grid templateColumns={{ base: 'repeat(2, 2fr)', md: 'repeat(4, 1fr)' }} gap={{ base: "5", md: "5" }}>
@@ -976,50 +605,34 @@ function Home() {
               </GridItem>
             </Grid>
 
-
             <Box
               bgColor={"#000000"}
               // border="2px solid red" 
               display={"flex"} justifyContent={"center"} alignItems={"center"}>
-              <Button
-                color="#FFFFFF"
-                w={{ base: "120px", md: "150px" }}
-                h={{ base: "30px", md: "40px" }}
-                bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
-                fontSize={{ base: "xs", md: "lg" }}
-                fontFamily={"just-die-already"}
-                mb={{ base: "30px", md: "50px" }}
-                mt={{ base: "30px", md: "50px" }}
-                _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 8px 5px #F5F5F5' }}
-                _focus={{ outline: 'none' }}
-                boxShadow='0 0 8px 5px #90A4AE'
-                _active={{ transform: 'scale(1.5)' }}
-                borderRadius={"none"}
-                onClick={handleDW}
-              >Visit</Button>
-            </Box>
+              <Link to="/darkweb">
+                <Button
+                  color="#FFFFFF"
+                  w={{ base: "120px", md: "150px" }}
+                  h={{ base: "30px", md: "40px" }}
+                  bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
+                  fontSize={{ base: "xs", md: "lg" }}
+                  fontFamily={"just-die-already"}
+                  mb={{ base: "30px", md: "50px" }}
+                  mt={{ base: "30px", md: "50px" }}
+                  _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 8px 5px #F5F5F5' }}
+                  _focus={{ outline: 'none' }}
+                  boxShadow='0 0 8px 5px #90A4AE'
+                  _active={{ transform: 'scale(1.5)' }}
+                  borderRadius={"none"}
+                >Visit</Button>
+              </Link>
           </Box>
         </Box>
       </Box>
-
-      {/* Ending Dark || Deep web Page || section here ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <Divider />
+    </Box >
+      {/* Ending Dark || Deep web Page || section here ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ }
+      < Divider />
       <Footer />
-
-
     </>
   );
 }
