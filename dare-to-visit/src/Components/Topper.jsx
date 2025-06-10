@@ -47,7 +47,7 @@ const NavLink = ({ children }) => {
 
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { logout, isAuth } = useContext(AuthContext);
+    const { logout, isAuth, navTologin } = useContext(AuthContext);
     console.log("navbar", isAuth)
     return (
         <>
@@ -97,22 +97,24 @@ export default function Simple() {
                                 />
                             </MenuButton>
                             <MenuList>
-                                <Flex w="80%">
-                                    <MenuItem fontWeight={"bold"} flex={1}><Link to="/profile">Profile</Link></MenuItem>
+                                <Link to="/profile"><Flex w="80%">
+                                    <MenuItem fontWeight={"bold"} flex={1}>Profile</MenuItem>
                                     <Center>
                                         <FaUserEdit size="20px" />
                                     </Center>
 
-                                </Flex>
-                                <Flex w="80%">
-                                    <MenuItem fontWeight={"bold"} onClick={logout} flex={1}> {isAuth === true ? "Log out" : "Log In"}</MenuItem>
+                                </Flex></Link>
+                                <Flex 
+                                onClick={() => isAuth === true ? logout() : navTologin("/otp")}
+                                 w="80%">
+                                    <MenuItem fontWeight={"bold"} flex={1}> {isAuth === true ? "Log out" : "Log In"}</MenuItem>
                                     <Center>
-                                        {isAuth === true ? <HiOutlineLogout color='red' size="30px" /> : <HiOutlineLogin color='green' size="20px" />}
+                                        {isAuth === true ? <HiOutlineLogout color='red' size="20px" /> : <HiOutlineLogin color='green' size="20px" />}
                                     </Center>
 
                                 </Flex>
                                 <MenuDivider />
-                                <Flex w="80%">
+                                <Link to="/pay"> <Flex w="80%">
                                     <MenuItem fontWeight={"bold"} flex={1}>Premium</MenuItem>
 
                                     <Center>
@@ -120,7 +122,7 @@ export default function Simple() {
 
                                     </Center>
 
-                                </Flex>
+                                </Flex></Link>
 
                             </MenuList>
                         </Menu>
@@ -136,7 +138,7 @@ export default function Simple() {
                         </Stack>
                     </Box>
                 )}
-            </Box>
+            </Box >
 
             {/* <Box p={4}>Main Content Here</Box> */}
         </>

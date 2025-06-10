@@ -12,15 +12,28 @@ const AuthContextProvider = ({ children }) => {
     const login = (token) => {
         localStorage.setItem("token", token);
         setIsAuth(true);
+        showToast({
+            title: "Login Success",
+            description: "Welcome to the dark side of reality",
+            duration: 4000,
+            status: "success",
+            position: "top"
+        });
     };
 
+    const navTologin = (url) => {
+        window.location.href = `${url}`;
+    };
     const logout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
         showToast({
             title: "Logged out",
             description: "You have been successfully logged out.",
-            status: "success",
+            duration: 3000,
+            status: "loading",
+            position: "bottom-right"
+
         });
     };
 
@@ -59,7 +72,7 @@ const AuthContextProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading }}>
+        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading, navTologin }}>
             {children}
         </AuthContext.Provider>
     );

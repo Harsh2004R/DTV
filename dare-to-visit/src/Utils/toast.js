@@ -9,13 +9,13 @@ export const showToast = ({
     status = 'info', // 'success' | 'error' | 'warning' | 'info'
     duration = 3000,
     isClosable = true,
-    position = 'top',
+    position = '',
 }) => {
     toast({
         title,
         description,
         status,
-        duration:4000,
+        duration,
         isClosable,
         position,
     });
