@@ -43,6 +43,7 @@ import Topper from "../Components/Topper.jsx"
 import Dashboard from "../Admin/Dashboard.jsx"
 import Test from '../Pages/Test.jsx';
 import UploadMedia from '../Pages/UploadMedia.jsx';
+import UploadForm from '../Pages/UploadForm.jsx';
 
 function AllRoutes() {
   return (
@@ -85,7 +86,7 @@ function AllRoutes() {
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/upload/media" element={<UploadMedia />}></Route>
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        <Route path="/upload" element={<UploadForm />}></Route> 
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
 
