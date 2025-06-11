@@ -65,7 +65,7 @@ function AllRoutes() {
         <Route path="/date" element={<DeathDate />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/Podcast" element={<Podcast />}></Route>
-        <Route path="/React3DView" element={<React3DView />}></Route>
+        <Route path="/tour" element={<React3DView />}></Route>
         <Route path="/ScareOn" element={<ScareOn />}></Route>
         <Route path="/ScareOnAdmin" element={<ScareOnAdmin />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
@@ -76,15 +76,12 @@ function AllRoutes() {
         {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
         {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
         <Route path="/Otp" element={<Otp />}></Route>
-        <Route element={<PrivateRoutes />}>
-          <Route path="/profile" element={<Profile />}></Route>
-        </Route>
         <Route path="/social" element={<SocialMedia />}></Route>
         {/* <Route path="/post" element={<PhotosPost />}></Route> */}
         <Route path="/reels" element={<Reels />}></Route>
         <Route path="/soon" element={<ComingSoon />}></Route>
-        <Route path="/comments" element={<Comments />}></Route>
-        <Route path="/top" element={<Topper />}></Route>
+        {/* <Route path="/comments" element={<Comments />}></Route> */}
+        {/* <Route path="/top" element={<Topper />}></Route> */}
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/upload/media" element={<UploadMedia />}></Route>
@@ -92,7 +89,9 @@ function AllRoutes() {
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
 
-
+        <Route element={<PrivateRoutes />}>
+          <Route path="/profile" element={<Profile />}></Route>
+        </Route>
 
       </Routes>
     </>
