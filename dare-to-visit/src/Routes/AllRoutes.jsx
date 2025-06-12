@@ -41,7 +41,7 @@ import Comments from '../Components/Comments';
 import Topper from "../Components/Topper.jsx"
 import Dashboard from "../Admin/Dashboard.jsx"
 import Test from '../Pages/Test.jsx';
-import UploadForm from '../Pages/UploadForm.jsx';
+import UploadFormPage from '../Pages/UploadFormPage.jsx';
 
 function AllRoutes() {
   return (
@@ -86,7 +86,7 @@ function AllRoutes() {
 
         <Route element={<PrivateRoutes />}>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/upload" element={<UploadForm />}></Route>
+          <Route path="/upload" element={<UploadFormPage />}></Route>
           <Route path="/social" element={<SocialMedia />}></Route>
 
 

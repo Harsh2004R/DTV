@@ -185,28 +185,32 @@ import {
     useToast,
     Heading,
     Icon,
-    chakra,
+    Center,
+    Spinner,
 } from "@chakra-ui/react";
 import { FaSkull, FaCloudUploadAlt } from "react-icons/fa";
-import { BE_URL } from "../URL";
+import { BE_URL } from "../URL.js";
 import Topper from "../Components/Topper.jsx"
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
     const [previewURL, setPreviewURL] = useState("");
     const [caption, setCaption] = useState("");
+    const [loading, setLoading] = useState(false);
     const toast = useToast();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         if (!file || !caption) {
+            setLoading(false)
             return toast({
                 title: "Incomplete Ritual",
-                description: "The ancient gods demand both a file and a caption.",
+                description: "Both a file and a caption required...",
                 status: "warning",
-                duration: 3000,
+                duration: 3300,
                 isClosable: true,
             });
+
         }
 
         const formData = new FormData();
@@ -214,7 +218,8 @@ const UploadForm = () => {
         formData.append("caption", caption);
 
         try {
-            const res = await axios.post(`${BE_URL}api/post/upload`, formData);
+
+            const res = await axios.post(`${BE_URL}ap/post/upload`, formData);
             toast({
                 title: "Blood Offering Accepted",
                 description: "The entity is pleased with your sacrifice.",
@@ -224,11 +229,13 @@ const UploadForm = () => {
             });
             setCaption("");
             setFile(null);
+            setLoading(false)
             setPreviewURL("");
         } catch (err) {
+            setLoading(false);
             toast({
-                title: "Ritual Failed",
-                description: "A dark force blocked the upload...",
+                title: "Ritual Failed 😑",
+                description: `API error or ${err}...`,
                 status: "error",
                 duration: 3000,
                 isClosable: true,
@@ -245,7 +252,20 @@ const UploadForm = () => {
             setPreviewURL("");
         }
     };
-
+    if (loading) return <Center bg="#000" w="100%" h="100vh">
+        <Text fontFamily={"bebas_neue"} color="#ddd" fontSize={{ base: "20px", md: "25px", lg: "30px" }} fontWeight={"500"}>
+            Uploading your post...
+        </Text>
+        <Spinner
+            ml={{ base: "10px", md: "20px", lg: "20px" }}
+            size={{ base: "sm", md: "lg", lg: "lg" }}
+            color="blue.400"
+            speed="0.6s"
+            thickness="4px"
+            emptyColor="gray.200"
+            boxShadow="0 0 10px rgba(66, 153, 225, 0.6)" // blue glow
+        />
+    </Center>
     return (
         <> <Topper />
             <Box
