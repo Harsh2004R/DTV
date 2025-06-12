@@ -63,8 +63,10 @@ function Login() {
       .then((res) => {
         // console.log(res);
         let token = res.data.token;
+        let userId = res.data.user.userId
         localStorage.setItem("token", token);
-        if (token) {
+        localStorage.setItem("userID", userId);
+        if (token || userId) {
           setLoading(!true);
           login(token);
         }

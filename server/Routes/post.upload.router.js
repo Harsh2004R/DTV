@@ -8,10 +8,10 @@ const PostUploadRouter = express.Router();
 PostUploadRouter.post("/post/upload", singleUpload, async (req, res) => {
     try {
         const file = req.file;
-        const { caption } = req.body;
+        const { caption, userId } = req.body;
 
-        if (!file || !caption) {
-            return res.status(400).json({ message: "File and caption are required." });
+        if (!file || !caption || !userId) {
+            return res.status(400).json({ message: "File and caption & userId are required." });
         }
 
         // Upload to Cloudinary
@@ -25,6 +25,7 @@ PostUploadRouter.post("/post/upload", singleUpload, async (req, res) => {
                     caption,
                     likes: 0,
                     comments: [],
+                    uploadedBy: userId
                 });
 
                 await newPost.save();
@@ -43,7 +44,7 @@ PostUploadRouter.post("/post/upload", singleUpload, async (req, res) => {
 
 PostUploadRouter.get("/uploaded-post/get", async (req, res) => {
     try {
-        const postData = await PostMediaModel.find();
+        const postData = await PostMediaModel.find().populate("uploadedBy", "name email profile_picture");
         res.status(200).json({ msg: "your all uploaded post data here...", data: postData });
     } catch (error) {
         res.status(405).json({ msg: "error in sending responce of post upload collecion", error });

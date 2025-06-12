@@ -201,7 +201,8 @@ const UploadForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        if (!file || !caption) {
+        const userId = localStorage.getItem("userID");
+        if (!file || !caption || !userId) {
             setLoading(false)
             return toast({
                 title: "Incomplete Ritual",
@@ -216,10 +217,11 @@ const UploadForm = () => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("caption", caption);
+        formData.append("userId", userId);
 
         try {
 
-            const res = await axios.post(`${BE_URL}ap/post/upload`, formData);
+            const res = await axios.post(`${BE_URL}api/post/upload`, formData);
             toast({
                 title: "Blood Offering Accepted",
                 description: "The entity is pleased with your sacrifice.",
