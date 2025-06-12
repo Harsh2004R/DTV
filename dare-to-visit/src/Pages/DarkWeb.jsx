@@ -175,10 +175,11 @@ function DarkWeb() {
 
 
       <Box
-        w="100%" h="100vh"
+        w="100%" h="auto"
         // border="2px solid red"
         display={"flex"}
         flexDirection={{ base: "column", md: "row" }}
+        pt="60px"
       >
 
 

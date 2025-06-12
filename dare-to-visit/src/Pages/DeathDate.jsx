@@ -142,7 +142,9 @@ function DeathDate() {
     <>
       {/* <Nav/> */}
       <Topper />
-      <Box
+       
+     <Box h="auto" bg="#000" w="100%" pt="60px">
+       <Box
         w="100%"
         h='100vh'
         border="2px solid #000000"
@@ -262,6 +264,7 @@ function DeathDate() {
           </Text>
         )}
       </Box>
+     </Box>
     </>
   )
 }

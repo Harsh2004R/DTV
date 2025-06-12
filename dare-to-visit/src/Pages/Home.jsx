@@ -425,7 +425,7 @@ function Home() {
 
 
               <Box mt="10px" w="100%" h={{ base: "160px", md: "290px" }} >
-                <Link to="/React3DView"><Image cursor="pointer" w="100%" h="100%" src={Hashima} alt="hashima error" /></Link>
+                <Link to="/tour"><Image cursor="pointer" w="100%" h="100%" src={Hashima} alt="hashima error" /></Link>
               </Box>
 
               <Text mt="10px" textAlign={"left"} color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.7rem", md: "1rem" }}>HASHIMA ISLAND: THE STORY</Text>
@@ -456,7 +456,7 @@ function Home() {
                 again.
               </Text>
 
-              <Link to="/React3DView">
+              <Link to="/tour">
                 <Box>
                   <Divider mb="20px" mt="20px" borderColor={"#999"} />
                   <Text cursor="pointer" mb="20px" mt="20px" color="#F44336" fontFamily={"dogica-lite"} fontSize={{ base: "0.3rem", md: "0.6rem" }} textAlign={"justify"}>STUDIES OF THE MODERN BUILDINGS ON GUNKANJIMA</Text>
@@ -471,7 +471,7 @@ function Home() {
                 bgColor={"#181818"}
                 // border="2px solid red" 
                 display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                <Link to="/React3DView"> <Button
+                <Link to="/tour"> <Button
                   color="#FFFFFF"
                   w={{ base: "120px", md: "150px" }}
                   h={{ base: "30px", md: "40px" }}

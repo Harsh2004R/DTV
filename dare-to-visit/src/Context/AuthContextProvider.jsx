@@ -17,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
             description: "Welcome to the dark side of reality",
             duration: 4000,
             status: "success",
-            position: "top"
+            position: "bottom"
         });
     };
 
