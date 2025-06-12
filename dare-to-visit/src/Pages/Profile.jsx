@@ -1,38 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import {
-    IconButton,
-    Avatar,
-    Box,
-    CloseButton,
-    Flex,
-    HStack,
-    VStack,
-    Icon,
-    useColorModeValue,
-    Text,
-    Drawer,
-    DrawerContent,
-    useDisclosure,
-    Divider,
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Heading,
-    FormControl,
-    FormLabel,
-    Input,
-    Button,
-    Spinner,
-    Center
+    IconButton, Avatar, Box, CloseButton, Flex, HStack, VStack, Icon, useColorModeValue, Text, Drawer, DrawerContent, useDisclosure, Divider, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Heading, FormControl, FormLabel, Input,
+    Button, Spinner, Center
 }
     from '@chakra-ui/react';
+import Topper from "../Components/Topper.jsx"
 import Navbar2 from "../Components/Navbar2";
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
-import { FiMenu, FiChevronDown, } from 'react-icons/fi';
-import { FaBell, FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
+import { FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { BE_URL } from "../URL.js"
 import axios from "axios"
@@ -47,7 +23,7 @@ const LinkItems = [
     { name: 'SignOut', icon: <FaSignOutAlt />, nav: "" },
 ];
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ userName, profile, onClose, ...rest }) => {
 
 
 
@@ -56,12 +32,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 
         <>
-
-
-
             <Navbar2 />
-
-
             <Box
                 transition="3s ease"
                 bg={useColorModeValue('#212121', 'white.900')}
@@ -70,6 +41,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 w={{ base: 'full', md: 60 }}
                 pos="fixed"
                 h="full"
+                pt="65px"
                 // border="1px solid red"
                 {...rest}
             >
@@ -85,12 +57,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
                                 w="100%" h="100%"
                                 src={
                                     // 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
-                                    "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
+                                    // "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
+                                    profile ? profile : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"
                                 }
                             />
                         </Box>
                         <Box w="auto" h="50px" color={"#000000"} fontFamily={"caslon-antique"} display={"flex"}
-                            alignItems={"center"} ml={"10px"} fontWeight={"bold"}>Jaydon Frankie</Box>
+                            alignItems={"center"} ml={"10px"} fontWeight={"bold"}>{userName}</Box>
 
                     </Box>
                     <CloseButton border="2px solid #FFFFFF" color={"#FFFFFF"} bgColor={"#6b947f"} display={{ base: 'flex', md: 'none' }} onClick={onClose} />
@@ -129,122 +102,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
     );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
-    return (
-        <Box
-            //  border={"1px solid yellow"}
-            as="a"
-            href="#"
-            style={{ textDecoration: 'none' }}
-            _focus={{ boxShadow: 'none' }}
-        >
-            <Flex
-                align="center"
-                p="3.5"
-                mx="2"
-                borderRadius="none"
-                role="group"
-                cursor="pointer"
-                _hover={{
-                    bg: '#6b947f',
-                    color: 'white',
-                }}
-                {...rest}
-            >
-                {icon && (
-                    <Icon
-                        mr="4"
-                        fontSize="16"
-                        _groupHover={{
-                            color: 'white',
-                        }}
-                        as={icon}
-                    />
-                )}
-                {children}
-            </Flex>
-        </Box>
-    );
-};
-
-const MobileNav = ({ onOpen, ...rest }) => {
-    return (
-        <Flex
-            zIndex={"1000"}
-            // border={"1px solid yellow"}
-            ml={{ base: 0, md: 60 }}
-            px={{ base: 4, md: 4 }}
-            height="20"
-            w={{ base: "100%", md: "85%" }}
-            position="fixed"
-            top="0"
-            left="0"
-            alignItems="center"
-            bg={useColorModeValue('#212121', 'gray.900')}
-            borderBottomWidth="1px"
-            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-            justifyContent={{ base: 'space-between', md: 'flex-end' }}
-            {...rest}
-
-        >
-            <IconButton
-                display={{ base: 'flex', md: 'none' }}
-                onClick={onOpen}
-                variant="outline"
-                aria-label="open menu"
-                border="2px solid #FFFFFF"
-                bgColor={"#6b947f"}
-                color="#FFFFFF"
-                icon={<FiMenu />}
-            />
-            <HStack spacing={{ base: '0', md: '4' }}>
-                <IconButton _hover={{ color: "#999" }} borderRadius={"50%"} size="md" variant="unstyled" color={{ base: "#6b947f", md: "#FFFFFF" }} aria-label="open menu" icon={<FaBell />} />
-                <IconButton _hover={{ color: "#999" }} borderRadius={"50%"} size="md" variant="unstyled" color={{ base: "#6b947f", md: "#FFFFFF" }} aria-label="open menu" icon={<FaUsers />} />
-
-                <Flex alignItems={'center'}>
-                    <Menu>
-                        <MenuButton color="#fff" py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
-                            <HStack>
-                                <Avatar
-                                    size={{ base: "sm", md: "md" }}
-                                    src={
-                                        "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
-                                    }
-                                />
-                                <VStack
-                                    display={{ base: 'none', md: 'flex' }}
-                                    alignItems="flex-start"
-                                    spacing="1px"
-                                    ml="2"
-                                >
-                                    <Text color="#FFFFFF" fontSize="sm">Justina Clark</Text>
-                                    <Text color="#6b947f" fontSize="xs" >
-                                        user name
-                                    </Text>
-                                </VStack>
-                                <Box display={{ base: 'none', md: 'flex' }}>
-                                    <FiChevronDown />
-                                </Box>
-                            </HStack>
-                        </MenuButton>
-                        <MenuList
-                            h={{ base: "auto", md: "auto" }}
-                            bgColor={useColorModeValue('#212121')}
-                            borderColor={useColorModeValue('gray.200', 'gray.700')}
-
-                        >
-                            <MenuItem m="3px" color="#fff" _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 2px 3px #F5F5F5' }} bgColor='#212121'>Profile</MenuItem>
-                            <MenuItem m="3px" color="#fff" _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 2px 3px #F5F5F5' }} bgColor='#212121'>Settings</MenuItem>
-                            <MenuItem m="3px" color="#fff" _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 2px 3px #F5F5F5' }} bgColor='#212121'>Premimum Zone</MenuItem>
-                            <MenuDivider />
-                            <MenuItem m="3px" color="#fff" _hover={{ bg: `linear-gradient(to right, #000000, #FF0000, #000000)`, boxShadow: '0 0 2px 3px #F5F5F5' }} bgColor='#212121'>Sign out</MenuItem>
-                        </MenuList>
-                    </Menu>
-                </Flex>
-            </HStack>
-        </Flex>
-    );
-};
 
 const Profile = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -258,7 +115,7 @@ const Profile = () => {
     }, []);
 
     const fetchUsersData = async () => {
-        
+
         try {
             const res = await axios.get(`${BE_URL}api/user/profile`, {
                 headers: {
@@ -302,7 +159,7 @@ const Profile = () => {
     return (
         <>
             <Box minH="100vh">
-                <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+                <SidebarContent userName={usersData.name} profile={usersData.profile_picture} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
                 <Drawer
                     isOpen={isOpen}
                     placement="left"
@@ -316,7 +173,8 @@ const Profile = () => {
                     </DrawerContent>
                 </Drawer>
                 {/* mobilenav */}
-                <MobileNav onOpen={onOpen} />
+                {/* <MobileNav onOpen={onOpen} /> */}
+                <Topper />
                 <Box ml={{ base: 0, md: 60 }} bg="#000000" p="7" h="auto"
                 // border="1px solid red"
                 >
@@ -340,7 +198,7 @@ const Profile = () => {
                                     <Avatar
                                         w="100%" h="100%"
                                         src={
-                                            usersData.profile_picture
+                                            usersData.profile_picture ? usersData.profile_picture : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"
                                         }
                                     />
                                 </Box>
