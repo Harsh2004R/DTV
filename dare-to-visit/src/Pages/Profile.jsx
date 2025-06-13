@@ -119,7 +119,7 @@ const MobileSidebarContent = ({ userName, profile, }) => {
                         <div>{link.name} </div>
                     </ChakraLink>
 
-                    {index < LinkItems.length  && <Divider borderColor={"#6b947f"} />}
+                    {index < LinkItems.length && <Divider borderColor={"#6b947f"} />}
                 </React.Fragment>
             ))}
 
