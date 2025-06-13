@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    IconButton, Avatar, Box, CloseButton, Flex, HStack, VStack, Icon, useColorModeValue, Text, Drawer, DrawerContent, useDisclosure, Divider, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Heading, FormControl, FormLabel, Input,
+    Avatar, Box, CloseButton, Flex, HStack, useColorModeValue, Text, Drawer, DrawerContent, useDisclosure, Divider, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Heading, FormControl, FormLabel, Input,
     Button, Spinner, Center
 }
     from '@chakra-ui/react';
@@ -8,7 +8,10 @@ import Topper from "../Components/Topper.jsx"
 import Navbar2 from "../Components/Navbar2";
 import { Link, useNavigate } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
-import { FaCamera, FaShare, FaSignOutAlt, FaUsers, FaVideo } from "react-icons/fa";
+import { FaCamera, FaShare, FaSignOutAlt, FaVideo } from "react-icons/fa";
+import { BiSolidImageAdd } from "react-icons/bi";
+
+
 import { useForm } from "react-hook-form";
 import { BE_URL } from "../URL.js"
 import axios from "axios"
@@ -17,20 +20,14 @@ import axios from "axios"
 
 const LinkItems = [
     { name: '', icon: "", },
-    { name: 'Post', icon: <FaCamera />, nav: "/ScareOnAdmin" },
-    { name: 'Premium', icon: <FaVideo />, nav: "" },
+    { name: 'Add Post', icon: <BiSolidImageAdd />, nav: "/upload" },
+    { name: 'Your post', icon: <FaCamera />, nav: "/UserPost" },
     { name: 'Share', icon: <FaShare />, nav: "" },
     { name: 'SignOut', icon: <FaSignOutAlt />, nav: "" },
 ];
 
 const SidebarContent = ({ userName, profile, onClose, ...rest }) => {
-
-
-
-
     return (
-
-
         <>
             <Navbar2 />
             <Box
@@ -94,13 +91,41 @@ const SidebarContent = ({ userName, profile, onClose, ...rest }) => {
                 ))}
 
                 <Divider borderColor={"#6b947f"} />
-
             </Box>
-
-
         </>
     );
 };
+
+const MobileSidebarContent = ({ userName, profile, }) => {
+    return (
+        <Box w="100%" pt="70px" h="200px" bg="#000" display={{ base: 'block', md: 'none', lg: "none" }}  >
+            {LinkItems.map((link, index) => (
+                <React.Fragment key={link.name}>
+
+                    <ChakraLink
+                        as={Link}
+                        to={link.nav}
+                        style={{ textDecoration: 'none', color: 'white' }}
+                        _hover={{ bgColor: "rgba(0, 82, 73, 1)" }}
+                        display="flex"
+                        alignItems="center"
+                        // border="1px solid red"
+                        pb="8px"
+                        color="#FFFFFF"
+                        ml="10px"
+                        mr="10px"
+                    >
+                        <div style={{ marginRight: '10px' }}>{link.icon}</div>
+                        <div>{link.name} </div>
+                    </ChakraLink>
+
+                    {index < LinkItems.length  && <Divider borderColor={"#6b947f"} />}
+                </React.Fragment>
+            ))}
+
+        </Box>
+    )
+}
 
 
 const Profile = () => {
@@ -158,8 +183,10 @@ const Profile = () => {
 
     return (
         <>
-            <Box minH="100vh">
-                <SidebarContent userName={usersData.name} profile={usersData.profile_picture} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+            <Box minH="100vh" >
+                <Topper />
+                <SidebarContent userName={usersData.name} profile={usersData.profile_picture} onClose={() => onClose} display={{ base: 'none', md: 'block', lg: "block" }} />
+                <MobileSidebarContent userName={usersData.name} profile={usersData.profile_picture} />
                 <Drawer
                     isOpen={isOpen}
                     placement="left"
@@ -174,12 +201,12 @@ const Profile = () => {
                 </Drawer>
                 {/* mobilenav */}
                 {/* <MobileNav onOpen={onOpen} /> */}
-                <Topper />
+
                 <Box ml={{ base: 0, md: 60 }} bg="#000000" p="7" h="auto"
                 // border="1px solid red"
                 >
                     <Box
-                        w="100%" mt="50px" h="auto"
+                        w="100%" mt={{ base: "none", md: "30px", lg: "50px" }} h="auto"
                     // border="1px solid cyan"
                     >
                         {/* Profile image Section here-------------------------------------------------Profile image Section here-----------------------------------------------------------------------Profile image Section here */}

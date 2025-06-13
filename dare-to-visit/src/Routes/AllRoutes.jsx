@@ -42,6 +42,7 @@ import Topper from "../Components/Topper.jsx"
 import Dashboard from "../Admin/Dashboard.jsx"
 import Test from '../Pages/Test.jsx';
 import UploadFormPage from '../Pages/UploadFormPage.jsx';
+import UserPost from '../Pages/UserPost.jsx';
 
 function AllRoutes() {
   return (
@@ -82,13 +83,12 @@ function AllRoutes() {
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
         <Route path="/test" element={<Test />}></Route>
         {/* <Route path="/footer" element={<Footer />}></Route>  */}
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
 
         <Route element={<PrivateRoutes />}>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/upload" element={<UploadFormPage />}></Route>
           <Route path="/social" element={<SocialMedia />}></Route>
-
+          <Route path="/UserPost" element={<UserPost />}></Route>
 
         </Route>
 
