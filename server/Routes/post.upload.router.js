@@ -2,6 +2,7 @@ const express = require("express");
 const { PostMediaModel } = require("../Models/post.uploads.model.js");
 const { singleUpload } = require("../Middlewares/multer.js");
 const { cloudinary } = require("../Config/Cloudinary.js");
+const  authenticate  = require("../Middlewares/auth.middleware.js")
 const PostUploadRouter = express.Router();
 
 
@@ -42,9 +43,12 @@ PostUploadRouter.post("/post/upload", singleUpload, async (req, res) => {
 });
 
 
-PostUploadRouter.get("/uploaded-post/get", async (req, res) => {
+PostUploadRouter.get("/uploaded-post/get", authenticate, async (req, res) => {
     try {
-        const postData = await PostMediaModel.find().populate("uploadedBy", "name email profile_picture");
+        const postData = await PostMediaModel.find({ uploadedBy: req.userId }).populate(
+            "uploadedBy",
+            "name email profile_picture"
+        );
         res.status(200).json({ msg: "your all uploaded post data here...", data: postData });
     } catch (error) {
         res.status(405).json({ msg: "error in sending responce of post upload collecion", error });
