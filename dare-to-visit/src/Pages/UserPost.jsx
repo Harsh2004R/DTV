@@ -17,6 +17,7 @@ import {
     Button,
     Heading as CardHeading,
 } from "@chakra-ui/react";
+import Topper from "../Components/Topper.jsx"
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike, BiChat, BiShare } from "react-icons/bi";
 import axios from "axios";
@@ -46,7 +47,11 @@ const UserPost = () => {
     }, []);
 
     return (
-        <Box p={4} bg="#000" minH={"100vh"}>
+        <>
+            <Topper />
+
+            <Box p="4" pt="60px" bg="#000" minH={"100vh"}>
+
             <Heading color="grey" fontSize="2xl" mb={6} textAlign="center">
                 Your Posts
             </Heading>
@@ -72,7 +77,7 @@ const UserPost = () => {
                             h={{ base: "auto", md: "auto", lg: "auto" }}
                             borderRadius={{ base: "0px", md: "md" }}
                             _hover={{ boxShadow: "0 0 30px #32434a" }}
-                            // bg="#000"
+                        // bg="#000"
                         >
                             <CardHeader  >
                                 <Flex spacing="4">
@@ -122,7 +127,7 @@ const UserPost = () => {
                                     display="flex"
                                     alignItems="center"
                                     justifyContent="center"
-                                    // border={"1px solid cyan"}
+                                // border={"1px solid cyan"}
                                 >
                                     <Image
                                         src={post.url}
@@ -139,7 +144,7 @@ const UserPost = () => {
                                 {post.caption && (
                                     <Text fontWeight="bold" fontFamily={"caslon-antique"} fontSize={{ base: "14px", md: "15px" }} color="#E91E63">
                                         {post.caption}
-                                      
+
                                     </Text>
                                 )}
                                 <Text fontFamily="my" fontSize={{ base: "12px", md: "16px" }}>
@@ -178,7 +183,8 @@ const UserPost = () => {
                     ))}
                 </SimpleGrid>
             )}
-        </Box>
+        </Box >
+            </>
     );
 };
 
