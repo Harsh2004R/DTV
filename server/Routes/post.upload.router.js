@@ -1,12 +1,13 @@
 const express = require("express");
 const { PostMediaModel } = require("../Models/post.uploads.model.js");
-const { singleUpload } = require("../Middlewares/multer.js");
+const { multerImageUpload } = require("../Middlewares/uploadImage.js");
 const { cloudinary } = require("../Config/Cloudinary.js");
-const authenticate = require("../Middlewares/auth.middleware.js")
+const authenticate = require("../Middlewares/auth.middleware.js");
+const { videoUpload } = require("../Middlewares/uploadVideo.js");
 const PostUploadRouter = express.Router();
 
 
-PostUploadRouter.post("/post/upload", singleUpload, async (req, res) => {
+PostUploadRouter.post("/post/upload", multerImageUpload, async (req, res) => {
     try {
         const file = req.file;
         const { caption, userId } = req.body;
@@ -68,10 +69,42 @@ PostUploadRouter.get("/uploaded-post/get/all", authenticate, async (req, res) =>
 })
 
 
+// video uploading route here..............
+PostUploadRouter.post("/video/upload", videoUpload, async (req, res) => {
+    try {
+        const file = req.file;
+        const { caption, userId } = req.body;
 
+        if (!file || !caption || !userId) {
+            return res.status(400).json({ message: "File, caption, and userId are required." });
+        }
 
+        // Upload to Cloudinary
+        const uploadStream = cloudinary.uploader.upload_stream(
+            { folder: "video_uploads", resource_type: "video" },
+            async (error, result) => {
+                if (error) return res.status(500).json({ error: error.message });
 
+                const newPost = new PostMediaModel({
+                    url: result.secure_url,
+                    caption,
+                    likes: 0,
+                    comments: [],
+                    uploadedBy: userId,
+                    type: "video"
+                });
 
+                await newPost.save();
+
+                res.status(201).json({ message: "Video uploaded successfully", data: newPost });
+            }
+        );
+
+        require("streamifier").createReadStream(file.buffer).pipe(uploadStream);
+    } catch (err) {
+        res.status(500).json({ message: "Upload failed", error: err.message });
+    }
+});
 
 
 
