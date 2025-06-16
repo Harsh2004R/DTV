@@ -142,7 +142,7 @@ const UserPost = () => {
                                 // border="1px solid yellow" 
                                 h="auto">
                                 {post.caption && (
-                                    <Text fontWeight="bold" fontFamily={"caslon-antique"} fontSize={{ base: "14px", md: "15px" }} color="#E91E63">
+                                    <Text fontWeight="bold"  fontSize={{ base: "16px", md: "20px",lg:"25px" }} color="#E91E63">
                                         {post.caption}
 
                                     </Text>

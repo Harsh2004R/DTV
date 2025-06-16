@@ -44,6 +44,7 @@ import Test from '../Pages/Test.jsx';
 import PostUploadForm from '../Components/PostUploadForm.jsx';
 import UserPost from '../Pages/UserPost.jsx';
 import Uploads from '../Pages/Uploads.jsx';
+import UserReels from '../Pages/UserReels.jsx';
 
 function AllRoutes() {
   return (
@@ -90,6 +91,7 @@ function AllRoutes() {
           <Route path="/uploads" element={<Uploads />}></Route>
           <Route path="/social" element={<SocialMedia />}></Route>
           <Route path="/UserPost" element={<UserPost />}></Route>
+            <Route path="/UserReels" element={<UserReels />}></Route>
 
         </Route>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     Avatar, Box, CloseButton, Flex, HStack, useColorModeValue, Text, Drawer, DrawerContent, useDisclosure, Divider, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Heading, FormControl, FormLabel, Input,
     Button, Spinner, Center
@@ -9,6 +9,7 @@ import Navbar2 from "../Components/Navbar2";
 import { Link, useNavigate } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { FaCamera, FaShare, FaSignOutAlt, FaVideo } from "react-icons/fa";
+import { BsCameraReelsFill } from "react-icons/bs";
 import { BiSolidImageAdd } from "react-icons/bi";
 
 
@@ -22,6 +23,7 @@ const LinkItems = [
     { name: '', icon: "", },
     { name: 'Add Post', icon: <BiSolidImageAdd />, nav: "/uploads" },
     { name: 'Your post', icon: <FaCamera />, nav: "/UserPost" },
+    { name: 'Your Reels', icon: <BsCameraReelsFill />, nav: "/UserReels" },
     { name: 'Share', icon: <FaShare />, nav: "" },
     { name: 'SignOut', icon: <FaSignOutAlt />, nav: "" },
 ];
@@ -53,8 +55,6 @@ const SidebarContent = ({ userName, profile, onClose, ...rest }) => {
                                 border="2px solid lime"
                                 w="100%" h="100%"
                                 src={
-                                    // 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRerEshbyy1TbPEN4QnULeyJYba7IZfxS5GJH6x17XGh8DyLmjO'
-                                    // "https://img.freepik.com/premium-photo/creepy-looking-man-with-creepy-face_846204-1055.jpg?ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740"
                                     profile ? profile : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"
                                 }
                             />
@@ -110,7 +110,7 @@ const MobileSidebarContent = ({ userName, profile, }) => {
                         display="flex"
                         alignItems="center"
                         // border="1px solid red"
-                        pb="8px"
+                        pb="4px"
                         color="#FFFFFF"
                         ml="10px"
                         mr="10px"
