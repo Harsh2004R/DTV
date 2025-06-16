@@ -103,7 +103,7 @@ export default function Simple() {
 
                                 </Flex></Link>
                                 <Flex
-                                    onClick={() => isAuth === true ? logout() : navTologin("/otp")}
+                                    onClick={() => isAuth === true ? logout() : navTologin("/login")}
                                     w="80%">
                                     <MenuItem fontWeight={"bold"} flex={1}> {isAuth === true ? "Log out" : "Log In"}</MenuItem>
                                     <Center>
