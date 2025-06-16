@@ -58,25 +58,37 @@ const NavLink = ({ to, children }) => {
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { logout, isAuth, navTologin } = useContext(AuthContext);
-    console.log("navbar", isAuth)
+    // console.log("navbar", isAuth)
     return (
         <>
             <Box bg="#000000" px={2} w="100%" zIndex={"10000"} position={"fixed"}>
                 <Flex h={16} alignItems="center" justifyContent="space-between">
                     <IconButton
-                        size="md"
+                        size="lg"
                         icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
                         aria-label="Open Menu"
-                        display={{ md: 'none' }}
+                        display={{ md: 'none', lg: "none" }}
                         onClick={isOpen ? onClose : onOpen}
+                        bg="#000"
+                        color={"#fff"}
+                        _hover={{
+                            bg: "#000", color: "#fff"
+                        }}
                     />
-                    <HStack spacing={8} w="100%" alignItems="center">
+                    <HStack spacing={6} w="100%" alignItems="center">
+                        <Link to="/">
+                            <Center _hover={{ cursor: "pointer" }} flexDir={"row"}>
+                                <Text fontWeight={"500"} pl="10px" fontSize={{ base: "20px", md: "22px", lg: "22px" }} letterSpacing={"5px"} color="#fff">
+                                    DTV
+                                </Text>
+
+                            </Center></Link>
                         < HStack ml="100px" as="nav" spacing={4} >
-                            <Text fontSize={"17px"} mr="10px" ml="10px" color="#aaa" display={{ base: 'none', md: 'flex' }} _hover={{
-                            }}>{Links.map((link, idx) => (
-                                <NavLink key={idx} to={link.to}>{link.name}</NavLink>
-                            ))}
-                            </Text>
+                            <Flex fontSize={"17px"} mr="10px" ml="10px" color="#aaa" display={{ base: 'none', md: 'flex' }} gap={3}>
+                                {Links.map((link, idx) => (
+                                    <NavLink key={idx} to={link.to}>{link.name}</NavLink>
+                                ))}
+                            </Flex>
                         </HStack>
                     </HStack>
                     <Flex alignItems="center">
