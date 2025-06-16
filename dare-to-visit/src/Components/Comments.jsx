@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Avatar, Text, Image, Divider, HStack, Input } from '@chakra-ui/react';
-const Comments = ({ onClose, postId, userId, userName, postURL }) => {
+const Comments = ({ onClose, postId, userId, userName, postURL, userProfileUrl }) => {
     const handleClose = () => {
         onClose();
     }
@@ -37,12 +37,19 @@ const Comments = ({ onClose, postId, userId, userName, postURL }) => {
 
                         {/* Content Box here------>>>>>>>>>>>>>>>--------------->>>>>>>>>>>>>>>>>>>----------------->>>>>>>>>>>> */}
 
-                        <Box
-                            // border={"1px solid blue"}
-                            w={{ base: "0%", md: "50%" }} h="100%">
-
-                            <Image w={{ base: "0%", md: "100%" }} m="auto" borderRadius={"0px"} h="100%" src={postURL} alt="media image broke" />
-                        </Box>
+                        {postURL?.match(/\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i) && (
+                            <Box w={{ base: "0%", md: "50%", lg: "50%" }}
+                                h="100%">
+                                <Image
+                                    w={{ base: "0%", md: "100%" }}
+                                    m="auto"
+                                    borderRadius="0px"
+                                    h="100%"
+                                    src={postURL}
+                                    alt={`${userName} broken image`}
+                                />
+                            </Box>
+                        )}
 
 
                         {/* comment Box Starting from here------------->>>>>>>>>>>>>----------->>>>>>>>>>>>>---------------->>>>>>>>>>>>>> */}
@@ -59,7 +66,7 @@ const Comments = ({ onClose, postId, userId, userName, postURL }) => {
                                     w={{ base: "10%", md: "8%" }} display={"flex"} justifyContent={"center"}
                                     alignItems={"center"} alignContent={"center"} h="75%" m="1.5%">
                                     <Avatar w="100%" h="100%" m="auto"
-                                        src={postURL}
+                                        src={userProfileUrl}
                                         alt="" />
                                 </Box>
                                 <Box

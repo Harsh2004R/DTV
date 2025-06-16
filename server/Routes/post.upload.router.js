@@ -108,6 +108,29 @@ PostUploadRouter.post("/video/upload", videoUpload, async (req, res) => {
 });
 
 
+PostUploadRouter.get("/uploaded-reels/get", authenticate, async (req, res) => {
+    try {
+        const reelData = await ReelsMediaModel.find({ uploadedBy: req.userId }).populate(
+            "uploadedBy",
+            "name email profile_picture"
+        );
+        res.status(200).json({ msg: "your all uploaded post data here...", data: reelData });
+    } catch (error) {
+        res.status(405).json({ msg: "error in sending responce of post upload collecion", error: error.message });
+    }
+})
+
+PostUploadRouter.get("/uploaded-reels/get/all", authenticate, async (req, res) => {
+    try {
+        const allData = await ReelsMediaModel.find().populate(
+            "uploadedBy",
+            "name profile_picture"
+        );
+        res.status(200).json({ msg: "your all uploaded post data here...", data: allData });
+    } catch (error) {
+        res.status(405).json({ msg: "error in sending responce of post upload collecion", error: error.message });
+    }
+})
 
 
 

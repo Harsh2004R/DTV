@@ -187,6 +187,7 @@ const PhotosPost = () => {
             userId={currentComment.uploadedBy._id}
             postURL={currentComment.url}
             userName= {currentComment.uploadedBy.name}
+            userProfileUrl={currentComment.uploadedBy.profile_picture}
             onClose={handleCloseComment}
           />
         }
