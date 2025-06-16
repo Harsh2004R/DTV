@@ -4,6 +4,7 @@ const { multerImageUpload } = require("../Middlewares/uploadImage.js");
 const { cloudinary } = require("../Config/Cloudinary.js");
 const authenticate = require("../Middlewares/auth.middleware.js");
 const { videoUpload } = require("../Middlewares/uploadVideo.js");
+const { ReelsMediaModel } = require("../Models/reels.media,model.js");
 const PostUploadRouter = express.Router();
 
 
@@ -85,7 +86,7 @@ PostUploadRouter.post("/video/upload", videoUpload, async (req, res) => {
             async (error, result) => {
                 if (error) return res.status(500).json({ error: error.message });
 
-                const newPost = new PostMediaModel({
+                const newPost = new ReelsMediaModel({
                     url: result.secure_url,
                     caption,
                     likes: 0,

@@ -20,7 +20,7 @@ import axios from "axios"
 
 const LinkItems = [
     { name: '', icon: "", },
-    { name: 'Add Post', icon: <BiSolidImageAdd />, nav: "/upload" },
+    { name: 'Add Post', icon: <BiSolidImageAdd />, nav: "/uploads" },
     { name: 'Your post', icon: <FaCamera />, nav: "/UserPost" },
     { name: 'Share', icon: <FaShare />, nav: "" },
     { name: 'SignOut', icon: <FaSignOutAlt />, nav: "" },
