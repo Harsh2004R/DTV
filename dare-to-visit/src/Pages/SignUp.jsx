@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Input, Text, Button, keyframes, } from '@chakra-ui/react';
+import { Box, Input, Text, Button, keyframes, Center,Spinner } from '@chakra-ui/react';
 import "../Fonts.css"
 import { BE_URL } from "../URL.js"
 import { useNavigate } from "react-router-dom";
@@ -167,7 +167,30 @@ function SignUp() {
     <>
 
       {loading ? (
-        <p>Loading....</p>
+
+
+        <Center bg="#000" w="100%" h="100vh">
+          <Text
+            fontFamily="bebas_neue"
+            color="#ddd"
+            fontSize={{ base: "20px", md: "25px", lg: "30px" }}
+            fontWeight="500"
+            mb={3}
+          >
+            We are creating your account...
+          </Text>
+
+          <Spinner
+            size={{ base: "sm", md: "lg", lg: "lg" }}
+            color="blue.400"
+            speed="0.6s"
+            thickness="4px"
+            emptyColor="gray.200"
+            boxShadow="0 0 10px rgba(66, 153, 225, 0.6)"
+            ml="15px"
+          />
+        </Center>
+
 
       )
         :
