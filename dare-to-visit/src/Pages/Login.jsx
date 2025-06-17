@@ -122,18 +122,27 @@ function Login() {
     <>
       {loading ?
         (
-          <Box w="100%" h="100vh" bg="black">
-            <Center flexDirection={"column"} w="100%" h="100vh">
-              <Text color="#fff" fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
-                Logging Informations...
-              </Text>
-              <Spinner mt="50px" color="teal.500" size="lg" />
-
-
-            </Center>
-          </Box>
-
-
+          <Center flexDir="column" bg="#000" w="100%" h="100vh">
+            <Text
+              fontFamily="bebas_neue"
+              color="#ddd"
+              fontSize={{ base: "20px", md: "25px", lg: "30px" }}
+              fontWeight="500"
+              mb={3}
+            >
+             Loging into darkness...
+            </Text>
+            
+            <Spinner
+              size={{ base: "sm", md: "lg", lg: "lg" }}
+              color="blue.400"
+              speed="0.6s"
+              thickness="4px"
+              emptyColor="gray.200"
+              boxShadow="0 0 10px rgba(66, 153, 225, 0.6)"
+              ml="15px"
+            />
+          </Center>
         ) : (
 
 
