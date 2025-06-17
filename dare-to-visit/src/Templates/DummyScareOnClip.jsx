@@ -11,7 +11,7 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-import {  useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   FaPlay,
   FaPause,
@@ -24,13 +24,10 @@ import {
 const ScareOnAudioPlayerBG = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/ScareOnAudioPlayerBG.avif";
 
 const DummyScareOnClip = () => {
-    const Navigate=useNavigate();
-    const handleScareOnClip = ()=>{
-        Navigate("/scareon")
-    }
+
 
   return (
-    <Box
+    <Link to="/social"> <Box
       bg="#282c34"
       p="20px"
       borderRadius="lg"
@@ -61,21 +58,21 @@ const DummyScareOnClip = () => {
       >
         Location:- <span style={{ color: '#FF1744' }}>Gujrat</span>
       </Text>
-      <audio  />
+      <audio />
       <Flex align="center" justify="center" direction="column">
         <IconButton
-          aria-label={1==1 ? 'Pause' : 'Play'}
-          icon={1==0 ? <FaPause /> : <FaPlay />}
+          aria-label={1 == 1 ? 'Pause' : 'Play'}
+          icon={1 == 0 ? <FaPause /> : <FaPlay />}
           colorScheme="red"
           size={{ base: 'sm', md: 'md' }}
           borderRadius="10%"
           mb="4"
-          onClick={handleScareOnClip}
+
           _hover={{ boxShadow: 'xl' }}
         />
         <Slider
-          
-          
+
+
         >
           <SliderTrack bg="#ccc" borderRadius="full">
             <SliderFilledTrack bg="#FF0000" />
@@ -84,12 +81,12 @@ const DummyScareOnClip = () => {
         </Slider>
         <Flex w="100%" h="auto" align="center" justify="space-between" mt="4">
           <Button
-            colorScheme={ 'red'}
+            colorScheme={'red'}
             variant="outline"
             m={{ base: '0%', md: '3%' }}
             h="30px"
             fontSize={{ base: '12px', md: '18px' }}
-            
+
           >
             Normal
           </Button>
@@ -99,7 +96,7 @@ const DummyScareOnClip = () => {
             m={{ base: '0%', md: '3%' }}
             h="30px"
             fontSize={{ base: '12px', md: '18px' }}
-            
+
           >
             1.5x
           </Button>
@@ -109,7 +106,7 @@ const DummyScareOnClip = () => {
             m={{ base: '0%', md: '3%' }}
             h="30px"
             fontSize={{ base: '12px', md: '18px' }}
-            
+
           >
             2x
           </Button>
@@ -119,7 +116,7 @@ const DummyScareOnClip = () => {
             fontSize={{ base: '14px', md: '16px' }}
             m={{ base: '0%', md: '3%' }}
           >
-            
+
           </Text>
         </Flex>
         <Flex w="100%" h="auto" align="center" justify="space-between" mt="4">
@@ -144,6 +141,7 @@ const DummyScareOnClip = () => {
         </Flex>
       </Flex>
     </Box>
+    </Link>
   );
 };
 

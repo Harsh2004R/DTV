@@ -318,7 +318,7 @@ function Home() {
         bg={gradient2}
         // border="2px solid red" 
         display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <Link to="/scareon"><Button w="auto"
+        <Link to="/social"><Button w="auto"
           color="#FFFFFF"
           bg={`linear-gradient(to right, #FF0000, #000000, #FF0000)`}
           fontSize={{ base: "xs", md: "lg" }}
