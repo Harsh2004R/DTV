@@ -2,16 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Input, Text, Button, keyframes, } from '@chakra-ui/react';
 import "../Fonts.css"
 import { BE_URL } from "../URL.js"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { showToast } from '../Utils/toast';
 import axios from 'axios';
 
 
 const backgroundVideo = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Videos/BGvideo.mp4'; // Replace with the actual path to your video file
 const glowAnimation = keyframes`
-  0% { box-shadow: 0 0 0px coral; }
-  50% { box-shadow: 0 0 10px 5px coral; }
-  100% { box-shadow: 0 0 0px coral; }
+  0% { box-shadow: 0 0 0px rgb(57, 60, 121); }
+  50% { box-shadow: 0 0 10px 5px rgb(47, 52, 146) ; }
+  100% { box-shadow: 0 0 0px rgb(34, 41, 163); }
 `;
 function SignUp() {
   const [phone, setPhone] = useState("");
@@ -47,6 +47,48 @@ function SignUp() {
       return;
     }
 
+    // Phone Number Validation (Must be 10 digits)
+    if (!/^\d{10}$/.test(phone)) {
+      showToast({
+        title: "Invalid Phone Number",
+        description: "Phone number must be exactly 10 digits.",
+        status: "error",
+        position: "top",
+      });
+      return;
+    }
+    // Email Validation (Basic pattern)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showToast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        status: "error",
+        position: "top",
+      });
+      return;
+    }
+    // Username Validation (At least 3 letters)
+    if (name.length < 3) {
+      showToast({
+        title: "Invalid Username",
+        description: "Username must be at least 3 characters long.",
+        status: "error",
+        position: "top",
+      });
+      return;
+    }
+    // Password Validation (At least 6 characters)
+    if (password.length < 6) {
+      showToast({
+        title: "Weak Password",
+        description: "Password must be at least 6 characters long.",
+        status: "error",
+        position: "top",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await axios.post(`${BE_URL}api/user/regester`, filledData);
@@ -59,7 +101,7 @@ function SignUp() {
           status: "success",
           position: "top",
         });
-        navigateToMain(`/login`); // redirect to home or login
+        navigateToMain(`/login`);
       } else {
         setLoading(false);
         showToast({
@@ -80,6 +122,7 @@ function SignUp() {
           description: message,
           status: "error",
           position: "top",
+          duration: 6000
         });
       } else if (error.request) {
         showToast({
@@ -182,25 +225,24 @@ function SignUp() {
             <Box
 
               border="1px dashed #78909C"
-              // maxWidth={'400px'}
               w={{ base: "80%", md: "25%" }}
               p={{ base: "45", md: "5" }}
               borderWidth={1}
               borderRadius={8}
-              boxShadow="lg"
               bgColor="transparent"
               position="relative"
               zIndex={1}
+              boxShadow=" rgb(47, 52, 146) 0px 20px 30px -10px"
             >
               <form onSubmit={handleSignin} >
                 <Box p={0} mb="5">
 
-                  <Text textAlign={"center"} color="#fff" fontFamily="caslon-antique" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Phone Number</Text>
+                  <Text letterSpacing={"2.5px"} textAlign={"center"} color="#fff" fontFamily="caslon-antique" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Phone Number</Text>
 
                   <Input
                     onChange={(e) => setPhone(e.target.value)}
                     onClick={stopPropagation}
-                    color="#FF6F00"
+                    color="#969696"
                     variant="unstyled"
                     placeholder="Enter Phone Number"
                     textAlign="center"
@@ -209,16 +251,17 @@ function SignUp() {
                     mx="auto"
                     type="number"
                     border="none"
+                    _placeholder={{ color: "#B0B0B0", fontWeight: "bold" }}
                   />
                 </Box>
                 <Box p={0} mb="5">
 
-                  <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Email address</Text>
+                  <Text letterSpacing={"2.5px"} fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Email address</Text>
 
                   <Input
                     onChange={(e) => setEmail(e.target.value)}
                     onClick={stopPropagation}
-                    color="#FF6F00"
+                    color="#969696"
                     variant="unstyled"
                     placeholder="Enter your Email"
                     textAlign="center"
@@ -227,16 +270,17 @@ function SignUp() {
                     mx="auto"
                     type="text"
                     border="none"
+                    _placeholder={{ color: "#B0B0B0", fontWeight: "bold" }}
                   />
                 </Box>
                 <Box p={0} mb="5">
 
-                  <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Username</Text>
+                  <Text letterSpacing={"2.5px"} fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">User name</Text>
 
                   <Input
                     onChange={(e) => setName(e.target.value)}
                     onClick={stopPropagation}
-                    color="#FF6F00"
+                    color="#969696"
                     variant="unstyled"
                     placeholder="Enter your Username"
                     textAlign="center"
@@ -245,16 +289,17 @@ function SignUp() {
                     mx="auto"
                     type="text"
                     border="none"
+                    _placeholder={{ color: "#B0B0B0", fontWeight: "bold" }}
                   />
                 </Box>
                 <Box p={0}>
 
-                  <Text fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Password</Text>
+                  <Text letterSpacing={"2.5px"} fontFamily="caslon-antique" textAlign={"center"} color="#fff" fontSize={{ base: "18px", md: "25px" }} textStyle="horror">Password</Text>
 
                   <Input
                     onChange={(e) => setPassword(e.target.value)}
                     onClick={stopPropagation}
-                    color="#FF6F00"
+                    color="#969696"
                     border="none"
                     variant="unstyled"
                     placeholder="Dare to create your password"
@@ -263,6 +308,7 @@ function SignUp() {
                     bg="none"
                     mx="auto"
                     type="password"
+                    _placeholder={{ color: "#B0B0B0", fontWeight: "bold" }}
                   />
                 </Box>
                 <Button
@@ -273,7 +319,7 @@ function SignUp() {
                   w={{ base: "120px", md: "150px" }}
                   h={{ base: "35px", md: "40px" }}
                   type="submit" display={"flex"} alignItems={"center"} onClick={handleSignin} bgColor="transparent" borderRadius="md" mx="auto" mt={4}>
-                  <Text color="#FF7043" fontFamily="caslon-antique">Welcome</Text>
+                  <Text color="#999" letterSpacing={"2px"} fontFamily="caslon-antique" fontSize={"xl"}>WELCOME</Text>
                 </Button>
               </form>
             </Box>
