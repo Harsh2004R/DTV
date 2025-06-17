@@ -2,9 +2,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../Context/AuthContext.js';
-import { Box, Input, Text, Button, FormControl, FormLabel, keyframes, Center, Spinner } from '@chakra-ui/react';
+import { Box, Input, Text, Button, FormControl, keyframes, Center, Spinner } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { BE_URL } from "../URL.js"
+import { showToast } from '../Utils/toast';
 const gradient = `linear-gradient(to right ,#424242, #000000, #757575)`
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px coral; }
@@ -73,7 +74,33 @@ function Login() {
 
       })
       .catch((err) => {
-        console.log("error in loging...user", err);
+        setLoading(false);
+        // console.log("error in loging...user", err);
+        if (err.response) {
+          const message = err.response.data?.msg || "Something went wrong";
+          showToast({
+            title: "Login Failed",
+            status: "error",
+            description: message,
+            position: "top",
+          });
+        } else if (err.request) {
+          // Network error or no response from server
+          showToast({
+            title: "Network Error",
+            status: "error",
+            description: "No response from server. Please try again.",
+            position: "top",
+          });
+        } else {
+          // Other unknown errors
+          showToast({
+            title: "Error",
+            status: "error",
+            description: "An unexpected error occurred.",
+            position: "top",
+          });
+        }
       });
   };
 
