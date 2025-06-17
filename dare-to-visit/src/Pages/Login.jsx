@@ -42,7 +42,7 @@ function Login() {
 
   // this effect will confirm user is authenticated or not using isAuth state...
   useEffect(() => {
-    console.log("isAuth changed to", isAuth);
+    // console.log("isAuth changed to", isAuth);
     if (isAuth === true) {
       Navigate("/")
     } else {

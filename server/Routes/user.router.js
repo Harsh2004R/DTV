@@ -30,10 +30,10 @@ UserRouter.get("/get/:id", authenticate, async (req, res) => { // this route wil
 });
 UserRouter.post("/regester", async (req, res) => { // this route will register new user and provide access token...
     const { phone, email, name, password } = req.body;
-    const existUser = await UserModel.findOne({ email: email });
+    const existUser = await UserModel.findOne({ $or: [{ email: email }, { phone: phone }] });
     // Checking for user if user already exist...
     if (existUser) {
-        res.status(400).json({ msg: "User Already Exist....in data base" })
+        res.status(400).json({ msg: `${email} or ${phone} User Already Exist....in data base` })
     } else {
         try {
             // Hash the password

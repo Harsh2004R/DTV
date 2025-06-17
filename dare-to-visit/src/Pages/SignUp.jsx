@@ -3,6 +3,7 @@ import { Box, Input, Text, Button, keyframes, } from '@chakra-ui/react';
 import "../Fonts.css"
 import { BE_URL } from "../URL.js"
 import { Navigate, useNavigate } from "react-router-dom";
+import { showToast } from '../Utils/toast';
 import axios from 'axios';
 
 
@@ -29,17 +30,77 @@ function SignUp() {
   }
 
 
+
   const handleSignin = async (e) => {
     e.preventDefault();
+
+    const { phone, email, name, password } = filledData;
+
+    // Simple client-side validation
+    if (!phone || !email || !name || !password) {
+      showToast({
+        title: "Missing Fields",
+        description: "Please fill in all required fields.",
+        status: "warning",
+        position: "top",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await axios.post(`${BE_URL}api/user/regester`, filledData)
-      res.data.msg === "New User Created" ? setLoading(false) : setLoading(true)
-      navigateToMain()
+      const res = await axios.post(`${BE_URL}api/user/regester`, filledData);
+
+      if (res.data.msg === "New User Created") {
+        setLoading(false);
+        showToast({
+          title: "Registration Successful",
+          description: "Your account has been created successfully!",
+          status: "success",
+          position: "top",
+        });
+        navigateToMain(`/login`); // redirect to home or login
+      } else {
+        setLoading(false);
+        showToast({
+          title: "Unexpected Response",
+          description: "Something went wrong. Please try again.",
+          status: "error",
+          position: "top",
+        });
+      }
+
     } catch (error) {
-      console.log("Error in creating new deamon", error.message)
+      setLoading(false);
+
+      if (error.response) {
+        const message = error.response.data?.msg || "Something went wrong";
+        showToast({
+          title: "Registration Failed",
+          description: message,
+          status: "error",
+          position: "top",
+        });
+      } else if (error.request) {
+        showToast({
+          title: "Network Error",
+          description: "Server not responding. Try again later.",
+          status: "error",
+          position: "top",
+        });
+      } else {
+        showToast({
+          title: "Error",
+          description: "Unexpected error occurred.",
+          status: "error",
+          position: "top",
+        });
+      }
+
+      console.error("Error in creating new user:", error.message);
     }
   };
+
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,7 +116,7 @@ function SignUp() {
     e.stopPropagation();
   };
 
-  const navigateToMain = ()=>{
+  const navigateToMain = () => {
     Navigate("/login")
   }
 
