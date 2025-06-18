@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const authenticate = require("../Middlewares/auth.middleware.js");
 require("dotenv").config()
 const { UserModel } = require("../Models/user.model.js")
+const { sendWelcomeEmail } = require("../Config/sendEmail.js")
 const UserRouter = express.Router();
 
 UserRouter.get("/get", async (req, res) => { // this route will provide all user's data...
@@ -28,26 +29,39 @@ UserRouter.get("/get/:id", authenticate, async (req, res) => { // this route wil
         res.status(400).json({ msg: "Error in getting user's data..." });
     }
 });
-UserRouter.post("/regester", async (req, res) => { // this route will register new user and provide access token...
-    const { phone, email, name, password } = req.body;
-    const existUser = await UserModel.findOne({ $or: [{ email: email }, { phone: phone }] });
-    // Checking for user if user already exist...
-    if (existUser) {
-        res.status(400).json({ msg: `${email} or ${phone} User Already Exist....in data base` })
-    } else {
-        try {
-            // Hash the password
-            const hash = await bcrypt.hash(password, 5);
-            // Create a new user with the hashed password
-            const new_user = new UserModel({ phone: phone, email: email, name: name, password: hash });
-            await new_user.save();
-            res.status(200).json({ msg: "New User Created", user: new_user })
 
-        } catch (error) {
-            res.status(500).json({ msg: "Failed to add new user", error: error.message });
-        }
+
+
+
+UserRouter.post("/regester", async (req, res) => {
+    const { phone, email, name, password } = req.body;
+    const existUser = await UserModel.findOne({ $or: [{ email }, { phone }] });
+
+    if (existUser) {
+        return res.status(400).json({ msg: `${email} or ${phone} User Already Exists` });
     }
-})
+
+    try {
+        const hash = await bcrypt.hash(password, 5);
+
+        // Send email first
+        const emailSent = await sendWelcomeEmail(email, name);
+
+        if (!emailSent) {
+            return res.status(500).json({ msg: "Email failed. User not created." });
+        }
+
+        // Save user only if email is successful
+        const new_user = new UserModel({ phone, email, name, password: hash });
+        await new_user.save();
+
+        res.status(200).json({ msg: "New User Created", user: new_user });
+
+    } catch (error) {
+        res.status(500).json({ msg: "Registration Failed", error: error.message });
+    }
+});
+
 
 UserRouter.post("/verify", async (req, res) => { // thsi route will verify / login user ...
     const { email, password } = req.body;
