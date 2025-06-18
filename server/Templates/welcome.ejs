@@ -1,37 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fafafa;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dare to Visit</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .image-wrapper {
+      position: relative;
+      text-align: center;
+    }
 
-        h2 {
-            color: #007BFF;
-        }
-    </style>
+    .image-wrapper img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+      margin: auto;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #000000;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px red;
+      font-family: 'Arial', cursive;
+    }
+
+    .hindi-heading {
+      color: rgba(77, 76, 76, 0.818);
+      font-size: 1.2rem;
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 30px 20px;
+      background-color: #000;
+      text-align: center;
+    }
+
+    .header {
+      font-family: 'Creepster', cursive;
+      font-size: 36px;
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+
+    .subheader {
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    .body-text {
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #ddd;
+      text-align: left;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #ff0000;
+      color: #fff;
+      padding: 14px 20px;
+      margin-top: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ff0000;
+    }
+
+    .cta-button:hover {
+      background-color: #cc0000;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .overlay-text {
+        font-size: 1.2rem;
+        top: 10%;
+        color: #FFFFFF;
+      }
+
+      .hindi-heading {
+        font-size: 1rem;
+        top: 16%;
+        color: rgba(169, 167, 167, 0.818);
+      }
+
+      .body-text {
+        font-size: 14px;
+      }
+
+      .header {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h2>Welcome, <%= name %> 👋</h2>
-        <p>Thank you for registering with us. We're thrilled to have you on board!</p>
-        <p>Your email: <%= email %>
-        </p>
-        <p>Let’s get started 🚀</p>
+  <!-- Responsive Image without glitch animation -->
+  <div class="image-wrapper">
+    <img src="https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/AnnaBG.jpg" alt="Horror Scene" />
+    <div class="overlay-text">Now the spirits know</div>
+    <div class="hindi-heading">- कि आप आ चुके हैं।</div>
+  </div>
+
+  <div class="container">
+    <div class="header">👁️ Dare To Visit</div>
+    <div class="subheader">Welcome to the app that never sleeps... and neither will you.</div>
+
+    <div class="body-text">
+      Hey there <strong>
+        <%= name %>
+      </strong>,<br><br>
+      <strong>Dare to Visit</strong> isn’t just a horror app—it’s an invitation to uncover what hides in the dark
+      corners of your imagination.<br><br>
+      Prepare yourself for disturbing challenges, immersive fear zones, and the kind of eerie stories that crawl under
+      your skin and whisper your name at night.<br><br>
+      Are you ready to face your fears? Or will you back out like the others...?
     </div>
+
+    <a href="https://your-app-link.com/start" class="cta-button">Start Your Nightmare</a>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> Dare To Visit. All rights reserved.<br>
+        You asked for this. No turning back now.
+    </div>
+  </div>
 </body>
 
 </html>
