@@ -60,8 +60,8 @@ const PhotosPost = () => {
 
   const handleLike = async (postId, liked) => {
     const url = liked
-      ? `${BE_URL}api/unlike/${postId}`
-      : `${BE_URL}api/like/${postId}`;
+      ? `${BE_URL}api/post/unlike/${postId}`
+      : `${BE_URL}api/post/like/${postId}`;
 
     try {
       await axios.patch(url, {}, {
@@ -183,7 +183,7 @@ const PhotosPost = () => {
               <Box flex={"12"} ml="15px" display={"flex"} justifyContent={"flex-end"} alignItems={"flex-end"}><svg color='#fff' aria-label="Save" className="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Save</title><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polygon></svg></Box>
             </Flex>
             <Flex h="auto" w="100%">
-              <Text ml="15px" mt="5px" fontFamily={"caslon-antique"} color={"#fff"}>{el.likes}<span> {el.likes === 0 || 1 ? 'like' : 'likes'}</span></Text>
+              <Text ml="15px" mt="5px" fontFamily={"caslon-antique"} color={"#fff"}>{el.likes}<span> {el.likes <= 1 ? 'like' : 'likes'}</span></Text>
               <Text ml="15px" mt="5px" fontFamily={"caslon-antique"} color={"#fff"}>{el.comments.length}<span> {el.likes === 0 || 1 ? 'comment' : 'comments'}</span></Text>
             </Flex>
 
