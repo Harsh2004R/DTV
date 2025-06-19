@@ -59,10 +59,17 @@ PostUploadRouter.get("/uploaded-post/get", authenticate, async (req, res) => {
 
 PostUploadRouter.get("/uploaded-post/get/all", authenticate, async (req, res) => {
     try {
-        const allData = await PostMediaModel.find().populate(
-            "uploadedBy",
-            "name profile_picture"
-        );
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 3;
+        const skip = (page - 1) * limit;
+
+        const allData = await PostMediaModel.find()
+            .skip(skip)
+            .limit(limit)
+            .populate(
+                "uploadedBy",
+                "name profile_picture"
+            );
         res.status(200).json({ msg: "your all uploaded post data here...", data: allData });
     } catch (error) {
         res.status(405).json({ msg: "error in sending responce of post upload collecion", error: error.message });
@@ -122,15 +129,21 @@ PostUploadRouter.get("/uploaded-reels/get", authenticate, async (req, res) => {
 
 PostUploadRouter.get("/uploaded-reels/get/all", authenticate, async (req, res) => {
     try {
-        const allData = await ReelsMediaModel.find().populate(
-            "uploadedBy",
-            "name profile_picture"
-        );
-        res.status(200).json({ msg: "your all uploaded post data here...", data: allData });
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 5;
+        const skip = (page - 1) * limit;
+
+        const allData = await ReelsMediaModel.find()
+            .skip(skip)
+            .limit(limit)
+            .populate("uploadedBy", "name profile_picture");
+
+        res.status(200).json({ msg: "Reels fetched", data: allData });
     } catch (error) {
-        res.status(405).json({ msg: "error in sending responce of post upload collecion", error: error.message });
+        res.status(405).json({ msg: "Error fetching reels", error: error.message });
     }
-})
+});
+
 
 
 //  Post like Routes here....
