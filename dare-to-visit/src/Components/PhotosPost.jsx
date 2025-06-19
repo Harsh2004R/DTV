@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { Box, Image, Button, Text, Avatar, Flex, Center, Spinner } from "@chakra-ui/react";
 import Comments from './Comments';
 import { BE_URL } from "../URL.js"
@@ -10,7 +10,9 @@ const PhotosPost = () => {
   const [loading, setLoading] = useState(true);
   const [currentComment, setCurrentComment] = useState(null);
   const [userId, setUserId] = useState(null);
-
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const observer = useRef();
 
   const handleCommentClick = (currentPost) => {
     setShowCommentBox(!showCommentBox);
@@ -22,26 +24,39 @@ const PhotosPost = () => {
   useEffect(() => {
     const uid = getUserIdFromToken();
     setUserId(uid);
-    fetchPosts();
+    fetchPosts(page);
     // console.log(posts)
-  }, []);
-  const fetchPosts = async () => {
+  }, [page]);
+  const fetchPosts = async (pageNo) => {
     try {
-      const res = await axios.get(`${BE_URL}api/uploaded-post/get/all`, {
+      const res = await axios.get(`${BE_URL}api/uploaded-post/get/all?page=${pageNo}&limit=3`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
-      setPosts(res.data.data);
-      if (res.status === 200) {
-        setLoading(false)
-      }
+      const newData = res.data.data;
+
+      setPosts(prev => [...prev, ...newData]);
+      setHasMore(newData.length > 0);
+      setLoading(false);
     } catch (err) {
       console.error("Error fetching posts", err.message);
       setLoading(false);
     }
   };
 
+  const lastReelRef = useCallback((node) => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prev => prev + 1);
+      }
+    });
+
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
 
   const getDaysAgoText = (createdAt) => {
     const createdDate = new Date(createdAt);
@@ -106,6 +121,7 @@ const PhotosPost = () => {
           <Box
             key={idx}
             // border={"0.5px solid #eee"}
+            ref={idx === posts.length - 1 ? lastReelRef : null}
             border={"1px solid #1c2b33"}
             borderRadius={"md"}
             w={{ base: "100%", md: "40%" }}
@@ -217,10 +233,23 @@ const PhotosPost = () => {
           />
         }
 
-        {/* Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here----------------------------------------------------*/}
-
+        {/* Post / Photos content container ending here---------------------------------------------------- */}
 
       </Box>
+      <Center bg="#000" w="100%" h="auto">
+        <Text fontFamily={"bebas_neue"} letterSpacing={"2.5px"} color="grey" fontSize={{ base: "14px", md: "15px", lg: "16px" }} fontWeight={"500"}>
+          getting more reels...
+        </Text>
+        <Spinner
+          ml={{ base: "10px", md: "20px", lg: "20px" }}
+          size={{ base: "xs", md: "xs", lg: "xs" }}
+          color="blue.400"
+          speed="0.6s"
+          thickness="4px"
+          emptyColor="gray.200"
+          boxShadow="0 0 10px rgba(66, 153, 225, 0.6)"
+        />
+      </Center>
     </>
   )
 }

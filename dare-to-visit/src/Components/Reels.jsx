@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Comments from './Comments';
-import { Box, Image, Button, Text, Avatar, Flex, Divider, Center, Spinner } from "@chakra-ui/react";
+import { Box, Image, Button, Text, Avatar, Flex, Center, Spinner } from "@chakra-ui/react";
 import axios from 'axios';
 import { BE_URL } from "../URL.js"
 import { getUserIdFromToken } from "../Utils/getUserId.js"
@@ -11,6 +11,10 @@ const Reels = () => {
     const [loading, setLoading] = useState(true);
     const [currentComment, setCurrentComment] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true); // for ending fetch
+    const videoRefs = useRef([]);
+    const observer = useRef();
 
 
     const handleCommentClick = (currentPost) => {
@@ -24,39 +28,89 @@ const Reels = () => {
     useEffect(() => {
         const uid = getUserIdFromToken();
         setUserId(uid);
-        fetchPosts();
+        fetchPosts(page);
         // console.log(videoData)
-    }, []);
-    const fetchPosts = async () => {
+    }, [page]);
+    const fetchPosts = async (pageNo) => {
         try {
-            const res = await axios.get(`${BE_URL}api/uploaded-reels/get/all`, {
+            const res = await axios.get(`${BE_URL}api/uploaded-reels/get/all?page=${pageNo}&limit=5`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             });
-            setVideoData(res.data.data);
-            if (res.status === 200) {
-                setLoading(false)
-            }
+            const newData = res.data.data;
+
+            setVideoData(prev => [...prev, ...newData]);
+            setHasMore(newData.length > 0);
+            setLoading(false);
         } catch (err) {
             console.error("Error fetching posts", err.message);
             setLoading(false);
         }
     };
+    const lastReelRef = useCallback((node) => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
 
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                setPage(prev => prev + 1);
+            }
+        });
+
+        if (node) observer.current.observe(node);
+    }, [loading, hasMore]);
+    useEffect(() => {
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const index = Number(entry.target.getAttribute("data-index"));
+                const video = videoRefs.current[index];
+
+                if (video) {
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => { }); // prevent warning
+                        video.muted = false;
+                    } else {
+                        video.pause();
+                        video.muted = true;
+                    }
+                }
+            });
+        }, {
+            threshold: 0.6 // 60% visible
+        });
+
+        videoRefs.current.forEach((video) => {
+            if (video) intersectionObserver.observe(video);
+        });
+
+        return () => {
+            videoRefs.current.forEach((video) => {
+                if (video) intersectionObserver.unobserve(video);
+            });
+        };
+    }, [videoData]);
+    // const getDaysAgoText = (createdAt) => {
+    //     const createdDate = new Date(createdAt);
+    //     const now = new Date();
+
+    //     createdDate.setHours(0, 0, 0, 0);
+    //     now.setHours(0, 0, 0, 0);
+
+    //     const diffTime = now - createdDate;
+    //     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    //     if (diffDays === 0) return "- Today";
+    //     if (diffDays === 1) return ": 1 day ago";
+    //     return `- ${diffDays} days ago`;
+    // };
     const getDaysAgoText = (createdAt) => {
         const createdDate = new Date(createdAt);
         const now = new Date();
-
         createdDate.setHours(0, 0, 0, 0);
         now.setHours(0, 0, 0, 0);
-
-        const diffTime = now - createdDate;
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-        if (diffDays === 0) return "- Today";
-        if (diffDays === 1) return ": 1 day ago";
-        return `- ${diffDays} days ago`;
+        const diffDays = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));
+        return diffDays === 0 ? "- Today" : diffDays === 1 ? ": 1 day ago" : `- ${diffDays} days ago`;
     };
     const handleLike = async (postId, liked) => {
         const url = liked
@@ -69,7 +123,16 @@ const Reels = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             });
-            fetchPosts(); // Refresh the post state
+            // fetchPosts();
+            // Refresh the post state
+            // Refresh like state for the single post (optional optimization)
+            setVideoData(prev =>
+                prev.map(item =>
+                    item._id === postId
+                        ? { ...item, likedBy: liked ? item.likedBy.filter(id => id !== userId) : [...item.likedBy, userId], likes: liked ? item.likes - 1 : item.likes + 1 }
+                        : item
+                )
+            );
         } catch (err) {
             console.error("Error toggling like", err.message);
         }
@@ -110,6 +173,7 @@ const Reels = () => {
                     <Box
                         // border={"1px solid #eee"}
                         key={idx}
+                        ref={idx === videoData.length - 1 ? lastReelRef : null}
                         border={"1px solid #1c2b33"}
                         borderRadius={"md"}
                         w={{ base: "100%", md: "40%" }}
@@ -168,8 +232,11 @@ const Reels = () => {
 
                             {/* video tag here */}
                             <video
+                                ref={el => videoRefs.current[idx] = el}
+                                data-index={idx}
                                 autoPlay
                                 loop
+                                muted
                                 style={{ height: "auto", width: "100%" }}
                                 src={el.url}
                             ></video>
@@ -241,13 +308,28 @@ const Reels = () => {
                     onClose={handleCloseComment}
                 />}
 
-                {/* Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here---------------------------------------------------- Reels / Videos content container starting ending here----------------------------------------------------*/}
+                {/* Reels / Videos content container ending here*/}
 
             </Box>
-
+            <Center bg="#000" w="100%" h="auto">
+                <Text fontFamily={"bebas_neue"} letterSpacing={"2.5px"} color="grey" fontSize={{ base: "14px", md: "15px", lg: "16px" }} fontWeight={"500"}>
+                    getting more reels...
+                </Text>
+                <Spinner
+                    ml={{ base: "10px", md: "20px", lg: "20px" }}
+                    size={{ base: "xs", md: "xs", lg: "xs" }}
+                    color="blue.400"
+                    speed="0.6s"
+                    thickness="4px"
+                    emptyColor="gray.200"
+                    boxShadow="0 0 10px rgba(66, 153, 225, 0.6)"
+                />
+            </Center>
 
         </>
     )
 }
 
 export default Reels
+
+
