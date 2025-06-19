@@ -147,7 +147,7 @@ PostUploadRouter.patch("/like/:id", authenticate, async (req, res) => {
         post.likes = post.likedBy.length;
         await post.save();
 
-        return res.status(200).json({ msg: "Post liked", totalLikes: post.likes });
+        return res.status(200).json({ msg: "Post liked", totalLikes: post.likes, likedBy: post.likedBy  });
     } catch (err) {
         console.error(err);
         res.status(500).json({ msg: "Something went wrong", error: err.message });
@@ -167,7 +167,7 @@ PostUploadRouter.patch("/unlike/:id", authenticate, async (req, res) => {
         post.likes = post.likedBy.length;
         await post.save();
 
-        return res.status(200).json({ msg: "Post unliked", totalLikes: post.likes });
+        return res.status(200).json({ msg: "Post unliked", totalLikes: post.likes, likedBy: post.likedBy  });
     } catch (err) {
         console.error(err);
         res.status(500).json({ msg: "Something went wrong", error: err.message });
