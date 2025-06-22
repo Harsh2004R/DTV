@@ -84,7 +84,14 @@ const PhotosPost = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
-      fetchPosts(); // Refresh the post state
+      // fetchPosts(); 
+      setPosts(prev =>
+        prev.map(item =>
+          item._id === postId
+            ? { ...item, likedBy: liked ? item.likedBy.filter(id => id !== userId) : [...item.likedBy, userId], likes: liked ? item.likes - 1 : item.likes + 1 }
+            : item
+        )
+      );
     } catch (err) {
       console.error("Error toggling like", err.message);
     }

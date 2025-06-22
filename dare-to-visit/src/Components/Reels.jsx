@@ -28,10 +28,10 @@ const Reels = () => {
     useEffect(() => {
         const uid = getUserIdFromToken();
         setUserId(uid);
-        fetchPosts(page);
+        fetchReels(page);
         // console.log(videoData)
     }, [page]);
-    const fetchPosts = async (pageNo) => {
+    const fetchReels = async (pageNo) => {
         try {
             const res = await axios.get(`${BE_URL}api/uploaded-reels/get/all?page=${pageNo}&limit=5`, {
                 headers: {
@@ -90,20 +90,7 @@ const Reels = () => {
             });
         };
     }, [videoData]);
-    // const getDaysAgoText = (createdAt) => {
-    //     const createdDate = new Date(createdAt);
-    //     const now = new Date();
-
-    //     createdDate.setHours(0, 0, 0, 0);
-    //     now.setHours(0, 0, 0, 0);
-
-    //     const diffTime = now - createdDate;
-    //     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    //     if (diffDays === 0) return "- Today";
-    //     if (diffDays === 1) return ": 1 day ago";
-    //     return `- ${diffDays} days ago`;
-    // };
+  
     const getDaysAgoText = (createdAt) => {
         const createdDate = new Date(createdAt);
         const now = new Date();
