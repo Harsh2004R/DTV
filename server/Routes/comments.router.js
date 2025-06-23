@@ -55,6 +55,7 @@ CommentsRouter.get("/comment/:postId", async (req, res) => {
         }));
 
         res.status(200).json({
+            msg: "your comments",
             comments: formattedComments,
             uploadedBy: post.uploadedBy
         });
