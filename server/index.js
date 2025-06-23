@@ -8,6 +8,7 @@ const { PodcastRouter } = require("./Routes/podcast.router.js")
 const { VideoRouter } = require("./Routes/video.router.js")
 const { PostUploadRouter } = require("./Routes/post.upload.router.js")
 const { LikeRouter } = require("./Routes/like.router.js")
+const { CommentsRouter } = require("./Routes/comments.router.js")
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use("/api", PodcastRouter)
 app.use("/api", VideoRouter)
 app.use("/api", PostUploadRouter)
 app.use("/api", LikeRouter)
+app.use("/api", CommentsRouter)
 const PORT = process.env.PORT
 const HOST = '0.0.0.0';
 app.listen(PORT, HOST, async () => {
