@@ -5,7 +5,14 @@ const Media = mongoose.Schema(
         caption: { required: true, type: String },
         likes: { type: Number, default: 0 },
         likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
-        comments: [],
+        comments: [
+            {
+                user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+                comment: String,
+                _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
+                createdAt: { type: Date, default: Date.now }
+            }
+        ],
         uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true } // 👈 reffrence of which user uploaded which post ?
     },
     { timestamps: true }
