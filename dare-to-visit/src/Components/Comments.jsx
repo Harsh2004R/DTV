@@ -15,12 +15,17 @@ const Comments = ({ onClose, postId, userId, userName, postURL, userProfileUrl }
 
     useEffect(() => {
         // console.log(postId)
-        fetchSignleComment()
+        if (postURL.includes('.mp4')) {
+            fetchSignleReelComment();
+        } else {
+            fetchSignlePostComment();
+        }
+
     }, [])
-    const fetchSignleComment = async () => {
+    const fetchSignleReelComment = async () => {
         try {
 
-            const res = await axios.get(`${BE_URL}api/comment/${postId}`);
+            const res = await axios.get(`${BE_URL}api/comment/reel/${postId}`);
             setComments(res.data.comments);
 
         } catch (error) {
@@ -31,31 +36,76 @@ const Comments = ({ onClose, postId, userId, userName, postURL, userProfileUrl }
         }
     }
 
+    const fetchSignlePostComment = async () => {
+        try {
+
+            const res = await axios.get(`${BE_URL}api/comment/post/${postId}`);
+            setComments(res.data.comments);
+
+        } catch (error) {
+            console.log("error in fetching comments for this reel", error)
+
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // const onSubmit = async (data) => {
+    //     console.log("clicked")
+    //     if (!data.comment?.trim()) return;
+
+    //     try {
+    //         const res = await axios.post(`${BE_URL}api/comment/${postId}`, {
+    //             userId,
+    //             comment: data.comment,
+    //         });
+    //         if (getComments.length === 15) {
+    //             showToast({
+    //                 title: "Comment maximum limit reached...",
+    //                 status: "warning",
+    //                 description: "Your effort's were appreaciable but unfortunately we can't post your comment 😪",
+    //                 position: "bottom",
+    //             });
+    //         }
+    //         fetchSignleComment();
+    //         setLoading(false);
+    //         reset(); // Clear input
+    //     } catch (error) {
+    //         console.log("Error posting comment:", error);
+    //     }
+    // };
 
     const onSubmit = async (data) => {
-        console.log("clicked")
         if (!data.comment?.trim()) return;
 
+        const isReel = postURL.includes('.mp4');
+        const commentAPI = isReel
+            ? `${BE_URL}api/comment/reel/${postId}`
+            : `${BE_URL}api/comment/post/${postId}`;
+
         try {
-            const res = await axios.post(`${BE_URL}api/comment/${postId}`, {
+            const res = await axios.post(commentAPI, {
                 userId,
                 comment: data.comment,
             });
-            if (getComments.length===15) {
+
+            if (getComments.length === 15) {
                 showToast({
                     title: "Comment maximum limit reached...",
                     status: "warning",
-                    description: "Your effort's were appreaciable but unfortunately we can't post your comment 😪",
+                    description: "Your effort's were appreciated but unfortunately we can't post your comment 😪",
                     position: "bottom",
                 });
             }
-            fetchSignleComment();
+
+            isReel ? fetchSignleReelComment() : fetchSignlePostComment();  // Refetch updated list
             setLoading(false);
             reset(); // Clear input
         } catch (error) {
             console.log("Error posting comment:", error);
         }
     };
+
 
     const handleClose = () => {
         onClose();
@@ -174,7 +224,14 @@ const Comments = ({ onClose, postId, userId, userName, postURL, userProfileUrl }
                                                 <Avatar size="sm" m="auto"
                                                     src={el.user.profile_picture}
                                                     alt={el.user.name} />
-                                                <Text fontSize={{ base: "14px", md: "14px", lg: "15px" }} color="#fff">{el.user.name}</Text>
+
+
+                                                <Center flexDir={"column"}>
+                                                    <Text fontSize={{ base: "14px", md: "14px", lg: "15px" }} color="#fff">{el.user.name}</Text>
+                                                    <Text ml="5px" fontSize={{ base: "8px", md: "9px", lg: "10px" }} color="#03A9F4">
+                                                        {new Date(el.createdAt).toLocaleString()} {/* 👈 formatted */}
+                                                    </Text>
+                                                </Center>
                                                 <Box flex="0.95"></Box>
                                             </Flex>
                                             <Flex >
