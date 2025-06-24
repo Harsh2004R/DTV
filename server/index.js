@@ -9,6 +9,7 @@ const { VideoRouter } = require("./Routes/video.router.js")
 const { PostUploadRouter } = require("./Routes/post.upload.router.js")
 const { LikeRouter } = require("./Routes/like.router.js")
 const { CommentsRouter } = require("./Routes/comments.router.js")
+const { AdminRouter } = require("./Routes/admin.router.js")
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
     res.send("Server is running........")
 })
 app.use("/api/user", UserRouter)
+app.use("/api/admin", CommentsRouter)
 app.use("/api", Darkurl)
 app.use("/api", PodcastRouter)
 app.use("/api", VideoRouter)

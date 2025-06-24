@@ -34,6 +34,7 @@ const Links = [
     { name: 'Death-Date', to: '/deathdate' },
     { name: 'About us', to: '/about' },
     { name: 'Contact', to: '/contact' },
+
 ];
 const NavLink = ({ to, children }) => {
     return (
@@ -57,8 +58,15 @@ const NavLink = ({ to, children }) => {
 
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { logout, isAuth, navTologin } = useContext(AuthContext);
-    // console.log("navbar", isAuth)
+    const { logout, isAuth, navTologin, role, loading } = useContext(AuthContext);
+    if (loading) {
+        return <Center><Text color="#fff">loading....</Text></Center>;
+    }
+
+    const dynamicLinks = [...Links];
+    if (role === 'admin') {
+        dynamicLinks.push({ name: 'Admin Dashboard', to: '/admin/dashboard' });
+    }
     return (
         <>
             <Box bg="#000000" px={2} w="100%" zIndex={"10000"} position={"fixed"}>
@@ -84,8 +92,13 @@ export default function Simple() {
 
                             </Center></Link>
                         < HStack ml="100px" as="nav" spacing={4} >
-                            <Flex fontSize={"17px"} mr="10px" ml="10px" color="#aaa" display={{ base: 'none', md: 'flex' }} gap={3}>
+                            {/* <Flex fontSize={"17px"} mr="10px" ml="10px" color="#aaa" display={{ base: 'none', md: 'flex' }} gap={3}>
                                 {Links.map((link, idx) => (
+                                    <NavLink key={idx} to={link.to}>{link.name}</NavLink>
+                                ))}
+                            </Flex> */}
+                            <Flex fontSize={"17px"} mr="10px" ml="10px" color="#aaa" display={{ base: 'none', md: 'flex' }} gap={3}>
+                                {dynamicLinks.map((link, idx) => (
                                     <NavLink key={idx} to={link.to}>{link.name}</NavLink>
                                 ))}
                             </Flex>
@@ -141,8 +154,13 @@ export default function Simple() {
 
                 {isOpen && (
                     <Box pb={4} display={{ md: 'none', lg: "none" }}>
-                        <Stack color="#aaa" pt="20px" pb="25px" mt="20px" mb="20px" borderRadius={"lg"} border={".5px solid #443"} as="nav" spacing={4}>
+                        {/* <Stack color="#aaa" pt="20px" pb="25px" mt="20px" mb="20px" borderRadius={"lg"} border={".5px solid #443"} as="nav" spacing={4}>
                             {Links.map((link) => (
+                                <NavLink key={link.name} to={link.to}>{link.name}</NavLink>
+                            ))}
+                        </Stack> */}
+                        <Stack color="#aaa" pt="20px" pb="25px" mt="20px" mb="20px" borderRadius={"lg"} border={".5px solid #443"} as="nav" spacing={4}>
+                            {dynamicLinks.map((link) => (
                                 <NavLink key={link.name} to={link.to}>{link.name}</NavLink>
                             ))}
                         </Stack>

@@ -12,8 +12,12 @@ const userSchema = mongoose.Schema({
     intrest: { type: String, default: "" },
     follower: { type: String, default: "" },
     following: { type: String, default: "" },
-    isBlocked: { type: Boolean, default: false }
-
+    isBlocked: { type: Boolean, default: false },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    },
 })
 
 const UserModel = mongoose.model("user", userSchema);

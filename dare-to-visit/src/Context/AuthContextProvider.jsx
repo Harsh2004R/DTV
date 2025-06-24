@@ -8,6 +8,9 @@ import { showToast } from "../Utils/toast.js";
 const AuthContextProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [role, setRole] = useState("");
+
+
 
     const login = (token) => {
         localStorage.setItem("token", token);
@@ -27,6 +30,7 @@ const AuthContextProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
+        setRole("");
         showToast({
             title: "Logged out",
             description: "You have been successfully logged out.",
@@ -59,6 +63,7 @@ const AuthContextProvider = ({ children }) => {
             });
             if (res.data.valid) {
                 setIsAuth(true);
+                setRole(res.data.role);
             } else {
                 logout(); // if token is fake or expired
             }
@@ -66,13 +71,13 @@ const AuthContextProvider = ({ children }) => {
             console.error("Invalid token or error verifying:", err);
             logout(); // invalid token or network error
         } finally {
-            setLoading(false); // ✅ always stop loading
+            setLoading(false); 
         }
 
     };
 
     return (
-        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading, navTologin }}>
+        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading, navTologin,role }}>
             {children}
         </AuthContext.Provider>
     );

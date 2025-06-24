@@ -65,8 +65,10 @@ function Login() {
         // console.log(res);
         let token = res.data.token;
         let userId = res.data.user.userId
+        let role = res.data.user.role
         localStorage.setItem("token", token);
         localStorage.setItem("userID", userId);
+        localStorage.setItem("role", role);
         if (token || userId) {
           setLoading(!true);
           login(token);
