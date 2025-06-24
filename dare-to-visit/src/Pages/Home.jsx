@@ -104,47 +104,6 @@ function Home() {
       </Box>
 
 
-
-      {/* Haunted images algo part starting here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->>>>>>>>>>>>>> */}
-
-
-      <Box w="100%" h="auto" bg="#000000" >
-        <Divider w="100%" animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} borderColor={"#fff"} />
-        <Text
-          transition="transform 1s"
-          _hover={{
-            transform: 'scale(0.9)',
-            cursor: 'pointer'
-          }}
-          pt="25px" pb="25px" fontFamily={"just-die-already"} textAlign={"center"} color="#FF0000" fontSize={{ base: "3xl", md: "6xl" }}>HAUNTED PLACES</Text>
-        <Divider w="100%" animation={`${slideInFromLeft} 2.2s ease-in-out infinite alternate`} borderColor={"#fff"} />
-        <Text pt="10px" w={{ base: "90%", md: "67%" }} m="auto" fontFamily={"just-die-already"} textAlign={{ base: "justify", md: "center" }} color="#fff" fontSize={{ base: "0.75rem", md: "1rem" }}>
-          We use state-of-the-art deep learning algorithms to learn how haunted houses, or toxic cities look like.
-          Then we apply the skills style to famous landmarks and present you: AI-powered horror all over the world!
-        </Text>
-
-      </Box>
-
-
-
-
-
-
-      {/* AI Component Importing  here ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-      <Box w="100%" h={"auto"} bg={gradient2} >
-        <AI />
-        <Divider animation={`${slideInFromLeft} 3.5s ease-in-out infinite alternate`} w="100%" borderColor={"#fff"} /></Box>
-
-
-      {/* AI generated Images slider ends here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
-
-
-
-
-
-
       {/* Horror stories section starting here -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
 
       <Box

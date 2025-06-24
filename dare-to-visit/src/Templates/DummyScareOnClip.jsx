@@ -27,7 +27,7 @@ const DummyScareOnClip = () => {
 
 
   return (
-    <Link to="/social"> <Box
+    <Link to="/podcast"> <Box
       bg="#282c34"
       p="20px"
       borderRadius="lg"

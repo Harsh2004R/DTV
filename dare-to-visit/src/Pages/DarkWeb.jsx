@@ -113,9 +113,12 @@ function DarkWeb() {
     const hideAlertTimeout = setTimeout(() => {
       setShowAlert(false);
     }, 10000);
-
+    window.scrollTo(0, 0);
     return () => clearTimeout(hideAlertTimeout);
   }, [showAlert]);
+
+
+
   const handleCloseAlert = () => {
     setShowAlert(false);
     const interval = setInterval(() => {
@@ -422,7 +425,7 @@ function DarkWeb() {
 
 
 
-      <Box w="100%" h="auto" bg={gradient_xx}
+      <Box w="100%" h="auto" pr={{base:"4px",md:"8px",lg:"10px"}}  pl={{base:"4px",md:"8px",lg:"10px"}} bg={gradient_xx}
       // border={"2px solid cyan"}
       >
         <Text textAlign={"center"} bg={gradient_x} color="#FFFFFF" fontSize={{ base: "3xl", md: "5xl" }} display="flex"
@@ -563,8 +566,8 @@ function DarkWeb() {
 
         <Text p={{ base: "5", sm: "8", md: "10" }} textAlign={"center"} animation={{ base: `${shadow} 2s infinite`, md: `$${shadow} 2s infinite` }} fontSize={{ base: "22px", md: "45px" }} fontFamily={"just-die-already"} color="#fff">Premium Dark Zone</Text>
 
-        <Button display="alex" justifyContent={"center"} w="150px" onClick={handleDarkWebPaypage} _hover={{ boxShadow: '0 0 10px 5px skyblue' }} border="1px dashed #29B6F6" fontFamily={"my"} color="#fff" bg={gradient_xx} m="auto" textAlign="center">
-          Visit Now
+        <Button display="alex" justifyContent={"center"} w="150px" onClick={handleDarkWebPaypage} _hover={{ boxShadow: '0 0 10px 5px skyblue' }} fontSize={{ base: "22px", md: "28px" }} border="1px dashed #29B6F6" color="#fff" bg={"blue.500"} m="auto" textAlign="center">
+         Buy
         </Button>
 
         <ArticleList />
