@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Input, Text, Button, keyframes, Center,Spinner } from '@chakra-ui/react';
+import { Box, Input, Text, Button, keyframes, Center, Spinner } from '@chakra-ui/react';
 import "../Fonts.css"
 import { BE_URL } from "../URL.js"
 import { useNavigate } from "react-router-dom";
@@ -22,17 +22,17 @@ function SignUp() {
   const Navigate = useNavigate()
   const videoRef = useRef(null);
 
-  const filledData = {
-    phone: phone,
-    email: email,
-    name: name,
-    password: password
-  }
 
 
 
   const handleSignin = async (e) => {
     e.preventDefault();
+    const filledData = {
+      phone: phone,
+      email: email.toLowerCase().trim(),
+      name: name,
+      password: password
+    }
 
     const { phone, email, name, password } = filledData;
 

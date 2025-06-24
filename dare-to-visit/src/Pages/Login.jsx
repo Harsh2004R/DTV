@@ -56,7 +56,7 @@ function Login() {
     setLoading(true);
     // let obj = { email, password };
     const loginData = {
-      email: emailRef.current.value,
+      email: emailRef.current.value.toLowerCase().trim(),
       password: passwordRef.current.value,
     };
     await axios
@@ -76,6 +76,7 @@ function Login() {
       .catch((err) => {
         setLoading(false);
         // console.log("error in loging...user", err);
+        // Extract message from server
         if (err.response) {
           const message = err.response.data?.msg || "Something went wrong";
           showToast({
@@ -130,9 +131,9 @@ function Login() {
               fontWeight="500"
               mb={3}
             >
-             Loging into darkness...
+              Loging into darkness...
             </Text>
-            
+
             <Spinner
               size={{ base: "sm", md: "lg", lg: "lg" }}
               color="blue.400"

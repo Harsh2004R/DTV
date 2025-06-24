@@ -42,6 +42,16 @@ const Users = () => {
     }
   };
 
+  const handleUnblock = async (id) => {
+    try {
+      await axios.patch(`${BE_URL}api/user/unblock/${id}`);
+      fetchUsers(); // refresh list
+    } catch (error) {
+      console.error("Unblock error:", error);
+    }
+  };
+
+
   if (loading) return <Spinner size="xl" color="red.500" />;
   if (error) return <Text color="red.400">{error}</Text>;
 
@@ -70,8 +80,12 @@ const Users = () => {
             {selectedUserId === user._id && (
               <Stack direction="row" spacing="4" mt="3">
                 <Button colorScheme="red" onClick={() => handleDelete(user._id)}>Delete</Button>
+                {/* <Button colorScheme="red" onClick={() => handleDelete(user._id)}>Unblock</Button> */}
                 {!user.isBlocked && (
                   <Button colorScheme="yellow" onClick={() => handleBlock(user._id)}>Block</Button>
+                )}
+                {user.isBlocked && (
+                  <Button colorScheme="green" onClick={() => handleUnblock(user._id)}>Unblock</Button>
                 )}
               </Stack>
             )}
