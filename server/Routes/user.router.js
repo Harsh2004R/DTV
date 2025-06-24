@@ -71,6 +71,9 @@ UserRouter.post("/verify", async (req, res) => { // thsi route will verify / log
         if (!user) {
             return res.status(400).json({ msg: "User not found" });
         }
+        if (user.isBlocked) {
+            return res.status(403).json({ msg: "This account has been blocked by the admin." });
+        }
         // Comparing the password
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
@@ -111,6 +114,17 @@ UserRouter.patch("/block/:id", async (req, res) => { // this route will block us
         res.status(400).json({ msg: "Error blocking user" });
     }
 });
+
+UserRouter.patch("/unblock/:id", async (req, res) => {
+    try {
+        await UserModel.findByIdAndUpdate(req.params.id, { isBlocked: false });
+        res.status(200).json({ msg: "User unblocked successfully" });
+    } catch (error) {
+        res.status(400).json({ msg: "Error unblocking user" });
+    }
+});
+
+
 
 UserRouter.patch("/edit", authenticate, async (req, res) => {
     try {
