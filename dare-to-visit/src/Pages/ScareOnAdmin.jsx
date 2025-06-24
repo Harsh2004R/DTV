@@ -20,7 +20,6 @@ import {
   Image,
 } from '@chakra-ui/react';
 import Navbar2 from '../Components/Navbar2';
-import Nav from '../Components/Nav';
 import Footer from "../Components/Footer";
 const avatars = [
   {
@@ -136,7 +135,6 @@ export default function ScareOnAdmin() {
 
     <>
 
-      <Nav />
       <Navbar2 />
 
 

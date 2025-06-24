@@ -1,44 +1,60 @@
 import { useBreakpointValue, Image, Box } from "@chakra-ui/react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
 const slides = [
     {
         image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P5.avif",
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/blackEye.jpg?raw=true",
     },
     {
         image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P6.avif",
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/bali.jpg?raw=true",
     },
     {
         image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P8.avif",
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/bloody_eye.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/deadmen.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/zombiee.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/eat.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/gere.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/hand.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/joker.jpg?raw=true",
+    },
+    {
+        image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/shadow1.jpg?raw=true",
     },
     {
         image:
             "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P9.avif",
     },
-    {
-        image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P10.avif",
-    },
-    {
-        image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/P5.avif",
-    }, {
-        image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC7.avif",
-    }, {
-        image:
-            "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/PC8.avif",
-
-    }
 ];
+
 
 const Slider = () => {
     const imageStyle = {
-        width: useBreakpointValue({ base: "90%", md: "80%", lg: "80%" }),
-        height: useBreakpointValue({ base: "60vh", md: "80vh", lg: "100vh" }),
+        width: useBreakpointValue({ base: "100%", md: "80%", lg: "80%" }),
+        height: useBreakpointValue({ base: "70vh", md: "80vh", lg: "100vh" }),
         objectFit: "cover",
         margin: "auto"
     };

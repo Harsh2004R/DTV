@@ -13,7 +13,7 @@ const glowAnimation = keyframes`
   100% { box-shadow: 0 0 0px coral; }
 `;
 
-const LoginBG3 = 'https://i.ibb.co/NrC6jGr/LoginBG3.jpg';
+const LoginBG3 = 'https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/LoginBG3.jpg?raw=true';
 const asur = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/asur.mp3';
 const song1 = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song1.mp3';
 const song3 = 'https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/song3.mp3';

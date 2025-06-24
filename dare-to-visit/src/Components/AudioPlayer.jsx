@@ -20,16 +20,6 @@ import axios from 'axios';
 import { BE_URL } from '../URL.js';
 import { IoMusicalNote } from "react-icons/io5";
 
-// const audioSources1 = [
-//     {
-//         url: "https://play.hubhopper.com/b4a88eee4db21e102da0edef1621c3e7.mp3?s=rss-feed",
-//         title: "Kya wo sach tha -#Heighway ka bhoot"
-//     },
-//     {
-//         url: "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/DWsong1.mp3",
-//         title: "auto tune added via google"
-//     },
-// ];
 
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #E3F2FD; }

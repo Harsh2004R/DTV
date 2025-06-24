@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 
 import VideoComponent from '../Components/VideoComponent ';
-import Nav from '../Components/Nav';
 import Navbar2 from '../Components/Navbar2';
 import Footer from "../Components/Footer";
-import AI from "../Components/AI";
 import ArticleList from '../Components/ArticleList';
 import AudioPlayer from '../Components/AudioPlayer';
 import Media from '../Components/Media';
@@ -25,7 +23,6 @@ import ScareOnAdmin from '../Pages/ScareOnAdmin';
 import SignUp from '../Pages/SignUp';
 import Videos from '../Pages/Videos';
 import Welcome from '../Pages/Welcome';
-import Device from "../Components/Device";
 import DummyScareOnCard from '../Templates/DummyScareOnCard';
 import DummyScareOnClip from '../Templates/DummyScareOnClip';
 import Home from '../Pages/Home';
@@ -74,14 +71,12 @@ function AllRoutes() {
         {!firstVisit && (
           <>
             <Route path="/" element={<Home />}></Route>
-            {/* <Route path="/ai" element={<AI />}></Route> */}
             {/* <Route path="/article" element={<ArticleList />}></Route> */}
             {/* <Route path="/audio" element={<AudioPlayer />}></Route> */}
             {/* <Route path="/media" element={<Media />}></Route> */}
             {/* <Route path="/scareOncard" element={<ScareOnCard />}></Route> */}
             {/* <Route path="/scareOnclip" element={<ScareOnClip />}></Route> */}
             <Route path="/footer" element={<Footer />}></Route>
-            <Route path="/nav" element={<Nav />}></Route>
             <Route path="/nav2" element={<Navbar2 />}></Route>
             {/* <Route path="/VideoComponent" element={<VideoComponent />}></Route> */}
             <Route path="/DarkWeb" element={<DarkWeb />}></Route>
@@ -96,7 +91,6 @@ function AllRoutes() {
             <Route path="/SignUp" element={<SignUp />}></Route>
             <Route path="/Videos" element={<Videos />}></Route>
             <Route path="/welcome" element={<Welcome />}></Route>
-            <Route path="/Device" element={<Device />}></Route>
             {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
             {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
             <Route path="/Otp" element={<Otp />}></Route>

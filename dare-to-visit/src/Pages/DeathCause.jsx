@@ -2,7 +2,6 @@ import React, { useEffect, useRef,useState } from 'react'
 import {Box,Image,Button,Text,Select,keyframes } from "@chakra-ui/react"
 
 import { Navigate, useNavigate } from "react-router-dom";
-import Nav from "../Components/Nav";
 import Topper from "../Components/Topper.jsx"
 const glowAnimation = keyframes`
   0% { box-shadow: 0 0 0px #FF0000; }
@@ -33,7 +32,6 @@ function DeathCause() {
       };
   return (
     <>
-    {/* <Nav/> */}
     <Topper/>
     <Box
     onClick={handleAudio}

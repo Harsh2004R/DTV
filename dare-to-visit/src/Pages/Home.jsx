@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Text, Image, Button, Flex, keyframes, UnorderedList, ListItem, useBreakpointValue, Grid, GridItem } from "@chakra-ui/react";
 import { Link, useNavigate } from 'react-router-dom';
 import { Divider } from "@chakra-ui/react"
-// import Nav from "../Components/Nav";
 import CustomAlert from "../Components/CustomAlert";
-import AI from '../Components/AI';
 import VideoComponent from '../Components/VideoComponent ';
 import Navbar2 from "../Components/Navbar2";
 import Topper from "../Components/Topper.jsx";
@@ -89,7 +87,6 @@ function Home() {
 
 
 
-      {/* <Nav /> */}
       <Topper />
       <Navbar2 />
 
@@ -98,7 +95,7 @@ function Home() {
       {/* Slider Starts here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
 
-      <Box h={{ base: "60vh", md: "80vh", lg: "100vh" }} w="100%" bg={gradient1} >
+      <Box h={{ base: "70vh", md: "80vh", lg: "100vh" }}  w="100%" bg={gradient1} >
         <Slider />
         <CustomAlert isOpen={showAlert} onClose={handleCloseAlert} />
       </Box>

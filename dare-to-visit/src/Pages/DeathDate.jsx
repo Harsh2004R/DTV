@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Nav from "../Components/Nav"
 import Topper from "../Components/Topper.jsx"
 import {
   Box,
@@ -9,7 +8,7 @@ import {
   keyframes,
   Flex,
 } from "@chakra-ui/react"
-const DDBG = "https://i.ibb.co/WkfLQ5B/DDBG.png";
+const DDBG = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/death.png?raw=true";
 const CountDown = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/autoAudio/CountDown.mp3"
 
 const glowAnimation = keyframes`
@@ -140,7 +139,6 @@ function DeathDate() {
 
   return (
     <>
-      {/* <Nav/> */}
       <Topper />
        
      <Box h="auto" bg="#000" w="100%" pt="60px">
