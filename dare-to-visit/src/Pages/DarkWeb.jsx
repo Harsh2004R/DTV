@@ -103,7 +103,7 @@ function DarkWeb() {
       setVideoData(res.data.data);
       console.log(res)
     } catch (error) {
-      console.log("error in fetching darkweb video data from server....", error)
+      // console.log("error in fetching darkweb video data from server....", error)
     }
   }
 
@@ -127,19 +127,9 @@ function DarkWeb() {
     return () => clearInterval(interval);
   };
 
-
-
-
-  // image logic slide1 ===
-
   const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
 
-
-  // image logic slide1 end===
-  // image logic slide2 ===
-
   const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
-
 
 
   useEffect(() => {
@@ -151,30 +141,12 @@ function DarkWeb() {
   }, []);
 
 
-
-
-  // image logic slide2 end===
-
   const Navigate = useNavigate();
   return (
     <>
 
-
-
-
-      {/* Importing Navbar & Navbar2 here */}
-
-
-
-
-
       <Topper />
       <Navbar2 />
-
-
-
-
-
 
 
       <Box
