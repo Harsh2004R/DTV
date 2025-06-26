@@ -61,8 +61,8 @@ const UserReels = () => {
                         <Text>Loading your Reels...</Text>
                     </VStack>
                 ) : videoData.length === 0 ? (
-                    <Text textAlign="center" fontSize="lg">
-                        No Reels to show yet.
+                    <Text color="#fff" letterSpacing={"1px"} fontFamily={"caslon-antique"} textAlign="center" fontSize="lg">
+                        No Reels to show yet .....
                     </Text>
                 ) : (
                     <SimpleGrid

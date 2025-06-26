@@ -61,7 +61,7 @@ const UserPost = () => {
                         <Text>Loading your posts...</Text>
                     </VStack>
                 ) : posts.length === 0 ? (
-                    <Text textAlign="center" fontSize="lg">
+                    <Text  color="#fff" letterSpacing={"1px"} fontFamily={"caslon-antique"} textAlign="center" fontSize="lg">
                         No posts to show yet.
                     </Text>
                 ) : (
