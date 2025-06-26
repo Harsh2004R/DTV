@@ -1,15 +1,15 @@
 
 
 import React, { useState } from 'react';
-import { Text,Image, Box } from '@chakra-ui/react';
+import { Text, Image, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
-const L_arrow = "https://i.ibb.co/DfFs4jh/L-arrow.png"
-const PodCast = "https://i.ibb.co/xhKmTVK/PodCast.png"
-const Stories = "https://i.ibb.co/QNk0KKs/Stories.png"
-const Laptop = "https://i.ibb.co/1mky06j/Laptop.png"
-const Home  = "https://i.ibb.co/Pc4w1mN/Home.png"
-const User=  "https://i.ibb.co/Q6QhFCT/User.png"
+const L_arrow = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/L-arrow.png?raw=true"
+const PodCast = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/podcast.png?raw=true"
+const Reels = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/reel.png?raw=true"
+const DarkWeb = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/dark%20web.png?raw=true"
+const Home = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/home.png?raw=true"
+const Profile = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/NavBar2/profile.png?raw=true"
 
 const float = keyframes`
   0%, 100% {
@@ -23,16 +23,16 @@ const float = keyframes`
 
 const colorChangeAnimation = keyframes`
   0%, 100% {
-    color: #FF0000;
+    color:rgb(1, 66, 197);
   }
   80% {
-    color: #A7FFEB;
+    color:rgb(4, 159, 123);
   }
   50% {
-    color: #FFFF8D;
+    color:rgb(55, 55, 49);
   }
   30% {
-    color: #EEEEEE;
+    color:rgb(37, 3, 19);
   }
 `;
 
@@ -52,9 +52,14 @@ function Navbar() {
 
   const buttonData = [
     {
-      path: '/scaron',
-      image: User,
-      text: 'ScareOn',
+      path: '/profile',
+      image: Profile,
+      text: 'Profile',
+    },
+    {
+      path: '/darkweb',
+      image: DarkWeb,
+      text: 'DarkWeb',
     },
     {
       path: '/podcast',
@@ -62,14 +67,9 @@ function Navbar() {
       text: 'PodCast',
     },
     {
-      path: '/darkweb',
-      image: Laptop,
-      text: 'Dark web',
-    },
-    {
-      path: '/stories',
-      image: Stories,
-      text: 'Stories',
+      path: '/social',
+      image: Reels,
+      text: 'Reels',
     },
     {
       path: '/',
@@ -89,70 +89,71 @@ function Navbar() {
         zIndex: 1000, // Ensure it's above other content
       }}
     >
-    <div  style={{ display: 'flex', justifyContent: 'center',background:"transparent", alignItems: 'center', height: parentBoxHeight }}>
-      <Box
-        // border="1px solid red"
-        
-        // backgroundColor="blue.200"
-        borderRadius="50%"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        position="relative"
-      >
+      <div style={{ display: 'flex', justifyContent: 'center', background: "transparent", alignItems: 'center', height: parentBoxHeight }}>
         <Box
-        animation= {`${float} 2.5s ease-in-out infinite`}
-          onClick={toggleButtons}
-          // bg={NavBG}
-          style={{
-            borderRadius: '50%',
-            width: '50px',
-            height: '50px',
-            marginBottom: '0px',
-            backgroundColor: 'transparent',
-            color: 'white',
-            
-            // border:"1px solid red"
-          }}
+          // border="1px solid red"
+
+          // backgroundColor="blue.200"
+          borderRadius="50%"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          position="relative"
         >
-        <Image borderRadius={"50%"} src={L_arrow} w="100%" h="100%"/>
-        </Box>
-        {showButtons && (
-          <div
-            style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+          <Box
+            animation={`${float} 2.5s ease-in-out infinite`}
+            onClick={toggleButtons}
+            // bg={NavBG}
+            style={{
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              marginBottom: '0px',
+              backgroundColor: 'transparent',
+              color: 'white',
+
+              // border:"1px solid red"
+            }}
           >
-            {buttonData.map((button, index) => (
-              <Box
-              
-                key={index}
-                style={{
-                  position: 'absolute',
-                  transform: `translate(-50%, -50%) translateX(${-Math.sin(angle * index) * 70}px) translateY(${Math.cos(angle * index) * 70}px)`,
-                  borderRadius: '50%',
-                  width: '50px',
-                  height: '50px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: 'grey',
-                  color: 'white',
-                }}
-                onClick={() => navigate(button.path)}
-              >
-                <span style={{ fontSize: '10px' }}></span>
-                <Image  src={button.image} w="70%" h="65%"/>
-                <Text animation={`${colorChangeAnimation} 8s infinite alternate`} fontSize="9px" >{button.text}</Text>
-              </Box>
-            ))}
-          </div>
-        )}
-      </Box>
-    </div>
+            <Image borderRadius={"50%"} src={L_arrow} w="100%" h="100%" />
+          </Box>
+          {showButtons && (
+            <div
+              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+            >
+              {buttonData.map((button, index) => (
+                <Box
+                 
+                  key={index}
+                  style={{
+                    position: 'absolute',
+                    transform: `translate(-50%, -50%) translateX(${-Math.sin(angle * index) * 70}px) translateY(${Math.cos(angle * index) * 70}px)`,
+                    borderRadius: '50%',
+                    width: '50px',
+                    height: '50px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#fff',
+                    border: "2.5px solid rgb(61, 60, 60)",
+                    color: 'white',
+                  }}
+                  onClick={() => navigate(button.path)}
+                >
+                  <span style={{ fontSize: '10px' }}></span>
+                  <Image  src={button.image} w="70%" h="65%" />
+                  <Text  fontWeight={"bold"} animation={`${colorChangeAnimation} 8s infinite alternate`} fontSize="9px" >{button.text}</Text>
+                </Box>
+              ))}
+            </div>
+          )}
+        </Box>
+      </div>
     </div>
   );
 }
-        
+
 export default Navbar;
 
