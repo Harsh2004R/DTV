@@ -13,14 +13,14 @@ import DummyScareOnCard from "../Templates/DummyScareOnClip";
 import Slider from '../Components/Slider.jsx';
 
 
-const AudioPlayerIMG = "https://i.ibb.co/NrpFM76/Audio-Player-IMG.png";
+const AudioPlayerIMG = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Audio-Player-IMG.png?raw=true";
 const Mid2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/src/Photo/Mid.avif";
-const HauntedBG = "https://i.ibb.co/CBySFbV/Haunted-BG.jpg";
-const Hashima = "https://i.ibb.co/w0yVJ1y/Hashima.png";
-const Hacker = "https://i.ibb.co/BGG6zVh/Hacker.jpg";
-const HauntedHouse = "https://i.ibb.co/YWJF3PP/Haunted-House.jpg";
-const GirlHacker = "https://i.ibb.co/R7KJ65v/Girl-Hacker.jpg";
-const SkullImg = "https://i.ibb.co/YjQ36Tn/SkullImg.jpg";
+const HauntedBG = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Haunted-BG.jpg?raw=true";
+const Hashima = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Hashima.png?raw=true";
+const Hacker = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Hacker.jpg?raw=true";
+const HauntedHouse = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Haunted-House.jpg?raw=true";
+const GirlHacker = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/Girl-Hacker.jpg?raw=true";
+const SkullImg = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomePage/SkullImg.jpg?raw=true";
 
 
 const slideInFromLeft = keyframes`
@@ -95,7 +95,7 @@ function Home() {
       {/* Slider Starts here------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
 
-      <Box h={{ base: "70vh", md: "80vh", lg: "100vh" }}  w="100%" bg={gradient1} >
+      <Box h={{ base: "70vh", md: "80vh", lg: "100vh" }} w="100%" bg={gradient1} >
         <Slider />
         <CustomAlert isOpen={showAlert} onClose={handleCloseAlert} />
       </Box>
