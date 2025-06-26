@@ -17,22 +17,22 @@ const DWintro2 = "https://github.com/Harsh2004R/full-stack-wev-project/raw/main/
 
 
 
-const DWthumbnail1 = "https://i.ibb.co/GRWLQNf/DWthumbnail1.png";
-const DWthumbnail2 = "https://i.ibb.co/nbXFPTJ/DWthumbnail2.png";
-const DWgameofwex = "https://i.ibb.co/K5mg48L/DWgameofwex.jpg";
-const DWsprit = "https://i.ibb.co/jDGhrKS/DWsprit.png";
+const DWthumbnail1 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/DWthumbnail1.png?raw=true";
+const DWthumbnail2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/DWthumbnail2.png?raw=true";
+const DWgameofwex = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/DWgameofwex.jpg?raw=true";
+const DWsprit = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/DWsprit.png?raw=true";
 const DWbg1 = "https://img.freepik.com/free-vector/halloween-background-with-tree-pumpkin-grunge-style_1048-3038.jpg?size=626&ext=jpg&ga=GA1.1.1559264531.1691417508&semt=ais";
 const DWbg2 = "https://img.freepik.com/free-vector/gradient-halloween-instagram-posts-collection-with-photo_23-2149065411.jpg?size=626&ext=jpg&ga=GA1.1.1559264531.1691417508&semt=ais";
 
 
-const YY1 = "https://i.ibb.co/C8zyfj2/YY6.png";
-const YY2 = "https://i.ibb.co/wr7sFh0/YY2.png";
-const YY3 = "https://i.ibb.co/m6VMt0t/YY3.png";
-const YY4 = "https://i.ibb.co/68htgy0/YY4.png";
-const YY5 = "https://i.ibb.co/vmbXnr4/YY5.png";
-const YY6 = "https://i.ibb.co/C8zyfj2/YY6.png";
-const YY7 = "https://i.ibb.co/thdbnf9/YY7.png";
-const YY8 = "https://i.ibb.co/pQxf5mp/YY8.png";
+const YY1 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY6%20(1).png?raw=true";
+const YY2 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY2.png?raw=true";
+const YY3 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY3.png?raw=true";
+const YY4 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY4.png?raw=true";
+const YY5 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY5.png?raw=true";
+const YY6 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY6%20(1).png?raw=true"
+const YY7 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY7.png?raw=true";
+const YY8 = "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/Dark%20web/YY8.png?raw=true";
 
 
 
@@ -397,7 +397,7 @@ function DarkWeb() {
 
 
 
-      <Box w="100%" h="auto" pr={{base:"4px",md:"8px",lg:"10px"}}  pl={{base:"4px",md:"8px",lg:"10px"}} bg={gradient_xx}
+      <Box w="100%" h="auto" pr={{ base: "4px", md: "8px", lg: "10px" }} pl={{ base: "4px", md: "8px", lg: "10px" }} bg={gradient_xx}
       // border={"2px solid cyan"}
       >
         <Text textAlign={"center"} bg={gradient_x} color="#FFFFFF" fontSize={{ base: "3xl", md: "5xl" }} display="flex"
@@ -539,7 +539,7 @@ function DarkWeb() {
         <Text p={{ base: "5", sm: "8", md: "10" }} textAlign={"center"} animation={{ base: `${shadow} 2s infinite`, md: `$${shadow} 2s infinite` }} fontSize={{ base: "22px", md: "45px" }} fontFamily={"just-die-already"} color="#fff">Premium Dark Zone</Text>
 
         <Button display="alex" justifyContent={"center"} w="150px" onClick={handleDarkWebPaypage} _hover={{ boxShadow: '0 0 10px 5px skyblue' }} fontSize={{ base: "22px", md: "28px" }} border="1px dashed #29B6F6" color="#fff" bg={"blue.500"} m="auto" textAlign="center">
-         Buy
+          Buy
         </Button>
 
         <ArticleList />
