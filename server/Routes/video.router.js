@@ -24,28 +24,28 @@ VideoRouter.post("/post/video", async (req, res) => {
 VideoRouter.get("/get/videos", async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const limit = parseInt(req.query.limit) || 5;
         const category = req.query.category || null;
-        const theme = req.query.theme || null;
         const skip = (page - 1) * limit;
         const query = {};
         if (category) query.category = { $regex: new RegExp(category, "i") };
-        if (theme) query.theme = parseInt(theme);
 
         const videodata = await VideoModel.find(query).skip(skip).limit(limit);
         const total = await VideoModel.countDocuments(query);
+        const totalPages = Math.ceil(total / limit);
+        const isLastPage = page >= totalPages;
         res.status(200).json({
             msg: "Paginated video data",
             data: videodata,
             total,
             page,
-            totalPages: Math.ceil(total / limit)
+            totalPages,
+            isLastPage
         });
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error in getting data", error: error.message });
     }
 })
-
 
 
 
