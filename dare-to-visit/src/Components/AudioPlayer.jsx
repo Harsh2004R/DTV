@@ -33,45 +33,91 @@ const glowAnimation = keyframes`
 
 const phoneBGs = [
     {
-        url: "https://cdn.pixabay.com/photo/2017/07/23/05/14/fantasy-2530602_640.jpg",
+        url: 'https://img.freepik.com/premium-photo/mummy-wearing-headphones-dark-background_195703-4944.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'Phone Image 1',
     },
     {
-        url: 'https://cdn.pixabay.com/photo/2018/08/27/10/11/radio-cassette-3634616_640.png',
+        url: "https://cdn.pixabay.com/photo/2017/07/23/05/14/fantasy-2530602_640.jpg",
         alt: 'Phone Image 2',
     },
     {
-        url: 'https://images.unsplash.com/photo-1504903271097-d7e7c7f5f7ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGFya3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/skeleton-s-hand-sticking-out-skull-ground_23-2147898918.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 3',
     },
     {
-        url: 'https://cdn.pixabay.com/photo/2015/02/04/09/20/skulls-623532_640.jpg',
+        url: 'https://img.freepik.com/free-photo/dark-fantasy-scene_23-2151136211.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 4',
     },
     {
-        url: 'https://cdn.pixabay.com/photo/2017/03/09/20/53/microphone-2130806_640.jpg',
+        url: 'https://img.freepik.com/free-photo/close-up-scary-doll-with-strings_23-2150872644.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 5',
     },
     {
-        url: 'https://images.unsplash.com/photo-1476136236990-838240be4859?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGJhbm5lciUyMG11c2ljfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/view-scary-clown-face-entity-with-creepy-smile-coming-out-from-curtains_23-2150812497.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 6',
     },
     {
-        url: 'https://cdn.pixabay.com/photo/2018/03/18/15/26/villa-3237114_640.jpg',
+        url: 'https://img.freepik.com/free-photo/close-up-zombie-taking-selfie_23-2150838873.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 7',
     },
     {
-        url: 'https://images.unsplash.com/photo-1600497900863-2dfbeedb06a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWMlMjBwbGF5ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/halloween-banner-with-spooky-skull_23-2149559035.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 8',
     },
     {
-        url: 'https://cdn.pixabay.com/photo/2020/04/15/14/45/microphone-5046876_640.jpg',
+        url: 'https://img.freepik.com/free-photo/packed-plastic-bag-skull-illuminated-by-orange-light_23-2147905872.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 9',
     },
     {
-        url: 'https://images.unsplash.com/photo-1627389955646-6596047473d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fGlsbHVzaW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/cranium-with-smoky-hole-nape_23-2147905908.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 10',
     },
+    {
+        url: 'https://img.freepik.com/free-photo/halloween-zombie-hand-holding-skull-cemetery_23-2147898832.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+    {
+        url: 'https://img.freepik.com/free-psd/halloween-make-up-woman-triangle_23-2148313632.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+    {
+        url: 'https://img.freepik.com/free-photo/woman-looking-skull-black-background_23-2148275432.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+    {
+        url: 'https://img.freepik.com/free-photo/view-scary-clown-with-creepy-smile_23-2150812576.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+    {
+        url: 'https://img.freepik.com/free-photo/portrait-terrifing-clown_23-2150549664.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+
+    {
+        url: 'https://img.freepik.com/free-photo/human-skull-with-drink-spiderweb_23-2148273502.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+
+    {
+        url: 'https://img.freepik.com/free-photo/skull-makeup-portrait-young-man_158595-3258.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+
+    {
+        url: 'https://img.freepik.com/free-photo/cartoon-style-character-wearing-headphones_23-2151056749.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+
+    {
+        url: 'https://img.freepik.com/free-photo/front-view-scary-character-posing_23-2150701014.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+    {
+        url: 'https://img.freepik.com/free-photo/close-up-portrait-witch-from-indigenous-african-tribe-wearing-traditional-costume-make-up-concept-isolated-dark-background_613910-6139.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
+        alt: 'PC Image 10',
+    },
+
+
 
 
 ];
@@ -82,27 +128,27 @@ const pcBGs = [
         alt: 'PC Image 1',
     },
     {
-        url: 'https://plus.unsplash.com/premium_photo-1664195074951-fe91ec456eed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cG9kY2FzdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/hand-sticking-out-ground-near-heavy-fog_23-2147898935.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 2',
     },
     {
-        url: 'https://images.unsplash.com/photo-1663775635512-c60be8b302b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmV0ZmxpeCUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/view-people-addicted-their-smartphone-looking-scrolling-through-screens_23-2151487183.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 3',
     },
     {
-        url: 'https://images.unsplash.com/photo-1663847709955-a2f171c7b54b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV0ZmxpeCUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-vector/rock-music-poster-with-therapy-label-design-t-shirts-greeting-cards_1284-49233.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 4',
     },
     {
-        url: 'https://images.unsplash.com/photo-1590602846989-e99596d2a6ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBvZGNhc3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/scary-skull-plastic-bag_23-2147905868.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 5',
     },
     {
-        url: 'https://images.unsplash.com/photo-1663568714479-9cccbd410076?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEyfHxob3Jyb3IlMjBzdG9yeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/two-skulls-book-red-light_23-2147905810.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 6',
     },
     {
-        url: 'https://images.unsplash.com/photo-1686285961779-5070bdb03036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ2fHxob3Jyb3IlMjBzdG9yeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-psd/sideways-woman-with-skull-glitch-effect_23-2148313629.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 7',
     },
     {
@@ -110,11 +156,11 @@ const pcBGs = [
         alt: 'PC Image 8',
     },
     {
-        url: 'https://images.unsplash.com/photo-1617743220812-6522d771846c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fGVhcnBob25lc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/creepy-skull-books-pile-smoke_23-2147905849.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 9',
     },
     {
-        url: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bmV0ZmxpeCUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://img.freepik.com/free-photo/scary-zombie-hand-from-ground-night_23-2149105929.jpg?uid=R110013667&ga=GA1.1.1559264531.1691417508&semt=ais_items_boosted&w=740',
         alt: 'PC Image 10',
     },
 
@@ -360,7 +406,7 @@ const AudioPlayer = () => {
                                         <IoMusicalNote p="2" color="white" size="25px" />
                                     </Box>
                                 </Center>
-                                <Box _hover={{cursor:"pointer"}} onClick={() => handleChangeAfterClick(el.url)} w="100%" display={"flex"} alignContent={"center"} h="auto">
+                                <Box _hover={{ cursor: "pointer" }} onClick={() => handleChangeAfterClick(el.url)} w="100%" display={"flex"} alignContent={"center"} h="auto">
                                     <Text fontSize={{ base: "14px", md: "15px", lg: "16px" }} color="#fff">{el.title}</Text>
                                 </Box>
                             </Flex>

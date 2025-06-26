@@ -4,16 +4,7 @@ import AudioPlayer from '../Components/AudioPlayer';
 import Footer from "../Components/Footer";
 import Topper from "../Components/Topper.jsx"
 import Navbar2 from "../Components/Navbar2";
-const slideInFromLeft = keyframes`
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`;
+
 
 
 
