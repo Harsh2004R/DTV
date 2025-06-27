@@ -43,6 +43,7 @@ import UserPost from '../Pages/UserPost.jsx';
 import Uploads from '../Pages/Uploads.jsx';
 import UserReels from '../Pages/UserReels.jsx';
 import ErrorPage from '../Pages/ErrorPage.jsx';
+import ContactUs from '../Pages/ContactUs.jsx';
 
 function AllRoutes() {
   const [firstVisit, setFirstVisit] = useState(null);
@@ -96,7 +97,7 @@ function AllRoutes() {
         {/* <Route path="/top" element={<Topper />}></Route> */}
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
         <Route path="/test" element={<Test />}></Route>
-        {/* <Route path="/footer" element={<Footer />}></Route>  */}
+        <Route path="/contact" element={<ContactUs />}></Route> 
         <Route element={<PrivateRoutes />}>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/uploads" element={<Uploads />}></Route>
