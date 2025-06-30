@@ -2,15 +2,15 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../Context/AuthContext.js';
-import { Box, Input, Text, Button, FormControl, keyframes, Center, Spinner } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { Box, Input, Text, Button, FormControl, keyframes, Center, Spinner, } from '@chakra-ui/react';
+import { useNavigate, Link } from 'react-router-dom';
 import { BE_URL } from "../URL.js"
 import { showToast } from '../Utils/toast';
 const gradient = `linear-gradient(to right ,#424242, #000000, #757575)`
 const glowAnimation = keyframes`
-  0% { box-shadow: 0 0 0px coral; }
-  50% { box-shadow: 0 0 10px 5px coral; }
-  100% { box-shadow: 0 0 0px coral; }
+  0% { box-shadow: 0 0 0px rgb(238, 96, 86); }
+  50% { box-shadow: 0 0 10px 5px rgb(231, 68, 56); }
+  100% { box-shadow: 0 0 0px rgb(240, 47, 33); }
 `;
 
 const LoginBG3 = 'https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/LoginBG3.jpg?raw=true';
@@ -66,12 +66,13 @@ function Login() {
         let token = res.data.token;
         let userId = res.data.user.userId
         let role = res.data.user.role
+        let userProfile = res.data.user.profile
         localStorage.setItem("token", token);
         localStorage.setItem("userID", userId);
         localStorage.setItem("role", role);
         if (token || userId) {
           setLoading(!true);
-          login(token);
+          login(token, userProfile);
         }
 
       })
@@ -156,6 +157,7 @@ function Login() {
             h={{ base: "100vh", md: "100vh" }}
             bg={gradient}
             display="flex"
+
             justifyContent="center"
             alignItems="center"
             fontSize={{ base: "1rem", md: "1.2rem" }}
@@ -169,6 +171,7 @@ function Login() {
               width={{ base: "100%", md: "60%" }}
               height="100vh"
               display="flex"
+              flexDir={"column"}
               justifyContent="center"
               alignItems="center"
             >
@@ -192,7 +195,14 @@ function Login() {
                   Login
                 </Text>
               </Box>
-              <Box border="none" maxWidth="25rem" p="2.8125rem" borderWidth={1} borderRadius={8} boxShadow="lg" bgColor="transparent"> {/* Converted to rem */}
+              <Box
+                _hover={{
+                  bg: "rgba(255, 255, 255, 0.07)",
+                  backdropFilter: "blur(5px)",
+                  boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(255, 7, 7, 0.23) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+                }}
+                transition={"0.7s ease-in"} border="0.5px solid rgba(255, 255, 255, 0.03)"
+                mt={{ base: "none", md: "50px" }} maxWidth={{ base: "18rem", md: "18rem", lg: "20rem" }} p="2.9125rem" borderWidth={1} borderRadius={8} boxShadow="lg" > {/* Converted to rem */}
                 <form onSubmit={handleSubmit} >
                   <FormControl p="0.625rem" mb="1.25rem">
 
@@ -200,7 +210,7 @@ function Login() {
 
                     <Input
                       onClick={stopPropagation}
-                      color="#FF6F00"
+                      color="#6E7D92"
                       pt="0.625rem"
                       variant="unstyled"
                       placeholder="Your valid Email"
@@ -219,7 +229,7 @@ function Login() {
 
                     <Input
                       onClick={stopPropagation}
-                      color="#FF6F00"
+                      color="#6E7D92"
                       border="none"
                       pt="0.625rem"
                       variant="unstyled"
@@ -241,14 +251,21 @@ function Login() {
                       _active={{ transform: 'scale(1.5)' }}
                       display="flex" alignItems="center" m="auto" fontSize={{ base: "18px", md: "25px" }} type="submit" bgColor="transparent" borderRadius="md" w={{ base: "100px", md: "120px" }} // Converted to rem
                     >
-                      <Text fontFamily="caslon-antique" color="#FF7043">Enter !</Text>
+                      <Text fontFamily="caslon-antique" color="#F44336">Enter !</Text>
                     </Button>
                   </Box>
                 </form>
               </Box>
+              <Link to="/signup"><Text mt="25px" textAlign={"center"} fontSize={{ base: "13px", md: "15px", lg: "16px" }}
+                letterSpacing={"1px"} textDecor={"underline"} color="#CFD8DC" transition={"1s ease-out"} _hover={{ cursor: "pointer", color: "#78909C" }}>New in evil era? Signup</Text>
+              </Link>
+              <Text fontSize="10px" color="gray.500" textAlign="center" mt={1}>
+                © {new Date().getFullYear()} DTV. All rights reserved.
+              </Text>
             </Box>
-          </Box>
-        )}
+          </Box >
+        )
+      }
       <audio ref={handleAudioRef} />
 
 

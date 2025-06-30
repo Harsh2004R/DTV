@@ -12,8 +12,9 @@ const AuthContextProvider = ({ children }) => {
 
 
 
-    const login = (token) => {
+    const login = (token, userProfile) => {
         localStorage.setItem("token", token);
+        localStorage.setItem("profile", userProfile)
         setIsAuth(true);
         showToast({
             title: "Login Success",
@@ -71,13 +72,13 @@ const AuthContextProvider = ({ children }) => {
             console.error("Invalid token or error verifying:", err);
             logout(); // invalid token or network error
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
 
     };
 
     return (
-        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading, navTologin,role }}>
+        <AuthContext.Provider value={{ isAuth, login, logout, setIsAuth, loading, navTologin, role }}>
             {children}
         </AuthContext.Provider>
     );

@@ -25,7 +25,9 @@ import {
     SliderFilledTrack,
     SliderThumb,
     Center,
-    Spinner
+    Spinner,
+    Button,
+    Tooltip
 } from '@chakra-ui/react';
 import {
     FiVideo,
@@ -35,9 +37,9 @@ import {
 } from 'react-icons/fi';
 import axios from "axios";
 import { BE_URL } from "../URL";
-import { Navigate, useNavigate } from "react-router";
-
-
+import { useNavigate } from "react-router";
+import { FcPrevious } from "react-icons/fc";
+import { FcNext } from "react-icons/fc";
 
 const LinkItems = [
     { name: 'Urban legends', icon: FiVideo, },
@@ -47,18 +49,14 @@ const LinkItems = [
     { name: 'spooky', icon: FiVideo },
 ];
 
-const SidebarContent = ({ onClose, setCategory, setTheme, theme, ...rest }) => {
-    const handleSliderChange = (val) => {
-        setTheme(val); // Call parent state setter
-        console.log("theme:- ", theme);
-    };
+const SidebarContent = ({ onClose, setCategory, setPageno, ...rest }) => {
+
 
     const handleCategoryClick = (category) => {
         setCategory(category); // Call parent state setter
-        console.log("cat:- ", category);
+        setPageno(1)
     };
 
-    const valueText = `${theme}%`;
 
     return (
         <Box
@@ -88,22 +86,7 @@ const SidebarContent = ({ onClose, setCategory, setTheme, theme, ...rest }) => {
             ))}
 
             <Divider borderColor={"#6b947f"} />
-            <Box w="90%" textAlign="center" m="auto">
-                <Text mt="2" textAlign={"center"} color={"#FFFFFF"}>{valueText}</Text>
-                <Slider
-                    aria-label="horizontal-slider"
-                    value={theme}
-                    onChange={handleSliderChange}
-                    min={10}
-                    max={100}
-                    step={10}
-                >
-                    <SliderTrack bg="gray.200">
-                        <SliderFilledTrack bg="#6b947f" />
-                    </SliderTrack>
-                    <SliderThumb boxSize={4} bg="#FFFFFF" />
-                </Slider>
-            </Box>
+
         </Box>
     );
 };
@@ -248,31 +231,39 @@ const MobileNav = ({ onOpen, ...rest }) => {
     );
 };
 
-const Video = () => {
+const Videos = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [getVideos, setGetVideos] = useState([]);
     const [pageno, setPageno] = useState(1);
-    const [limitno, setLimitTo] = useState(8);
+    const [limitno, setLimitTo] = useState(5);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     // These are now shared states
-    const [category, setCategory] = useState('cult');
-    const [theme, setTheme] = useState(80);
+    const [category, setCategory] = useState('');
+    const [hasMoreData, setHasMoreData] = useState(true);
+    const [totalPages, setTotalPages] = useState("")
 
     useEffect(() => {
         fetchVideos();
-    }, [category, theme]); // Refetch when these change
+    }, [category, pageno]); // Refetch when these change
 
     const fetchVideos = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`${BE_URL}api/get/videos?page=${pageno}&limit=${limitno}&category=${category}&theme=${theme}`);
+            const res = await axios.get(`${BE_URL}api/get/videos?page=${pageno}&limit=${limitno}&category=${category}`);
             setGetVideos(res.data.data);
-            console.log(getVideos)
+            setHasMoreData(!res.data.isLastPage);
+            setTotalPages(res.data.totalPages);
+            // console.log(getVideos)
             setError(null);
         } catch (err) {
-            setError('Failed to fetch videos');
+            const message =
+                err?.response?.data?.message ||
+                err?.message ||
+                "Something went wrong";
+            setHasMoreData(false);
+            setError(message);
         }
         setLoading(false);
     };
@@ -287,18 +278,14 @@ const Video = () => {
             </Flex>
         </Center>
     }
-    if (error) {
-        return <Center bg="#303030" w="100%" h="100vh">
-            <Text textAlign={"center"} color="#FF5722" fontSize={{ base: "14px", md: "15px", lg: "16px" }}>{error}</Text>
-        </Center>
-    }
+
     return (
         <>
+
             <SidebarContent
                 onClose={onClose}
                 setCategory={setCategory}
-                setTheme={setTheme}
-                theme={theme}
+                setPageno={setPageno}
                 display={{ base: 'none', md: 'block' }}
             />
             <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
@@ -306,77 +293,119 @@ const Video = () => {
                     <SidebarContent
                         onClose={onClose}
                         setCategory={setCategory}
-                        setTheme={setTheme}
-                        theme={theme}
+                        setPageno={setPageno}
                     />
                 </DrawerContent>
             </Drawer>
 
             <MobileNav onOpen={onOpen} />
+            {error ? (
+                <Center bg="#303030" w="100%" h="100vh">
+                    <Text textAlign={"center"} color="#FF5722" fontSize={{ base: "14px", md: "15px", lg: "16px" }}>{error}</Text>
+                </Center>
+            ) :
 
-            <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+                (<Box minH="100vh" bg="grey">
 
 
-
-
-
-
-                <Box ml={{ base: 0, md: 60 }} bg="#000000" p="4"
-                    h="100vh" // set it to auto if video goes below black box
-                    overflowY={"auto"} // remove it if video not scrolls 
-                // border="1px solid cyan"
-                >
-
-                    <Box
-                        w="100%" mt="50px" h="auto"
+                    <Box ml={{ base: 0, md: 60 }} bg="#000000" p="4"
+                        h="100vh" // set it to auto if video goes below black box
+                        overflowY={"auto"} // remove it if video not scrolls 
                     // border="1px solid cyan"
                     >
 
-                        {/* Content */}
+                        <Box
+                            w="100%" mt="50px" h="auto"
+                        // border="1px solid cyan"
+                        >
+
+                            {/* Content */}
 
 
-                        {
-                            getVideos.length === 0 ?
-                                (
-                                    <Center bg="#303030" w="100%" h="100vh">
-                                        <Text textAlign={"center"} color="#fff" fontWeight={"600"} fontSize={{ base: "22px", md: "25px", lg: "28px" }}>No videos Found...</Text>
+                            {
+                                getVideos.length === 0 ?
+                                    (
+                                        <Center bg="#303030" w="100%" h="100vh">
+                                            <Text textAlign={"center"} color="#fff" fontWeight={"600"} fontSize={{ base: "22px", md: "25px", lg: "28px" }}>No videos Found...</Text>
+                                        </Center>
+                                    )
+                                    : (getVideos.map((el, i) => (
+                                        <Box pb={{ base: "10px", md: "20px" }} display="flex" mt={{ base: "10px", md: "20px" }} flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "45vh", md: "auto" }} key={i}>
+                                            <Box border="2px solid red" mt={{ base: "10px", md: "20px" }} w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }}>
+                                                <iframe
+                                                    width={"100%"}
+                                                    height="100%"
+                                                    borderradius="18px"
+                                                    src={el.video_url}
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                    title={"hello"}
+                                                ></iframe>
+                                            </Box>
+                                            <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF">
+                                                <Text
+                                                    // fontFamily={"my"}
+                                                    fontFamily="monospace" mt="12px"
+                                                    fontSize={{ base: "16px", md: "28px" }}>{el.video_title}</Text>
+                                                <Divider />
+                                            </Box>
+                                        </Box>
+                                    )))
+                            }
+
+                            {/* pagination starts here -----------------------------------------agination starts here---------------------------------------------------------------------------agination starts here*/}
+                            {getVideos.length !== 0 ?
+                                (<Center w="100%">
+                                    <Center p={1} flexDir={"column"} bottom={"0"} px={{ base: "20%", md: "25%", lg: "30%" }} bg="#212121" position={"fixed"}>
+                                        <Center w={{ base: "220px", md: "300px", lg: "350px" }} justifyContent={"space-between"} h="40px" >
+                                            <Tooltip label="Previous Page" hasArrow placement="top">
+                                                <Button
+                                                    borderRadius="full"
+                                                    width="40px"
+                                                    height="40px"
+                                                    display="flex"
+                                                    alignItems="center"
+                                                    justifyContent="center"
+                                                    p={0} // removes extra padding
+                                                    isDisabled={pageno === 1}
+                                                    onClick={() => setPageno(prev => Math.max(prev - 1, 1))}
+                                                >
+                                                    <FcPrevious size={18} />
+                                                </Button>
+                                            </Tooltip>
+                                            <Text fontFamily={"monospace"} fontSize={{ base: "xs", md: "sm", lg: "sm" }} color="#fff">Page {pageno}/{totalPages}</Text>
+                                            <Tooltip label={hasMoreData ? "Next" : "Last Page 😪"} hasArrow placement="top">
+                                                <Button
+                                                    borderRadius="full"
+                                                    width="40px"
+                                                    height="40px"
+                                                    display="flex"
+                                                    alignItems="center"
+                                                    justifyContent="center"
+                                                    p={0} // removes extra padding
+                                                    isDisabled={!hasMoreData}
+                                                    onClick={() => setPageno(prev => prev + 1)}
+                                                >
+                                                    <FcNext size={18} />
+                                                </Button>
+                                            </Tooltip>
+                                        </Center>
                                     </Center>
-                                )
-                                : (getVideos.map((el, i) => (
-                                    <Box pb={{ base: "10px", md: "20px" }} display="flex" mt={{ base: "10px", md: "20px" }} flexDirection={{ base: "column", md: "row" }} justifyContent={"space-evenly"} w="100%" h={{ base: "45vh", md: "auto" }} key={i}>
-                                        <Box border="2px solid red" mt={{ base: "10px", md: "20px" }} w={{ base: "100%", md: "50%" }} borderRadius={"8px"} h={{ base: "30vh", md: "48vh" }}>
-                                            <iframe
-                                                width={"100%"}
-                                                height="100%"
-                                                borderradius="18px"
-                                                src={el.video_url}
-                                                frameBorder="0"
-                                                allowFullScreen
-                                                title={"hello"}
-                                            ></iframe>
-                                        </Box>
-                                        <Box w={{ base: "100%", md: "40%" }} color="#FFFFFF">
-                                            <Text
-                                                // fontFamily={"my"}
-                                                fontFamily="monospace"
-                                                fontSize={{ base: "16px", md: "35px" }}>{el.video_title}</Text>
-                                            <Divider />
-                                        </Box>
-                                    </Box>
-                                )))
-                        }
+                                </Center>) : (<></>)}
 
-                        {/* pagination starts here -----------------------------------------agination starts here---------------------------------------------------------------------------agination starts here*/}
+                            {/* // 28 may 2025... */}
 
-                        {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
 
+
+                            {/* pagination ends here --------------------------------pagination ends here-----------------------------------------------------------pagination ends here- */}
+
+
+                        </Box>
 
                     </Box>
-
-                </Box>
-            </Box>
+                </Box>)}
         </>
     );
 };
 
-export default Video;
+export default Videos;

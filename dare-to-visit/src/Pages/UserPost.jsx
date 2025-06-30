@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
     Box,
     SimpleGrid,
@@ -61,7 +62,7 @@ const UserPost = () => {
                         <Text>Loading your posts...</Text>
                     </VStack>
                 ) : posts.length === 0 ? (
-                    <Text  color="#fff" letterSpacing={"1px"} fontFamily={"caslon-antique"} textAlign="center" fontSize="lg">
+                    <Text color="#fff" letterSpacing={"1px"} fontFamily={"caslon-antique"} textAlign="center" fontSize="lg">
                         No posts to show yet.
                     </Text>
                 ) : (
@@ -76,7 +77,7 @@ const UserPost = () => {
                                 h={{ base: "auto", md: "auto", lg: "auto" }}
                                 borderRadius={{ base: "0px", md: "md" }}
                                 _hover={{ boxShadow: "0 0 30px #32434a" }}
-                                // bg="#000"
+                            // bg="#000"
                             >
                                 <CardHeader  >
                                     <Flex spacing="4">
@@ -182,6 +183,9 @@ const UserPost = () => {
                         ))}
                     </SimpleGrid>
                 )}
+                <Button display={"block"} m="auto" color="">
+                    <Link to="/profile">Back</Link>
+                </Button>
             </Box >
         </>
     );

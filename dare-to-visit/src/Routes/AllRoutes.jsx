@@ -44,6 +44,8 @@ import Uploads from '../Pages/Uploads.jsx';
 import UserReels from '../Pages/UserReels.jsx';
 import ErrorPage from '../Pages/ErrorPage.jsx';
 import ContactUs from '../Pages/ContactUs.jsx';
+import Tour from '../Pages/Tour.jsx';
+
 
 function AllRoutes() {
   const [firstVisit, setFirstVisit] = useState(null);
@@ -72,12 +74,12 @@ function AllRoutes() {
         {/* <Route path="/media" element={<Media />}></Route> */}
         {/* <Route path="/scareOncard" element={<ScareOnCard />}></Route> */}
         {/* <Route path="/scareOnclip" element={<ScareOnClip />}></Route> */}
-        <Route path="/footer" element={<Footer />}></Route>
-        <Route path="/nav2" element={<Navbar2 />}></Route>
+        {/* <Route path="/footer" element={<Footer />}></Route> */}
+        {/* <Route path="/nav2" element={<Navbar2 />}></Route> */}
         {/* <Route path="/VideoComponent" element={<VideoComponent />}></Route> */}
         <Route path="/DarkWeb" element={<DarkWeb />}></Route>
-        <Route path="/pay" element={<DarkWebPay />}></Route>
-        <Route path="/cause" element={<DeathCause />}></Route>
+        {/* <Route path="/pay" element={<DarkWebPay />}></Route> */}
+        {/* <Route path="/cause" element={<DeathCause />}></Route> */}
         <Route path="/deathdate" element={<DeathDate />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/Podcast" element={<Podcast />}></Route>
@@ -85,7 +87,6 @@ function AllRoutes() {
         <Route path="/ScareOn" element={<ScareOn />}></Route>
         <Route path="/ScareOnAdmin" element={<ScareOnAdmin />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Videos" element={<Videos />}></Route>
         <Route path="/welcome" element={<Welcome />}></Route>
         {/* <Route path="/DummyScareOnCard" element={<DummyScareOnCard />}></Route> */}
         {/* <Route path="/DummyScareOnClip" element={<DummyScareOnClip />}></Route> */}
@@ -95,17 +96,20 @@ function AllRoutes() {
         <Route path="/soon" element={<ComingSoon />}></Route>
         {/* <Route path="/comments" element={<Comments />}></Route> */}
         {/* <Route path="/top" element={<Topper />}></Route> */}
+        <Route path="/tour/:id" element={<Tour />}></Route>
         <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-        <Route path="/test" element={<Test />}></Route>
-        <Route path="/contact" element={<ContactUs />}></Route> 
+        {/* <Route path="/test" element={<Test />}></Route> */}
+        <Route path="/contact" element={<ContactUs />}></Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/uploads" element={<Uploads />}></Route>
           <Route path="/social" element={<SocialMedia />}></Route>
           <Route path="/UserPost" element={<UserPost />}></Route>
           <Route path="/UserReels" element={<UserReels />}></Route>
+          <Route path="/Videos" element={<Videos />}></Route>
+
         </Route>
-        <Route path="*" element={<ErrorPage/>} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
 
 

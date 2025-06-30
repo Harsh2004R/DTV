@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Input, Text, Button, keyframes, Center,Spinner } from '@chakra-ui/react';
+import { Box, Input, Text, Button, keyframes, Center, Spinner } from '@chakra-ui/react';
 import "../Fonts.css"
 import { BE_URL } from "../URL.js"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { showToast } from '../Utils/toast';
 import axios from 'axios';
 
@@ -200,6 +200,7 @@ function SignUp() {
             width="100%"
             height="100vh"
             display="flex"
+            flexDir={"column"}
             justifyContent="center"
             alignItems="center"
             position="relative"
@@ -247,15 +248,20 @@ function SignUp() {
             </Box>
             <Box
 
-              border="1px dashed #78909C"
+              // border="1px dashed #78909C"
               w={{ base: "80%", md: "25%" }}
               p={{ base: "45", md: "5" }}
-              borderWidth={1}
+              // borderWidth={1}
               borderRadius={8}
               bgColor="transparent"
               position="relative"
               zIndex={1}
               boxShadow=" rgb(47, 52, 146) 0px 20px 30px -10px"
+              _hover={{
+                bg: "rgba(255, 255, 255, 0.07)",
+                backdropFilter: "blur(5px)",
+                boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(255, 7, 7, 0.23) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+              }} transition={"0.7s ease-in"}
             >
               <form onSubmit={handleSignin} >
                 <Box p={0} mb="5">
@@ -344,8 +350,17 @@ function SignUp() {
                   type="submit" display={"flex"} alignItems={"center"} onClick={handleSignin} bgColor="transparent" borderRadius="md" mx="auto" mt={4}>
                   <Text color="#999" letterSpacing={"2px"} fontFamily="caslon-antique" fontSize={"xl"}>WELCOME</Text>
                 </Button>
+
+
               </form>
+
             </Box>
+            <Link to="/login"><Text mt="25px" textAlign={"center"} fontSize={{ base: "13px", md: "15px", lg: "16px" }}
+              letterSpacing={"1px"} textDecor={"underline"} color="#CFD8DC" transition={"1s ease-out"} _hover={{ cursor: "pointer", color: "#78909C" }}>Login in evil era?</Text>
+            </Link>
+            <Text fontSize="10px" color="gray.500" textAlign="center" mt={1}>
+              © {new Date().getFullYear()} DTV. All rights reserved.
+            </Text>
           </Box>
         )
       }

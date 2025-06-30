@@ -58,7 +58,8 @@ const NavLink = ({ to, children }) => {
 
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { logout, isAuth, navTologin, role, loading } = useContext(AuthContext);
+    const { logout, isAuth, navTologin, role, loading, } = useContext(AuthContext);
+    const userProfile = localStorage.getItem("profile");
     if (loading) {
         return <Center><Text color="#fff">loading....</Text></Center>;
     }
@@ -113,11 +114,14 @@ export default function Simple() {
                                 cursor="pointer"
                                 zIndex={"999"}
                                 borderBottom="2px solid #FF0000"
-                                w={{ base: "100px", md: "120px", lg: "150px" }} h={{ base: "100px", md: "120px", lg: "150px" }} mt={{ base: "50px", md: "100px", lg: "100px" }}
+                                w={{ base: "70px", md: "80px", lg: "100px" }} h={{ base: "70px", md: "80px", lg: "100px" }} mt={{ base: "50px", md: "100px", lg: "100px" }}
                                 transition={"0.9s ease"}
                                 minW={"35px"} minH="35px"
                             >
-                                <Image objectFit={"cover"} rounded="full" w={{ base: "100px", md: "120px", lg: "150px" }} h={{ base: "100px", md: "120px", lg: "150px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s" />
+                                <Image objectFit={"cover"} rounded="full" w={{ base: "70px", md: "80px", lg: "100px" }} h={{ base: "70px", md: "80px", lg: "100px" }}
+
+                                     src={userProfile || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"}
+                                />
                             </MenuButton>
                             <MenuList>
                                 <Link to="/profile"><Flex w="80%">

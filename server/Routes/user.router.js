@@ -80,7 +80,7 @@ UserRouter.post("/verify", async (req, res) => { // thsi route will verify / log
             return res.status(400).json({ msg: "Invalid credentials" });
         }
         // Creating a JWT token
-        const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '12h' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '12h' });
 
         res.status(200).json({
             msg: "Login successful",
@@ -89,6 +89,7 @@ UserRouter.post("/verify", async (req, res) => { // thsi route will verify / log
                 userId: user._id,
                 email: user.email,
                 role: user.role,
+                profile: user.profile_picture,
             }
         });
     } catch (error) {

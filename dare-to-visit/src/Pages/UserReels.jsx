@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
     Box,
     SimpleGrid,
@@ -141,7 +142,7 @@ const UserReels = () => {
                                     // border="1px solid yellow" 
                                     h="auto">
                                     {el.caption && (
-                                        <Text fontWeight="bold"  fontSize={{ base: "16px", md: "20px" ,lg:"25px"}} color="#E91E63">
+                                        <Text fontWeight="bold" fontSize={{ base: "16px", md: "20px", lg: "25px" }} color="#E91E63">
                                             {el.caption}
 
                                         </Text>
@@ -182,6 +183,10 @@ const UserReels = () => {
                         ))}
                     </SimpleGrid>
                 )}
+
+                <Button display={"block"} m="auto" color="">
+                    <Link to="/profile">Back</Link>
+                </Button>
             </Box >
         </>
     );
