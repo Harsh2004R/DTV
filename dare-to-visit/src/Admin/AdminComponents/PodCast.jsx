@@ -174,8 +174,8 @@ const PodCast = () => {
             )
         }
       </Box>
-      <Box position={"fixed"} bottom={"0"} w="100%" bg="#000">
-        <Center p={1} flexDir={"column"} bottom={"0"} w={"100%"} bg="#212121" position={"absolute"} >
+      <Box position={"fixed"} bottom={"0"} >
+        <Center p={1} flexDir={"column"} bottom={"0"} borderRightRadius={"full"} borderLeftRadius={"full"}  bg="#212121" position={"absolute"} >
           <Center w={{ base: "220px", md: "300px", lg: "350px" }} justifyContent={"space-between"} h="100%" >
             <Tooltip label="Previous Page" hasArrow placement="top">
               <Button

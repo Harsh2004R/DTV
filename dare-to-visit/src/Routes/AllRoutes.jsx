@@ -47,6 +47,7 @@ import ErrorPage from '../Pages/ErrorPage.jsx';
 import ContactUs from '../Pages/ContactUs.jsx';
 import Tour from '../Pages/Tour.jsx';
 import AdminLogin from "../Admin/AdminLogin.jsx"
+import About from "../Pages/About.jsx";
 
 function AllRoutes() {
   const [firstVisit, setFirstVisit] = useState(null);
@@ -100,6 +101,7 @@ function AllRoutes() {
         <Route path="/tour/:id" element={<Tour />}></Route>
         {/* <Route path="/test" element={<Test />}></Route> */}
         <Route path="/contact" element={<ContactUs />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/uploads" element={<Uploads />}></Route>
