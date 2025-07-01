@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { Spinner, Center } from "@chakra-ui/react";
 import AuthContext from "../Context/AuthContext";
 
 const PrivateAdminRoutes = ({ children }) => {
@@ -13,7 +14,7 @@ const PrivateAdminRoutes = ({ children }) => {
         );
     }
     if (!isAuth || role !== "admin") return <Navigate to="/admin-login" replace />;
-    return children;
+    return <Outlet />;
 };
 
 export default PrivateAdminRoutes;
