@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Box, Button, Center, Grid, GridItem, Heading, Input, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Grid, GridItem, Heading, Input, Spinner, Text, Tooltip } from "@chakra-ui/react";
 import axios from 'axios';
 import { showToast } from "../../Utils/toast.js"
 import { BE_URL } from '../../URL';
+import { FcPrevious } from "react-icons/fc";
+import { FcNext } from "react-icons/fc";
+
 
 const PodCast = () => {
   const [getUrl, setGetUrl] = useState([]);
@@ -10,20 +13,25 @@ const PodCast = () => {
   const [error, setError] = useState(null);
   const [postData, setPostData] = useState({ url: "", title: "" });
   const [currentPlayingIndex, setCurrentPlayingIndex] = useState(null);
+  const [pageno, setPageno] = useState(1);
+  const [limitno, setLimitTo] = useState(3);
+  const [totalPages, setTotalPages] = useState("")
   const audioRefs = useRef([]);
 
   useEffect(() => {
     fetchPodCastUrl()
-  }, [])
+  }, [pageno])
   const fetchPodCastUrl = async () => {
     try {
-      const res = await axios.get(`${BE_URL}api/get/podcast/urls/all`);
+      const res = await axios.get(`${BE_URL}api/get/podcast/urls/all?page=${pageno}&limit=${limitno}`);
       setGetUrl(res.data.data)
+      setTotalPages(res.data.totalPages || 1);
       setLoading(false);
-      console.log(getUrl)
+      // console.log(getUrl)
     } catch (error) {
       setLoading(false);
-      setError(`error in fetching url's from server ${error.message}`)
+      setError(`error in fetching url's from server `)
+      console.log(error)
     }
 
   }
@@ -131,7 +139,7 @@ const PodCast = () => {
             (
               getUrl.map((data, idx) => (
 
-                <Grid  overflowX={"auto"} bg="#E0E0E0" gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
+                <Grid overflowX={"auto"} bg="#E0E0E0" gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
                   <GridItem>
                     <Text fontSize={{ base: "12px", md: "13px", lg: "14px" }} fontWeight={"500"} color="#1976D2" textDecor={"underline"}><Text color="black" as="span" fontWeight={"bold"}>Url :-</Text>{" "} {data.url}</Text>
                   </GridItem>
@@ -166,9 +174,50 @@ const PodCast = () => {
             )
         }
       </Box>
-        <Box position={"fixed"} bottom={"0"}  w="100%" h="10vh" bg="#000">
+      <Box position={"fixed"} bottom={"0"} w="100%"  bg="#000">
+        <Center p={1} flexDir={"column"} bottom={"0"} w={"100%"} bg="#212121" position={"absolute"} >
+          <Center w={{ base: "220px", md: "300px", lg: "350px" }} justifyContent={"space-between"} h="100%" >
+            <Tooltip label="Previous Page" hasArrow placement="top">
+              <Button
+                borderRadius="full"
+                width="40px"
+                height="40px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                p={0}
+                isDisabled={pageno === 1}
 
-        </Box>
+                onClick={() => {
+                  if (pageno > 1) {
+                    setPageno(prev => prev - 1);
+                  }
+                }}
+              >
+                <FcPrevious size={18} />
+              </Button>
+            </Tooltip>
+            <Text fontFamily={"monospace"} fontSize={{ base: "xs", md: "sm", lg: "sm" }} color="#fff">Page {pageno} of {totalPages}</Text>
+            <Tooltip label={pageno === totalPages ? "Last Page 😪" : "Next"} hasArrow placement="top">
+              <Button
+                borderRadius="full"
+                width="40px"
+                height="40px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                p={0} // removes extra padding
+                isDisabled={pageno === totalPages}
+                onClick={() => {
+                  setPageno(prev => prev + 1);
+                }}
+              >
+                <FcNext size={18} />
+              </Button>
+            </Tooltip>
+          </Center>
+        </Center>
+      </Box>
 
 
     </Box>

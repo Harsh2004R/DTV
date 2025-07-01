@@ -186,7 +186,6 @@ const AudioPlayer = () => {
     const audioRef = useRef(null);
     const [pageno, setPageno] = useState(1);
     const [limitno, setLimitTo] = useState(2);
-    const [hasMoreData, setHasMoreData] = useState(true);
     const [totalPages, setTotalPages] = useState("")
 
 
@@ -195,13 +194,11 @@ const AudioPlayer = () => {
         try {
             const res = await axios.get(`${BE_URL}api/get/podcast/urls?page=${pageno}&limit=${limitno}`);
             setGetUrl(res.data.data)
-            setHasMoreData(!res.data.isLastPage);
-            setTotalPages(res.data.totalPages || 1); s
+            setTotalPages(res.data.totalPages || 1); 
             setLoading(false);
             setError(null);
         } catch (error) {
             setLoading(false);
-            setHasMoreData(false);
             setError(`${error.response.data.msg}`)
             console.log(error)
         }
