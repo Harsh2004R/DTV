@@ -192,9 +192,13 @@ const AudioPlayer = () => {
     const fetchPodCastUrl = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`${BE_URL}api/get/podcast/urls?page=${pageno}&limit=${limitno}`);
+            const res = await axios.get(`${BE_URL}api/get/podcast/urls?page=${pageno}&limit=${limitno}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             setGetUrl(res.data.data)
-            setTotalPages(res.data.totalPages || 1); 
+            setTotalPages(res.data.totalPages || 1);
             setLoading(false);
             setError(null);
         } catch (error) {

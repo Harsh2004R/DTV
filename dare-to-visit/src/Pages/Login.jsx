@@ -67,12 +67,12 @@ function Login() {
         let userId = res.data.user.userId
         let role = res.data.user.role
         let userProfile = res.data.user.profile
-        localStorage.setItem("token", token);
-        localStorage.setItem("userID", userId);
-        localStorage.setItem("role", role);
+        // localStorage.setItem("token", token);
+        // localStorage.setItem("userID", userId);
+        // localStorage.setItem("role", role);
         if (token || userId) {
           setLoading(!true);
-          login(token, userProfile);
+          login(token, userProfile, role);
         }
 
       })

@@ -12,10 +12,12 @@ const AuthContextProvider = ({ children }) => {
 
 
 
-    const login = (token, userProfile) => {
+    const login = (token, userProfile, role) => {
         localStorage.setItem("token", token);
         localStorage.setItem("profile", userProfile)
+        localStorage.setItem("role", role);
         setIsAuth(true);
+        setRole(role);
         showToast({
             title: "Login Success",
             description: "Welcome to the dark side of reality",
@@ -30,6 +32,7 @@ const AuthContextProvider = ({ children }) => {
     };
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("role");
         setIsAuth(false);
         setRole("");
         showToast({
@@ -53,6 +56,7 @@ const AuthContextProvider = ({ children }) => {
 
     const verifyToken = async () => {
         const token = localStorage.getItem("token");
+        const storedRole = localStorage.getItem("role");
         if (!token) {
             setLoading(false);
             return;
@@ -64,7 +68,7 @@ const AuthContextProvider = ({ children }) => {
             });
             if (res.data.valid) {
                 setIsAuth(true);
-                setRole(res.data.role);
+                setRole(res.data.role || storedRole);
             } else {
                 logout(); // if token is fake or expired
             }

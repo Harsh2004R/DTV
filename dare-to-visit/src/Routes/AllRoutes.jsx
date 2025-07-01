@@ -11,6 +11,7 @@ import ScareOnCard from '../Components/ScareOnCard';
 import ScareOnClip from "../Components/ScareOnClip";
 
 import PrivateRoutes from './PrivateRoutes.jsx';
+import PrivateAdminRoutes from "./PrivateAdminRoutes.jsx";
 import DarkWeb from '../Pages/DarkWeb';
 import DarkWebPay from '../Pages/DarkWebPay';
 import DeathCause from '../Pages/DeathCause';
@@ -45,7 +46,7 @@ import UserReels from '../Pages/UserReels.jsx';
 import ErrorPage from '../Pages/ErrorPage.jsx';
 import ContactUs from '../Pages/ContactUs.jsx';
 import Tour from '../Pages/Tour.jsx';
-
+import AdminLogin from "../Admin/AdminLogin.jsx"
 
 function AllRoutes() {
   const [firstVisit, setFirstVisit] = useState(null);
@@ -97,7 +98,6 @@ function AllRoutes() {
         {/* <Route path="/comments" element={<Comments />}></Route> */}
         {/* <Route path="/top" element={<Topper />}></Route> */}
         <Route path="/tour/:id" element={<Tour />}></Route>
-        <Route path="/admin/dashboard" element={<Dashboard />}></Route>
         {/* <Route path="/test" element={<Test />}></Route> */}
         <Route path="/contact" element={<ContactUs />}></Route>
         <Route element={<PrivateRoutes />}>
@@ -107,6 +107,13 @@ function AllRoutes() {
           <Route path="/UserPost" element={<UserPost />}></Route>
           <Route path="/UserReels" element={<UserReels />}></Route>
           <Route path="/Videos" element={<Videos />}></Route>
+
+        </Route>
+        <Route path="/admin-login" element={<AdminLogin />}></Route>
+
+        <Route element={<PrivateAdminRoutes />}>
+          <Route path="/admin/dashboard" element={<Dashboard />}></Route>
+
 
         </Route>
         <Route path="*" element={<ErrorPage />} />

@@ -1,16 +1,13 @@
 const express = require("express");
 const { PodAudioModel } = require("../Models/podcast.audio.model.js");
+const requireAdmin = require("../Middlewares/admin.auth.middleware.js");
+const authenticate = require("../Middlewares/auth.middleware.js");
 const PodcastRouter = express.Router();
 
 
+// This Routes is for users...
+PodcastRouter.get("/get/podcast/urls", authenticate, async (req, res) => {
 
-PodcastRouter.get("/get/podcast/urls", async (req, res) => {
-    // try {
-    //     const url = await PodAudioModel.find();
-    //     res.status(200).json({ msg: "your data is here", data: url })
-    // } catch (error) {
-    //     res.status(401).json({ msg: "error in getting podcast urls from server....", error: error.message })
-    // }
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 2;

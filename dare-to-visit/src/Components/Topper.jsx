@@ -1,5 +1,5 @@
 'use client'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {
     Box,
     Flex,
@@ -17,6 +17,7 @@ import {
     Stack,
     Center,
     Image,
+    Spinner,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
@@ -60,14 +61,26 @@ export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { logout, isAuth, navTologin, role, loading, } = useContext(AuthContext);
     const userProfile = localStorage.getItem("profile");
+
     if (loading) {
-        return <Center><Text color="#fff">loading....</Text></Center>;
+        return <Center bg="#000"><Text color="#fff">loading....
+            <Spinner
+                size={{ base: "sm", md: "lg", lg: "lg" }}
+                color="blue.400"
+                speed="0.6s"
+                thickness="4px"
+                emptyColor="gray.200"
+                boxShadow="0 0 10px rgba(66, 153, 225, 0.6)"
+                ml="15px"
+            />
+        </Text></Center>;
     }
 
     const dynamicLinks = [...Links];
     if (role === 'admin') {
         dynamicLinks.push({ name: 'Admin Dashboard', to: '/admin/dashboard' });
     }
+
     return (
         <>
             <Box bg="#000000" px={2} w="100%" zIndex={"10000"} position={"fixed"}>
@@ -120,7 +133,7 @@ export default function Simple() {
                             >
                                 <Image objectFit={"cover"} rounded="full" w={{ base: "70px", md: "80px", lg: "100px" }} h={{ base: "70px", md: "80px", lg: "100px" }}
 
-                                     src={userProfile || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"}
+                                    src={userProfile || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZqwruSkr4ONamw9vTNbQc3hoaOcm04bONA&s"}
                                 />
                             </MenuButton>
                             <MenuList>
