@@ -5,9 +5,29 @@ const PodcastRouter = express.Router();
 
 
 PodcastRouter.get("/get/podcast/urls", async (req, res) => {
+    // try {
+    //     const url = await PodAudioModel.find();
+    //     res.status(200).json({ msg: "your data is here", data: url })
+    // } catch (error) {
+    //     res.status(401).json({ msg: "error in getting podcast urls from server....", error: error.message })
+    // }
     try {
-        const url = await PodAudioModel.find();
-        res.status(200).json({ msg: "your data is here", data: url })
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 2;
+        const skip = (page - 1) * limit;
+        const query = {};
+        const PodData = await PodAudioModel.find(query).skip(skip).limit(limit);
+        const total = await PodAudioModel.countDocuments(query);
+        const totalPages = Math.ceil(total / limit);
+        const isLastPage = page >= totalPages;
+        res.status(200).json({
+            msg: "Paginated Podcast data",
+            data: PodData,
+            total,
+            page,
+            totalPages,
+            isLastPage
+        });
     } catch (error) {
         res.status(401).json({ msg: "error in getting podcast urls from server....", error: error.message })
     }
@@ -38,5 +58,34 @@ PodcastRouter.delete("/delete/podcast/:id", async (req, res) => {
         res.status(402).json({ msg: "error in deleting podcast urls from server", error: error.message })
     }
 })
+
+
+PodcastRouter.get("/get/podcast/urls/all", async (req, res) => {
+
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 3;
+        const skip = (page - 1) * limit;
+        const query = {};
+        const PodData = await PodAudioModel.find(query).skip(skip).limit(limit);
+        const total = await PodAudioModel.countDocuments(query);
+        const totalPages = Math.ceil(total / limit);
+        const isLastPage = page >= totalPages;
+        res.status(200).json({
+            msg: "Paginated Podcast data",
+            data: PodData,
+            total,
+            page,
+            totalPages,
+            isLastPage
+        });
+    } catch (error) {
+        res.status(401).json({ msg: "error in getting podcast urls from server....", error: error.message })
+    }
+})
+
+
+
+
 
 module.exports = { PodcastRouter };

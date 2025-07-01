@@ -24,7 +24,6 @@ function Podcast() {
         h='auto'
         bg='#000000'
         pt="60px"
-
       >
 
 

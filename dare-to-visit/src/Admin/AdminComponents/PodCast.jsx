@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Box, Button, Center, Grid, GridItem, Heading, Input, Spinner, Text } from "@chakra-ui/react";
 import axios from 'axios';
+import { showToast } from "../../Utils/toast.js"
 import { BE_URL } from '../../URL';
 
 const PodCast = () => {
@@ -8,14 +9,15 @@ const PodCast = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [postData, setPostData] = useState({ url: "", title: "" });
-
+  const [currentPlayingIndex, setCurrentPlayingIndex] = useState(null);
+  const audioRefs = useRef([]);
 
   useEffect(() => {
     fetchPodCastUrl()
   }, [])
   const fetchPodCastUrl = async () => {
     try {
-      const res = await axios.get(`${BE_URL}api/get/podcast/urls`);
+      const res = await axios.get(`${BE_URL}api/get/podcast/urls/all`);
       setGetUrl(res.data.data)
       setLoading(false);
       console.log(getUrl)
@@ -36,22 +38,41 @@ const PodCast = () => {
       try {
         const postResponce = await axios.post(`${BE_URL}api/post/podcast/url`, postData)
         if (postResponce.status === 200) {
-          // setPostData({ url: "", title: "" });
           setError(null);
-          alert("data added success!")
+          showToast({
+            title: 'Success request',
+            description: 'new podcast has been added 😁',
+            status: 'success', // 'success' | 'error' | 'warning' | 'info'
+            duration: 3000,
+            isClosable: true,
+            position: 'top',
+          })
           fetchPodCastUrl();
           postData.url === ""
           postData.title === ""
         } else {
-          alert("issues in posting data")
+          showToast({
+            title: 'Bad Request',
+            description: 'issues in posting data',
+            status: 'error', // 'success' | 'error' | 'warning' | 'info'
+            duration: 3000,
+            isClosable: true,
+            position: 'bottom',
+          })
         }
       } catch (error) {
         setError(`Error :-${error.response.data.msg}`)
       }
 
     } else {
-      alert("url or title should be valid")
-
+      showToast({
+        title: 'Warning',
+        description: ' url or title should be valid',
+        status: 'warning', // 'success' | 'error' | 'warning' | 'info'
+        duration: 3000,
+        isClosable: true,
+        position: 'top',
+      })
     }
   }
   const handleDelete = async (id) => {
@@ -103,19 +124,38 @@ const PodCast = () => {
       >
         Upload
       </Button>
-      <Box mt="20px">
+      <Box mt="20px" minH={"100vh"}>
         <Text fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}>Total Podcast found :- {getUrl.length}</Text>
         {
           getUrl.length === 0 ? (<Heading size="sm" textAlign="center">No audio url's found</Heading>) :
             (
               getUrl.map((data, idx) => (
 
-                <Grid overflowX={"auto"} bg="#E0E0E0" gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
+                <Grid  overflowX={"auto"} bg="#E0E0E0" gap={3} mt="15px" p="2" borderRadius={"lg"} border={"2px solid #FAFAFA"} _hover={{ cursor: "pointer", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} key={idx}>
                   <GridItem>
                     <Text fontSize={{ base: "12px", md: "13px", lg: "14px" }} fontWeight={"500"} color="#1976D2" textDecor={"underline"}><Text color="black" as="span" fontWeight={"bold"}>Url :-</Text>{" "} {data.url}</Text>
                   </GridItem>
                   <GridItem>
                     <Text fontSize={{ base: "12px", md: "13px", lg: "16px" }} color="black" fontWeight={"bold"} >Title :- <Text color="#444" as="span" fontWeight={"400"}>{data.title}</Text></Text>
+                    <audio
+                      ref={(el) => (audioRefs.current[idx] = el)}
+                      src={data.url}
+                      controls
+                      onPlay={() => {
+                        setCurrentPlayingIndex(idx);
+                        // Pause all other audio tracks
+                        audioRefs.current.forEach((audio, i) => {
+                          if (audio && i !== idx) {
+                            audio.pause();
+                          }
+                        });
+                      }}
+                      onPause={() => {
+                        if (currentPlayingIndex === idx) {
+                          setCurrentPlayingIndex(null);
+                        }
+                      }}
+                    />
                     <Button onClick={() => handleDelete(data._id)} backgroundColor={"#FF5722"} size="sm" color="#fff" mt="8px" _hover={{ backgroundColor: "#FF1744", textColor: "#fff" }}>Delete</Button>
 
                   </GridItem>
@@ -126,7 +166,9 @@ const PodCast = () => {
             )
         }
       </Box>
+        <Box position={"fixed"} bottom={"0"}  w="100%" h="10vh" bg="#000">
 
+        </Box>
 
 
     </Box>

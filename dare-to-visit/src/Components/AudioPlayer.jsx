@@ -14,11 +14,14 @@ import {
     keyframes,
     Spinner,
     Center,
-    Divider
+    Divider,
+    Tooltip
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { BE_URL } from '../URL.js';
 import { IoMusicalNote } from "react-icons/io5";
+import { FcPrevious } from "react-icons/fc";
+import { FcNext } from "react-icons/fc";
 
 
 const glowAnimation = keyframes`
@@ -181,24 +184,33 @@ const AudioPlayer = () => {
     const [clickCount, setClickCount] = useState(1);
     const [error, setError] = useState(null);
     const audioRef = useRef(null);
+    const [pageno, setPageno] = useState(1);
+    const [limitno, setLimitTo] = useState(2);
+    const [hasMoreData, setHasMoreData] = useState(true);
+    const [totalPages, setTotalPages] = useState("")
 
 
     const fetchPodCastUrl = async () => {
+        setLoading(true);
         try {
-            const res = await axios.get(`${BE_URL}api/get/podcast/urls`);
+            const res = await axios.get(`${BE_URL}api/get/podcast/urls?page=${pageno}&limit=${limitno}`);
             setGetUrl(res.data.data)
+            setHasMoreData(!res.data.isLastPage);
+            setTotalPages(res.data.totalPages || 1); s
             setLoading(false);
+            setError(null);
         } catch (error) {
             setLoading(false);
+            setHasMoreData(false);
             setError(`${error.response.data.msg}`)
             console.log(error)
         }
-
+        setLoading(false);
     }
 
     useEffect(() => {
         fetchPodCastUrl()
-    }, [])
+    }, [pageno])
 
     const handlePlayPause = () => {
         if (isPlaying) {
@@ -268,9 +280,9 @@ const AudioPlayer = () => {
     if (error) return <Center><Text color="#fff">{"{error in api} :-"} {error}</Text></Center>
     if (getUrl.length === 0) {
         return (
-            <Box bg="#000" w="100%" h="100vh">
+            <Center bg="#000" w="100%" h="100vh">
                 <Text color="#fff">No podcast fetched from server...😪</Text>
-            </Box>
+            </Center>
         );
     }
 
@@ -390,7 +402,7 @@ const AudioPlayer = () => {
 
 
 
-            <Box w={{ base: "99%", md: "80%", lg: "80%" }} m="auto" borderRadius={"xl"} h="80vh" border="1px solid #424242" >
+            <Box position={"relative"} w={{ base: "99%", md: "80%", lg: "80%" }} m="auto" borderRadius={"xl"} minH="80vh" border="1px solid #424242" >
                 <Box w="100%" h="auto" p={{ base: "2", md: "8", lg: "10" }}
                 // border={"1px solid lime"}
                 >
@@ -414,7 +426,55 @@ const AudioPlayer = () => {
                         ))
                     }
 
+
                 </Box>
+
+                <Center p={1} borderBottomRadius={"xl"} flexDir={"column"} bottom={"0"} w={"100%"} bg="#212121" position={"absolute"} >
+                    <Center w={{ base: "220px", md: "300px", lg: "350px" }} justifyContent={"space-between"} h="100%" >
+                        <Tooltip label="Previous Page" hasArrow placement="top">
+                            <Button
+                                borderRadius="full"
+                                width="40px"
+                                height="40px"
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                p={0}
+                                isDisabled={pageno === 1}
+
+                                onClick={() => {
+                                    if (pageno > 1) {
+                                        setPageno(prev => prev - 1);
+                                        setCurrentTrack(0); // Reset to first track on new page
+                                    }
+                                }}
+                            >
+                                <FcPrevious size={18} />
+                            </Button>
+                        </Tooltip>
+                        <Text fontFamily={"monospace"} fontSize={{ base: "xs", md: "sm", lg: "sm" }} color="#fff">Page {pageno} of {totalPages}</Text>
+                        <Tooltip label={pageno === totalPages ? "Last Page 😪" : "Next"} hasArrow placement="top">
+                            <Button
+                                borderRadius="full"
+                                width="40px"
+                                height="40px"
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                p={0} // removes extra padding
+                                isDisabled={pageno === totalPages}
+                                onClick={() => {
+                                    setPageno(prev => prev + 1);
+                                    setCurrentTrack(0); // Reset to first track on new page
+                                }}
+                            >
+                                <FcNext size={18} />
+                            </Button>
+                        </Tooltip>
+                    </Center>
+                </Center>
+
+
 
             </Box>
 
