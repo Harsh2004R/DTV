@@ -6,6 +6,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const slides = [
     {
         image:
+            "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/Photo/HomeBG.jpg?raw=true"
+    },
+
+    {
+        image:
             "https://github.com/Harsh2004R/full-stack-wev-project/blob/main/src/2025/HomeSlider/blackEye.jpg?raw=true",
     },
     {
