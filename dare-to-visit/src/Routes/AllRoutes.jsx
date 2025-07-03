@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import VideoComponent from '../Components/VideoComponent ';
@@ -50,18 +50,7 @@ import AdminLogin from "../Admin/AdminLogin.jsx"
 import About from "../Pages/About.jsx";
 
 function AllRoutes() {
-  const [firstVisit, setFirstVisit] = useState(null);
-  useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-      setFirstVisit(true);
-      localStorage.setItem('hasVisited', 'true');
-    } else {
-      setFirstVisit(false);
-    }
-  }, []);
 
-  if (firstVisit === null) return null;
 
 
 
@@ -70,7 +59,8 @@ function AllRoutes() {
   return (
     <>
       <Routes>
-        <Route path="/" element={firstVisit ? <Welcome /> : <Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/welcome" element={<Welcome />} />
         {/* <Route path="/article" element={<ArticleList />}></Route> */}
         {/* <Route path="/audio" element={<AudioPlayer />}></Route> */}
         {/* <Route path="/media" element={<Media />}></Route> */}
