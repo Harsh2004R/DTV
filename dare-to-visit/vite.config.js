@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './',
   server: {
     // By default, Vite listens only on localhost (127.0.0.1).
     // Change this to '0.0.0.0' to allow external access.
